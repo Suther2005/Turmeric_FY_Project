@@ -1,0 +1,10 @@
+dataset,split,class_label,count
+Dataset_01_jtttfbx342,original,Aphids_Disease,221
+Dataset_01_jtttfbx342,original,Blotch,238
+Dataset_01_jtttfbx342,original,Healthy_Leaf,213
+Dataset_01_jtttfbx342,original,Leaf_Spot,193
+Dataset_02_g46dvrcvwn,original,Dry_Leaf,203
+Dataset_02_g46dvrcvwn,original,Healthy_Leaf,197
+Dataset_02_g46dvrcvwn,original,Leaf_Blotch,199
+Dataset_02_g46dvrcvwn,original,Rhizome_Disease_Roots,182
+Dataset_02_g46dvrcvwn,original,Rhizome_Healthy_Roots,282

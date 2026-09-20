@@ -1,0 +1,5 @@
+location,district,latitude,longitude,elevation_m,start_date,end_date,total_records,temporal_resolution,missing_values_count,temporal_gaps,temp_min_degC,temp_max_degC,temp_mean_degC,rh_min_pct,rh_max_pct,rh_mean_pct,precip_total_mm,data_source
+Erode,Erode,11.341,77.7172,177.0,2021-01-01T00:00,2023-12-31T23:00,26280,1 hour,0,0,17.3,42.4,27.7,8,100,66.8,3837.4,ECMWF ERA5 via Open-Meteo
+Coimbatore,Coimbatore,11.0168,76.9558,431.0,2021-01-01T00:00,2023-12-31T23:00,26280,1 hour,0,0,17.4,39.6,25.6,9,100,73.8,4158.5,ECMWF ERA5 via Open-Meteo
+Salem,Salem,11.6643,78.146,284.0,2021-01-01T00:00,2023-12-31T23:00,26280,1 hour,0,0,15.5,42.0,27.1,10,100,67.8,3416.3,ECMWF ERA5 via Open-Meteo
+Dharmapuri,Dharmapuri,12.1211,78.1582,461.0,2021-01-01T00:00,2023-12-31T23:00,26280,1 hour,0,0,13.0,39.8,25.5,13,100,70.2,3294.6,ECMWF ERA5 via Open-Meteo

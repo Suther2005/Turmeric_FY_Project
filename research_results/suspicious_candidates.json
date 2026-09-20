@@ -1,0 +1,3959 @@
+[
+  {
+    "filename": "aphids_disease_(1).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(1).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0028664125129580498,
+    "p_mob_healthy": 0.6168924570083618,
+    "p_hyb_healthy": 0.3098794221878052,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9968082308769226,
+      "Blotch": 0.00016918769688345492,
+      "Healthy": 0.0028664125129580498,
+      "Leaf Spot": 0.00015614494623150676
+    },
+    "probs_mob": {
+      "Aphids": 0.2547146677970886,
+      "Blotch": 0.055201418697834015,
+      "Healthy": 0.6168924570083618,
+      "Leaf Spot": 0.07319141179323196
+    },
+    "probs_hyb": {
+      "Aphids": 0.6257614493370056,
+      "Blotch": 0.02768530324101448,
+      "Healthy": 0.3098794221878052,
+      "Leaf Spot": 0.03667377680540085
+    },
+    "reasons": [
+      "MobNet predicted Healthy (61.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(10).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(10).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00031021941686049104,
+    "p_mob_healthy": 0.3045445382595062,
+    "p_hyb_healthy": 0.15242737531661987,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9989973902702332,
+      "Blotch": 0.0005265005747787654,
+      "Healthy": 0.00031021941686049104,
+      "Leaf Spot": 0.0001659417903283611
+    },
+    "probs_mob": {
+      "Aphids": 0.5339833498001099,
+      "Blotch": 0.09243234992027283,
+      "Healthy": 0.3045445382595062,
+      "Leaf Spot": 0.0690397322177887
+    },
+    "probs_hyb": {
+      "Aphids": 0.7664903402328491,
+      "Blotch": 0.04647942632436752,
+      "Healthy": 0.15242737531661987,
+      "Leaf Spot": 0.03460283577442169
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.2%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(100).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(100).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0009313362534157932,
+    "p_mob_healthy": 0.34825393557548523,
+    "p_hyb_healthy": 0.17459262907505035,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9976621866226196,
+      "Blotch": 0.0005694922874681652,
+      "Healthy": 0.0009313362534157932,
+      "Leaf Spot": 0.0008370838477276266
+    },
+    "probs_mob": {
+      "Aphids": 0.3529694974422455,
+      "Blotch": 0.12566523253917694,
+      "Healthy": 0.34825393557548523,
+      "Leaf Spot": 0.17311133444309235
+    },
+    "probs_hyb": {
+      "Aphids": 0.6753158569335938,
+      "Blotch": 0.0631173625588417,
+      "Healthy": 0.17459262907505035,
+      "Leaf Spot": 0.08697421103715897
+    },
+    "reasons": [
+      "Hybrid Healthy prob=17.5%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(11).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(11).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.009691398590803146,
+    "p_mob_healthy": 0.8177230954170227,
+    "p_hyb_healthy": 0.41370725631713867,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9868653416633606,
+      "Blotch": 0.0012479840079322457,
+      "Healthy": 0.009691398590803146,
+      "Leaf Spot": 0.0021953326649963856
+    },
+    "probs_mob": {
+      "Aphids": 0.09954220801591873,
+      "Blotch": 0.038533251732587814,
+      "Healthy": 0.8177230954170227,
+      "Leaf Spot": 0.044201526790857315
+    },
+    "probs_hyb": {
+      "Aphids": 0.5432037711143494,
+      "Blotch": 0.019890617579221725,
+      "Healthy": 0.41370725631713867,
+      "Leaf Spot": 0.023198429495096207
+    },
+    "reasons": [
+      "MobNet predicted Healthy (81.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(110).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(110).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010616463841870427,
+    "p_mob_healthy": 0.3957446217536926,
+    "p_hyb_healthy": 0.19840313494205475,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9982513785362244,
+      "Blotch": 0.00017871418094728142,
+      "Healthy": 0.0010616463841870427,
+      "Leaf Spot": 0.0005082918796688318
+    },
+    "probs_mob": {
+      "Aphids": 0.3978438675403595,
+      "Blotch": 0.06309480220079422,
+      "Healthy": 0.3957446217536926,
+      "Leaf Spot": 0.14331665635108948
+    },
+    "probs_hyb": {
+      "Aphids": 0.6980476379394531,
+      "Blotch": 0.031636759638786316,
+      "Healthy": 0.19840313494205475,
+      "Leaf Spot": 0.07191247493028641
+    },
+    "reasons": [
+      "Hybrid Healthy prob=19.8%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(111).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(111).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0004378946323413402,
+    "p_mob_healthy": 0.3346189856529236,
+    "p_hyb_healthy": 0.167528435587883,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9987654685974121,
+      "Blotch": 0.000269721174845472,
+      "Healthy": 0.0004378946323413402,
+      "Leaf Spot": 0.0005269469111226499
+    },
+    "probs_mob": {
+      "Aphids": 0.47325876355171204,
+      "Blotch": 0.05606207251548767,
+      "Healthy": 0.3346189856529236,
+      "Leaf Spot": 0.13606013357639313
+    },
+    "probs_hyb": {
+      "Aphids": 0.7360121011734009,
+      "Blotch": 0.028165897354483604,
+      "Healthy": 0.167528435587883,
+      "Leaf Spot": 0.06829354166984558
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.8%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(112).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(112).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0015684578102082014,
+    "p_mob_healthy": 0.3683042824268341,
+    "p_hyb_healthy": 0.18493637442588806,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9978123903274536,
+      "Blotch": 0.0003793673822656274,
+      "Healthy": 0.0015684578102082014,
+      "Leaf Spot": 0.00023976710508577526
+    },
+    "probs_mob": {
+      "Aphids": 0.5201166868209839,
+      "Blotch": 0.04288299381732941,
+      "Healthy": 0.3683042824268341,
+      "Leaf Spot": 0.06869600713253021
+    },
+    "probs_hyb": {
+      "Aphids": 0.7589645385742188,
+      "Blotch": 0.021631181240081787,
+      "Healthy": 0.18493637442588806,
+      "Leaf Spot": 0.03446788713335991
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.5%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(115).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(115).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0013695714296773076,
+    "p_mob_healthy": 0.4120221734046936,
+    "p_hyb_healthy": 0.20669586956501007,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9979283809661865,
+      "Blotch": 0.00045489383046515286,
+      "Healthy": 0.0013695714296773076,
+      "Leaf Spot": 0.0002470475737936795
+    },
+    "probs_mob": {
+      "Aphids": 0.46039941906929016,
+      "Blotch": 0.0500083863735199,
+      "Healthy": 0.4120221734046936,
+      "Leaf Spot": 0.07757004350423813
+    },
+    "probs_hyb": {
+      "Aphids": 0.7291638851165771,
+      "Blotch": 0.02523164078593254,
+      "Healthy": 0.20669586956501007,
+      "Leaf Spot": 0.038908544927835464
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.7%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(116).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(116).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0008440978708676994,
+    "p_mob_healthy": 0.32836899161338806,
+    "p_hyb_healthy": 0.16460654139518738,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9985402822494507,
+      "Blotch": 0.0003844375314656645,
+      "Healthy": 0.0008440978708676994,
+      "Leaf Spot": 0.0002311448915861547
+    },
+    "probs_mob": {
+      "Aphids": 0.5637970566749573,
+      "Blotch": 0.043588291853666306,
+      "Healthy": 0.32836899161338806,
+      "Leaf Spot": 0.06424569338560104
+    },
+    "probs_hyb": {
+      "Aphids": 0.7811686992645264,
+      "Blotch": 0.02198636531829834,
+      "Healthy": 0.16460654139518738,
+      "Leaf Spot": 0.032238420099020004
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.5%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(12).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(12).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.02718382328748703,
+    "p_mob_healthy": 0.8044186234474182,
+    "p_hyb_healthy": 0.4158012270927429,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9681879878044128,
+      "Blotch": 0.0027520989533513784,
+      "Healthy": 0.02718382328748703,
+      "Leaf Spot": 0.0018760660896077752
+    },
+    "probs_mob": {
+      "Aphids": 0.11661720275878906,
+      "Blotch": 0.03705686330795288,
+      "Healthy": 0.8044186234474182,
+      "Leaf Spot": 0.041907262057065964
+    },
+    "probs_hyb": {
+      "Aphids": 0.5424026250839233,
+      "Blotch": 0.01990448124706745,
+      "Healthy": 0.4158012270927429,
+      "Leaf Spot": 0.02189166471362114
+    },
+    "reasons": [
+      "MobNet predicted Healthy (80.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(124).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(124).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001116665662266314,
+    "p_mob_healthy": 0.3265763521194458,
+    "p_hyb_healthy": 0.16384650766849518,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9979065656661987,
+      "Blotch": 0.0006328493473120034,
+      "Healthy": 0.001116665662266314,
+      "Leaf Spot": 0.00034396970295347273
+    },
+    "probs_mob": {
+      "Aphids": 0.5962165594100952,
+      "Blotch": 0.03611156344413757,
+      "Healthy": 0.3265763521194458,
+      "Leaf Spot": 0.04109557345509529
+    },
+    "probs_hyb": {
+      "Aphids": 0.797061562538147,
+      "Blotch": 0.018372206017374992,
+      "Healthy": 0.16384650766849518,
+      "Leaf Spot": 0.020719772204756737
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(125).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(125).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00029991791234351695,
+    "p_mob_healthy": 0.4080004096031189,
+    "p_hyb_healthy": 0.20415017008781433,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9994133710861206,
+      "Blotch": 0.00017903980915434659,
+      "Healthy": 0.00029991791234351695,
+      "Leaf Spot": 0.00010765212209662423
+    },
+    "probs_mob": {
+      "Aphids": 0.47927147150039673,
+      "Blotch": 0.043806277215480804,
+      "Healthy": 0.4080004096031189,
+      "Leaf Spot": 0.06892188638448715
+    },
+    "probs_hyb": {
+      "Aphids": 0.739342451095581,
+      "Blotch": 0.02199265919625759,
+      "Healthy": 0.20415017008781433,
+      "Leaf Spot": 0.03451476991176605
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(13).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(13).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.005869467742741108,
+    "p_mob_healthy": 0.8866990208625793,
+    "p_hyb_healthy": 0.4462842345237732,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9924390316009521,
+      "Blotch": 0.0007379066664725542,
+      "Healthy": 0.005869467742741108,
+      "Leaf Spot": 0.0009536153520457447
+    },
+    "probs_mob": {
+      "Aphids": 0.05315573886036873,
+      "Blotch": 0.027087878435850143,
+      "Healthy": 0.8866990208625793,
+      "Leaf Spot": 0.03305736929178238
+    },
+    "probs_hyb": {
+      "Aphids": 0.5227974057197571,
+      "Blotch": 0.013912892900407314,
+      "Healthy": 0.4462842345237732,
+      "Leaf Spot": 0.017005492001771927
+    },
+    "reasons": [
+      "MobNet predicted Healthy (88.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(14).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(14).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.005134906619787216,
+    "p_mob_healthy": 0.8863174319267273,
+    "p_hyb_healthy": 0.4457261562347412,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9936995506286621,
+      "Blotch": 0.0005465636495500803,
+      "Healthy": 0.005134906619787216,
+      "Leaf Spot": 0.0006188943516463041
+    },
+    "probs_mob": {
+      "Aphids": 0.057082951068878174,
+      "Blotch": 0.027666578069329262,
+      "Healthy": 0.8863174319267273,
+      "Leaf Spot": 0.028933094814419746
+    },
+    "probs_hyb": {
+      "Aphids": 0.5253912210464478,
+      "Blotch": 0.01410657074302435,
+      "Healthy": 0.4457261562347412,
+      "Leaf Spot": 0.01477599423378706
+    },
+    "reasons": [
+      "MobNet predicted Healthy (88.6%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(15).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(15).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.004791132640093565,
+    "p_mob_healthy": 0.8532877564430237,
+    "p_hyb_healthy": 0.42903944849967957,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9927955269813538,
+      "Blotch": 0.0011035148054361343,
+      "Healthy": 0.004791132640093565,
+      "Leaf Spot": 0.0013097409391775727
+    },
+    "probs_mob": {
+      "Aphids": 0.0760285034775734,
+      "Blotch": 0.033309295773506165,
+      "Healthy": 0.8532877564430237,
+      "Leaf Spot": 0.03737439960241318
+    },
+    "probs_hyb": {
+      "Aphids": 0.5344120264053345,
+      "Blotch": 0.017206404358148575,
+      "Healthy": 0.42903944849967957,
+      "Leaf Spot": 0.019342070445418358
+    },
+    "reasons": [
+      "MobNet predicted Healthy (85.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(16).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(16).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.004450471606105566,
+    "p_mob_healthy": 0.3718077838420868,
+    "p_hyb_healthy": 0.18812912702560425,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9836106300354004,
+      "Blotch": 0.004049826413393021,
+      "Healthy": 0.004450471606105566,
+      "Leaf Spot": 0.007889210246503353
+    },
+    "probs_mob": {
+      "Aphids": 0.3925585150718689,
+      "Blotch": 0.14997808635234833,
+      "Healthy": 0.3718077838420868,
+      "Leaf Spot": 0.08565562963485718
+    },
+    "probs_hyb": {
+      "Aphids": 0.688084602355957,
+      "Blotch": 0.07701395452022552,
+      "Healthy": 0.18812912702560425,
+      "Leaf Spot": 0.04677242040634155
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.8%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(162).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(162).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010032260324805975,
+    "p_mob_healthy": 0.6075383424758911,
+    "p_hyb_healthy": 0.30427077412605286,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.998674750328064,
+      "Blotch": 0.0001843920472310856,
+      "Healthy": 0.0010032260324805975,
+      "Leaf Spot": 0.00013765683979727328
+    },
+    "probs_mob": {
+      "Aphids": 0.2856594920158386,
+      "Blotch": 0.03958310931921005,
+      "Healthy": 0.6075383424758911,
+      "Leaf Spot": 0.06721905618906021
+    },
+    "probs_hyb": {
+      "Aphids": 0.6421670913696289,
+      "Blotch": 0.01988375000655651,
+      "Healthy": 0.30427077412605286,
+      "Leaf Spot": 0.03367835655808449
+    },
+    "reasons": [
+      "MobNet predicted Healthy (60.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(163).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(163).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001910746213980019,
+    "p_mob_healthy": 0.542330801486969,
+    "p_hyb_healthy": 0.27212077379226685,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9965404868125916,
+      "Blotch": 0.0006737099611200392,
+      "Healthy": 0.001910746213980019,
+      "Leaf Spot": 0.0008750311681069434
+    },
+    "probs_mob": {
+      "Aphids": 0.3162705600261688,
+      "Blotch": 0.05771982669830322,
+      "Healthy": 0.542330801486969,
+      "Leaf Spot": 0.08367875963449478
+    },
+    "probs_hyb": {
+      "Aphids": 0.656405508518219,
+      "Blotch": 0.02919676899909973,
+      "Healthy": 0.27212077379226685,
+      "Leaf Spot": 0.04227689653635025
+    },
+    "reasons": [
+      "MobNet predicted Healthy (54.2%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(164).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(164).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0030346328858286142,
+    "p_mob_healthy": 0.5494911670684814,
+    "p_hyb_healthy": 0.27626290917396545,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.987307071685791,
+      "Blotch": 0.0008502279524691403,
+      "Healthy": 0.0030346328858286142,
+      "Leaf Spot": 0.008808054029941559
+    },
+    "probs_mob": {
+      "Aphids": 0.3171980679035187,
+      "Blotch": 0.06303724646568298,
+      "Healthy": 0.5494911670684814,
+      "Leaf Spot": 0.0702735111117363
+    },
+    "probs_hyb": {
+      "Aphids": 0.6522525548934937,
+      "Blotch": 0.03194373846054077,
+      "Healthy": 0.27626290917396545,
+      "Leaf Spot": 0.03954078257083893
+    },
+    "reasons": [
+      "MobNet predicted Healthy (54.9%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(165).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(165).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00041101151145994663,
+    "p_mob_healthy": 0.5999695658683777,
+    "p_hyb_healthy": 0.3001902997493744,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9990938901901245,
+      "Blotch": 0.00019872875418514013,
+      "Healthy": 0.00041101151145994663,
+      "Leaf Spot": 0.00029630502103827894
+    },
+    "probs_mob": {
+      "Aphids": 0.29748719930648804,
+      "Blotch": 0.038864847272634506,
+      "Healthy": 0.5999695658683777,
+      "Leaf Spot": 0.0636783316731453
+    },
+    "probs_hyb": {
+      "Aphids": 0.6482905149459839,
+      "Blotch": 0.019531788304448128,
+      "Healthy": 0.3001902997493744,
+      "Leaf Spot": 0.03198731690645218
+    },
+    "reasons": [
+      "MobNet predicted Healthy (60.0%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(166).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(166).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010520699433982372,
+    "p_mob_healthy": 0.3750917315483093,
+    "p_hyb_healthy": 0.18807190656661987,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9978341460227966,
+      "Blotch": 0.0005353442975319922,
+      "Healthy": 0.0010520699433982372,
+      "Leaf Spot": 0.0005783273372799158
+    },
+    "probs_mob": {
+      "Aphids": 0.514465868473053,
+      "Blotch": 0.0502764917910099,
+      "Healthy": 0.3750917315483093,
+      "Leaf Spot": 0.06016593798995018
+    },
+    "probs_hyb": {
+      "Aphids": 0.7561500072479248,
+      "Blotch": 0.025405917316675186,
+      "Healthy": 0.18807190656661987,
+      "Leaf Spot": 0.0303721334785223
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.8%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(167).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(167).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0025908283423632383,
+    "p_mob_healthy": 0.43973374366760254,
+    "p_hyb_healthy": 0.22116228938102722,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9965337514877319,
+      "Blotch": 0.0005712286802008748,
+      "Healthy": 0.0025908283423632383,
+      "Leaf Spot": 0.00030420933035202324
+    },
+    "probs_mob": {
+      "Aphids": 0.32643669843673706,
+      "Blotch": 0.11620867252349854,
+      "Healthy": 0.43973374366760254,
+      "Leaf Spot": 0.11762084066867828
+    },
+    "probs_hyb": {
+      "Aphids": 0.6614851951599121,
+      "Blotch": 0.058389950543642044,
+      "Healthy": 0.22116228938102722,
+      "Leaf Spot": 0.05896252393722534
+    },
+    "reasons": [
+      "MobNet predicted Healthy (44.0%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(171).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(171).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0005788087728433311,
+    "p_mob_healthy": 0.3984358012676239,
+    "p_hyb_healthy": 0.19950731098651886,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9989752769470215,
+      "Blotch": 0.0002908898750320077,
+      "Healthy": 0.0005788087728433311,
+      "Leaf Spot": 0.00015502278984058648
+    },
+    "probs_mob": {
+      "Aphids": 0.4903586208820343,
+      "Blotch": 0.052516594529151917,
+      "Healthy": 0.3984358012676239,
+      "Leaf Spot": 0.05868898332118988
+    },
+    "probs_hyb": {
+      "Aphids": 0.7446669340133667,
+      "Blotch": 0.026403741911053658,
+      "Healthy": 0.19950731098651886,
+      "Leaf Spot": 0.029422003775835037
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.0%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(187).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(187).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0038060673978179693,
+    "p_mob_healthy": 0.6681771874427795,
+    "p_hyb_healthy": 0.33599162101745605,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9955734014511108,
+      "Blotch": 0.000317829311825335,
+      "Healthy": 0.0038060673978179693,
+      "Leaf Spot": 0.00030267128022387624
+    },
+    "probs_mob": {
+      "Aphids": 0.19822755455970764,
+      "Blotch": 0.05147077143192291,
+      "Healthy": 0.6681771874427795,
+      "Leaf Spot": 0.08212447911500931
+    },
+    "probs_hyb": {
+      "Aphids": 0.596900463104248,
+      "Blotch": 0.025894301012158394,
+      "Healthy": 0.33599162101745605,
+      "Leaf Spot": 0.04121357575058937
+    },
+    "reasons": [
+      "MobNet predicted Healthy (66.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(188).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(188).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0009268216672353446,
+    "p_mob_healthy": 0.6011847257614136,
+    "p_hyb_healthy": 0.30105575919151306,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9986767172813416,
+      "Blotch": 0.00016054273874033242,
+      "Healthy": 0.0009268216672353446,
+      "Leaf Spot": 0.00023587679606862366
+    },
+    "probs_mob": {
+      "Aphids": 0.25444385409355164,
+      "Blotch": 0.057331621646881104,
+      "Healthy": 0.6011847257614136,
+      "Leaf Spot": 0.0870397761464119
+    },
+    "probs_hyb": {
+      "Aphids": 0.6265602707862854,
+      "Blotch": 0.02874608151614666,
+      "Healthy": 0.30105575919151306,
+      "Leaf Spot": 0.043637827038764954
+    },
+    "reasons": [
+      "MobNet predicted Healthy (60.1%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(189).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(189).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.002352386247366667,
+    "p_mob_healthy": 0.740493893623352,
+    "p_hyb_healthy": 0.3714231252670288,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9969697594642639,
+      "Blotch": 0.00014576700050383806,
+      "Healthy": 0.002352386247366667,
+      "Leaf Spot": 0.0005321978242136538
+    },
+    "probs_mob": {
+      "Aphids": 0.16307850182056427,
+      "Blotch": 0.03949367254972458,
+      "Healthy": 0.740493893623352,
+      "Leaf Spot": 0.05693387612700462
+    },
+    "probs_hyb": {
+      "Aphids": 0.5800241231918335,
+      "Blotch": 0.019819719716906548,
+      "Healthy": 0.3714231252670288,
+      "Leaf Spot": 0.028733037412166595
+    },
+    "reasons": [
+      "MobNet predicted Healthy (74.0%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(190).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(190).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.004060634411871433,
+    "p_mob_healthy": 0.7109824419021606,
+    "p_hyb_healthy": 0.35752153396606445,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9942428469657898,
+      "Blotch": 0.0003288185107521713,
+      "Healthy": 0.004060634411871433,
+      "Leaf Spot": 0.0013677763054147363
+    },
+    "probs_mob": {
+      "Aphids": 0.19397883117198944,
+      "Blotch": 0.03187676519155502,
+      "Healthy": 0.7109824419021606,
+      "Leaf Spot": 0.06316201388835907
+    },
+    "probs_hyb": {
+      "Aphids": 0.5941108465194702,
+      "Blotch": 0.01610279269516468,
+      "Healthy": 0.35752153396606445,
+      "Leaf Spot": 0.03226489573717117
+    },
+    "reasons": [
+      "MobNet predicted Healthy (71.1%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(191).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(191).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0076780375093221664,
+    "p_mob_healthy": 0.7877033352851868,
+    "p_hyb_healthy": 0.39769068360328674,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9903958439826965,
+      "Blotch": 0.0006419793353416026,
+      "Healthy": 0.0076780375093221664,
+      "Leaf Spot": 0.0012840463314205408
+    },
+    "probs_mob": {
+      "Aphids": 0.12722750008106232,
+      "Blotch": 0.036393750458955765,
+      "Healthy": 0.7877033352851868,
+      "Leaf Spot": 0.048675425350666046
+    },
+    "probs_hyb": {
+      "Aphids": 0.5588116645812988,
+      "Blotch": 0.018517864868044853,
+      "Healthy": 0.39769068360328674,
+      "Leaf Spot": 0.024979736655950546
+    },
+    "reasons": [
+      "MobNet predicted Healthy (78.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(192).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(192).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0015113656409084797,
+    "p_mob_healthy": 0.44765740633010864,
+    "p_hyb_healthy": 0.22458438575267792,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.997340738773346,
+      "Blotch": 0.0005137260886840522,
+      "Healthy": 0.0015113656409084797,
+      "Leaf Spot": 0.0006341508706100285
+    },
+    "probs_mob": {
+      "Aphids": 0.4628460109233856,
+      "Blotch": 0.03383340314030647,
+      "Healthy": 0.44765740633010864,
+      "Leaf Spot": 0.05566323921084404
+    },
+    "probs_hyb": {
+      "Aphids": 0.7300933599472046,
+      "Blotch": 0.017173564061522484,
+      "Healthy": 0.22458438575267792,
+      "Leaf Spot": 0.028148695826530457
+    },
+    "reasons": [
+      "Hybrid Healthy prob=22.5%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(193).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(193).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0014311629347503185,
+    "p_mob_healthy": 0.4579646587371826,
+    "p_hyb_healthy": 0.22969791293144226,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9977536797523499,
+      "Blotch": 0.0004446262028068304,
+      "Healthy": 0.0014311629347503185,
+      "Leaf Spot": 0.00037063032505102456
+    },
+    "probs_mob": {
+      "Aphids": 0.4292544722557068,
+      "Blotch": 0.04417923092842102,
+      "Healthy": 0.4579646587371826,
+      "Leaf Spot": 0.06860169023275375
+    },
+    "probs_hyb": {
+      "Aphids": 0.7135040760040283,
+      "Blotch": 0.022311927750706673,
+      "Healthy": 0.22969791293144226,
+      "Leaf Spot": 0.034486159682273865
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(194).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(194).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00042815683991648257,
+    "p_mob_healthy": 0.32610055804252625,
+    "p_hyb_healthy": 0.16326436400413513,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9991273283958435,
+      "Blotch": 0.00022569509746972471,
+      "Healthy": 0.00042815683991648257,
+      "Leaf Spot": 0.00021876183745916933
+    },
+    "probs_mob": {
+      "Aphids": 0.5712217688560486,
+      "Blotch": 0.04382431134581566,
+      "Healthy": 0.32610055804252625,
+      "Leaf Spot": 0.0588533990085125
+    },
+    "probs_hyb": {
+      "Aphids": 0.785174548625946,
+      "Blotch": 0.022025004029273987,
+      "Healthy": 0.16326436400413513,
+      "Leaf Spot": 0.029536079615354538
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.3%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(196).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(196).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00038576015504077077,
+    "p_mob_healthy": 0.38694316148757935,
+    "p_hyb_healthy": 0.19366446137428284,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9990697503089905,
+      "Blotch": 0.00026786024682223797,
+      "Healthy": 0.00038576015504077077,
+      "Leaf Spot": 0.00027668135589919984
+    },
+    "probs_mob": {
+      "Aphids": 0.492995947599411,
+      "Blotch": 0.05354023724794388,
+      "Healthy": 0.38694316148757935,
+      "Leaf Spot": 0.06652064621448517
+    },
+    "probs_hyb": {
+      "Aphids": 0.7460328340530396,
+      "Blotch": 0.026904048398137093,
+      "Healthy": 0.19366446137428284,
+      "Leaf Spot": 0.033398665487766266
+    },
+    "reasons": [
+      "Hybrid Healthy prob=19.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(197).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(197).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0009093289263546467,
+    "p_mob_healthy": 0.40672484040260315,
+    "p_hyb_healthy": 0.20381708443164825,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9985529780387878,
+      "Blotch": 0.0003509727830532938,
+      "Healthy": 0.0009093289263546467,
+      "Leaf Spot": 0.00018675644241739064
+    },
+    "probs_mob": {
+      "Aphids": 0.4887886941432953,
+      "Blotch": 0.03695103898644447,
+      "Healthy": 0.40672484040260315,
+      "Leaf Spot": 0.06753548234701157
+    },
+    "probs_hyb": {
+      "Aphids": 0.7436708211898804,
+      "Blotch": 0.018651006743311882,
+      "Healthy": 0.20381708443164825,
+      "Leaf Spot": 0.03386111930012703
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(2).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(2).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001560366596095264,
+    "p_mob_healthy": 0.4929642975330353,
+    "p_hyb_healthy": 0.24726232886314392,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9971139430999756,
+      "Blotch": 0.0009670802974142134,
+      "Healthy": 0.001560366596095264,
+      "Leaf Spot": 0.0003586371021810919
+    },
+    "probs_mob": {
+      "Aphids": 0.36594358086586,
+      "Blotch": 0.08921406418085098,
+      "Healthy": 0.4929642975330353,
+      "Leaf Spot": 0.05187804251909256
+    },
+    "probs_hyb": {
+      "Aphids": 0.6815287470817566,
+      "Blotch": 0.04509057104587555,
+      "Healthy": 0.24726232886314392,
+      "Leaf Spot": 0.026118339970707893
+    },
+    "reasons": [
+      "MobNet predicted Healthy (49.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(202).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(202).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0004780692688655108,
+    "p_mob_healthy": 0.3061422109603882,
+    "p_hyb_healthy": 0.1533101350069046,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9990214109420776,
+      "Blotch": 0.0002081920683849603,
+      "Healthy": 0.0004780692688655108,
+      "Leaf Spot": 0.0002924158761743456
+    },
+    "probs_mob": {
+      "Aphids": 0.5783374905586243,
+      "Blotch": 0.050497084856033325,
+      "Healthy": 0.3061422109603882,
+      "Leaf Spot": 0.06502313911914825
+    },
+    "probs_hyb": {
+      "Aphids": 0.7886794805526733,
+      "Blotch": 0.025352638214826584,
+      "Healthy": 0.1533101350069046,
+      "Leaf Spot": 0.03265777602791786
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.3%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(203).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(203).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0006941983010619879,
+    "p_mob_healthy": 0.30024006962776184,
+    "p_hyb_healthy": 0.1504671275615692,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9982751607894897,
+      "Blotch": 0.00041962345130741596,
+      "Healthy": 0.0006941983010619879,
+      "Leaf Spot": 0.0006110401591286063
+    },
+    "probs_mob": {
+      "Aphids": 0.5989899635314941,
+      "Blotch": 0.038473229855298996,
+      "Healthy": 0.30024006962776184,
+      "Leaf Spot": 0.06229674443602562
+    },
+    "probs_hyb": {
+      "Aphids": 0.7986325621604919,
+      "Blotch": 0.01944642700254917,
+      "Healthy": 0.1504671275615692,
+      "Leaf Spot": 0.03145389258861542
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.0%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(207).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(207).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001197917852550745,
+    "p_mob_healthy": 0.38635945320129395,
+    "p_hyb_healthy": 0.19377867877483368,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9977248311042786,
+      "Blotch": 0.000670239154715091,
+      "Healthy": 0.001197917852550745,
+      "Leaf Spot": 0.00040699110832065344
+    },
+    "probs_mob": {
+      "Aphids": 0.48749208450317383,
+      "Blotch": 0.05682806298136711,
+      "Healthy": 0.38635945320129395,
+      "Leaf Spot": 0.06932038068771362
+    },
+    "probs_hyb": {
+      "Aphids": 0.7426084280014038,
+      "Blotch": 0.028749151155352592,
+      "Healthy": 0.19377867877483368,
+      "Leaf Spot": 0.034863684326410294
+    },
+    "reasons": [
+      "Hybrid Healthy prob=19.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(208).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(208).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0017996322130784392,
+    "p_mob_healthy": 0.5609923005104065,
+    "p_hyb_healthy": 0.28139597177505493,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9969603419303894,
+      "Blotch": 0.0008458715747110546,
+      "Healthy": 0.0017996322130784392,
+      "Leaf Spot": 0.00039424109854735434
+    },
+    "probs_mob": {
+      "Aphids": 0.320408433675766,
+      "Blotch": 0.04746063053607941,
+      "Healthy": 0.5609923005104065,
+      "Leaf Spot": 0.07113860547542572
+    },
+    "probs_hyb": {
+      "Aphids": 0.6586843729019165,
+      "Blotch": 0.024153251200914383,
+      "Healthy": 0.28139597177505493,
+      "Leaf Spot": 0.035766422748565674
+    },
+    "reasons": [
+      "MobNet predicted Healthy (56.1%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(21).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(21).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 6.50189831503667e-05,
+    "p_mob_healthy": 0.3616707921028137,
+    "p_hyb_healthy": 0.18086791038513184,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9998061060905457,
+      "Blotch": 2.4549621230107732e-05,
+      "Healthy": 6.50189831503667e-05,
+      "Leaf Spot": 0.00010432409908389673
+    },
+    "probs_mob": {
+      "Aphids": 0.4452619254589081,
+      "Blotch": 0.07944794744253159,
+      "Healthy": 0.3616707921028137,
+      "Leaf Spot": 0.11361939460039139
+    },
+    "probs_hyb": {
+      "Aphids": 0.7225340008735657,
+      "Blotch": 0.039736248552799225,
+      "Healthy": 0.18086791038513184,
+      "Leaf Spot": 0.05686185881495476
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.1%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(210).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(210).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0012358174426481128,
+    "p_mob_healthy": 0.3784736096858978,
+    "p_hyb_healthy": 0.1898547112941742,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9975600242614746,
+      "Blotch": 0.0007465064409188926,
+      "Healthy": 0.0012358174426481128,
+      "Leaf Spot": 0.0004576822102535516
+    },
+    "probs_mob": {
+      "Aphids": 0.49747639894485474,
+      "Blotch": 0.047597985714673996,
+      "Healthy": 0.3784736096858978,
+      "Leaf Spot": 0.07645193487405777
+    },
+    "probs_hyb": {
+      "Aphids": 0.7475181818008423,
+      "Blotch": 0.02417224645614624,
+      "Healthy": 0.1898547112941742,
+      "Leaf Spot": 0.0384548082947731
+    },
+    "reasons": [
+      "Hybrid Healthy prob=19.0%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(211).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(211).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0032904904801398516,
+    "p_mob_healthy": 0.5191603302955627,
+    "p_hyb_healthy": 0.2612254023551941,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9947376847267151,
+      "Blotch": 0.0013712219661101699,
+      "Healthy": 0.0032904904801398516,
+      "Leaf Spot": 0.0006006010808050632
+    },
+    "probs_mob": {
+      "Aphids": 0.3376806080341339,
+      "Blotch": 0.05633290484547615,
+      "Healthy": 0.5191603302955627,
+      "Leaf Spot": 0.08682611584663391
+    },
+    "probs_hyb": {
+      "Aphids": 0.6662091612815857,
+      "Blotch": 0.028852064162492752,
+      "Healthy": 0.2612254023551941,
+      "Leaf Spot": 0.04371335729956627
+    },
+    "reasons": [
+      "MobNet predicted Healthy (51.9%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(212).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(212).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0006839795969426632,
+    "p_mob_healthy": 0.5741941928863525,
+    "p_hyb_healthy": 0.2874390780925751,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9990252256393433,
+      "Blotch": 9.84460930339992e-05,
+      "Healthy": 0.0006839795969426632,
+      "Leaf Spot": 0.000192381558008492
+    },
+    "probs_mob": {
+      "Aphids": 0.27601906657218933,
+      "Blotch": 0.04273970052599907,
+      "Healthy": 0.5741941928863525,
+      "Leaf Spot": 0.10704705864191055
+    },
+    "probs_hyb": {
+      "Aphids": 0.6375221610069275,
+      "Blotch": 0.021419072523713112,
+      "Healthy": 0.2874390780925751,
+      "Leaf Spot": 0.05361972004175186
+    },
+    "reasons": [
+      "MobNet predicted Healthy (57.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(215).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(215).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0014339338522404432,
+    "p_mob_healthy": 0.41423824429512024,
+    "p_hyb_healthy": 0.2078360915184021,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9981169700622559,
+      "Blotch": 0.00024898472474887967,
+      "Healthy": 0.0014339338522404432,
+      "Leaf Spot": 0.00020018662326037884
+    },
+    "probs_mob": {
+      "Aphids": 0.41086244583129883,
+      "Blotch": 0.045519474893808365,
+      "Healthy": 0.41423824429512024,
+      "Leaf Spot": 0.12937979400157928
+    },
+    "probs_hyb": {
+      "Aphids": 0.7044897079467773,
+      "Blotch": 0.022884229198098183,
+      "Healthy": 0.2078360915184021,
+      "Leaf Spot": 0.06478998810052872
+    },
+    "reasons": [
+      "MobNet predicted Healthy (41.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(22).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(22).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0003310130850877613,
+    "p_mob_healthy": 0.3414260149002075,
+    "p_hyb_healthy": 0.17087851464748383,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9952901601791382,
+      "Blotch": 0.00024234299780800939,
+      "Healthy": 0.0003310130850877613,
+      "Leaf Spot": 0.004136367700994015
+    },
+    "probs_mob": {
+      "Aphids": 0.4626770615577698,
+      "Blotch": 0.08386940509080887,
+      "Healthy": 0.3414260149002075,
+      "Leaf Spot": 0.11202748864889145
+    },
+    "probs_hyb": {
+      "Aphids": 0.7289836406707764,
+      "Blotch": 0.042055875062942505,
+      "Healthy": 0.17087851464748383,
+      "Leaf Spot": 0.05808192864060402
+    },
+    "reasons": [
+      "Hybrid Healthy prob=17.1%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(26).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(26).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.038889285176992416,
+    "p_mob_healthy": 0.7791781425476074,
+    "p_hyb_healthy": 0.40903371572494507,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9518435597419739,
+      "Blotch": 0.0023202593438327312,
+      "Healthy": 0.038889285176992416,
+      "Leaf Spot": 0.00694684823974967
+    },
+    "probs_mob": {
+      "Aphids": 0.09091593325138092,
+      "Blotch": 0.06624526530504227,
+      "Healthy": 0.7791781425476074,
+      "Leaf Spot": 0.0636606216430664
+    },
+    "probs_hyb": {
+      "Aphids": 0.5213797688484192,
+      "Blotch": 0.03428276255726814,
+      "Healthy": 0.40903371572494507,
+      "Leaf Spot": 0.03530373424291611
+    },
+    "reasons": [
+      "MobNet predicted Healthy (77.9%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(27).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(27).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.020496943965554237,
+    "p_mob_healthy": 0.8982295393943787,
+    "p_hyb_healthy": 0.45936325192451477,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9705332517623901,
+      "Blotch": 0.001626593992114067,
+      "Healthy": 0.020496943965554237,
+      "Leaf Spot": 0.007343204226344824
+    },
+    "probs_mob": {
+      "Aphids": 0.044451531022787094,
+      "Blotch": 0.02286067046225071,
+      "Healthy": 0.8982295393943787,
+      "Leaf Spot": 0.034458231180906296
+    },
+    "probs_hyb": {
+      "Aphids": 0.5074923634529114,
+      "Blotch": 0.012243632227182388,
+      "Healthy": 0.45936325192451477,
+      "Leaf Spot": 0.02090071700513363
+    },
+    "reasons": [
+      "MobNet predicted Healthy (89.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(28).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(28).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.009261918254196644,
+    "p_mob_healthy": 0.8779878616333008,
+    "p_hyb_healthy": 0.443624883890152,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9889772534370422,
+      "Blotch": 0.000249498407356441,
+      "Healthy": 0.009261918254196644,
+      "Leaf Spot": 0.0015113430563360453
+    },
+    "probs_mob": {
+      "Aphids": 0.05898036062717438,
+      "Blotch": 0.027862548828125,
+      "Healthy": 0.8779878616333008,
+      "Leaf Spot": 0.03516919165849686
+    },
+    "probs_hyb": {
+      "Aphids": 0.5239788293838501,
+      "Blotch": 0.014056023210287094,
+      "Healthy": 0.443624883890152,
+      "Leaf Spot": 0.01834026724100113
+    },
+    "reasons": [
+      "MobNet predicted Healthy (87.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(29).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(29).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0045035178773105145,
+    "p_mob_healthy": 0.7729555368423462,
+    "p_hyb_healthy": 0.3887295126914978,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9928100109100342,
+      "Blotch": 0.00027670469717122614,
+      "Healthy": 0.0045035178773105145,
+      "Leaf Spot": 0.0024097792338579893
+    },
+    "probs_mob": {
+      "Aphids": 0.10426226258277893,
+      "Blotch": 0.052862588316202164,
+      "Healthy": 0.7729555368423462,
+      "Leaf Spot": 0.0699196606874466
+    },
+    "probs_hyb": {
+      "Aphids": 0.5485361218452454,
+      "Blotch": 0.02656964585185051,
+      "Healthy": 0.3887295126914978,
+      "Leaf Spot": 0.036164719611406326
+    },
+    "reasons": [
+      "MobNet predicted Healthy (77.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(30).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(30).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.022125383839011192,
+    "p_mob_healthy": 0.5768405199050903,
+    "p_hyb_healthy": 0.29948294162750244,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9571928977966309,
+      "Blotch": 0.002119411714375019,
+      "Healthy": 0.022125383839011192,
+      "Leaf Spot": 0.018562206998467445
+    },
+    "probs_mob": {
+      "Aphids": 0.15922468900680542,
+      "Blotch": 0.104496531188488,
+      "Healthy": 0.5768405199050903,
+      "Leaf Spot": 0.15943826735019684
+    },
+    "probs_hyb": {
+      "Aphids": 0.5582088232040405,
+      "Blotch": 0.053307972848415375,
+      "Healthy": 0.29948294162750244,
+      "Leaf Spot": 0.08900023996829987
+    },
+    "reasons": [
+      "MobNet predicted Healthy (57.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(31).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(31).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0021917205303907394,
+    "p_mob_healthy": 0.7712488174438477,
+    "p_hyb_healthy": 0.3867202699184418,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9966828227043152,
+      "Blotch": 0.00013747610501013696,
+      "Healthy": 0.0021917205303907394,
+      "Leaf Spot": 0.000987911713309586
+    },
+    "probs_mob": {
+      "Aphids": 0.10921565443277359,
+      "Blotch": 0.0477849617600441,
+      "Healthy": 0.7712488174438477,
+      "Leaf Spot": 0.07175055891275406
+    },
+    "probs_hyb": {
+      "Aphids": 0.5529492497444153,
+      "Blotch": 0.02396121807396412,
+      "Healthy": 0.3867202699184418,
+      "Leaf Spot": 0.03636923432350159
+    },
+    "reasons": [
+      "MobNet predicted Healthy (77.1%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(33).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(33).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0022497016470879316,
+    "p_mob_healthy": 0.327561616897583,
+    "p_hyb_healthy": 0.16490565240383148,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.994161069393158,
+      "Blotch": 0.001031194464303553,
+      "Healthy": 0.0022497016470879316,
+      "Leaf Spot": 0.0025580166839063168
+    },
+    "probs_mob": {
+      "Aphids": 0.6010855436325073,
+      "Blotch": 0.033126793801784515,
+      "Healthy": 0.327561616897583,
+      "Leaf Spot": 0.038226038217544556
+    },
+    "probs_hyb": {
+      "Aphids": 0.7976232767105103,
+      "Blotch": 0.01707899384200573,
+      "Healthy": 0.16490565240383148,
+      "Leaf Spot": 0.020392026752233505
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.5%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(37).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(37).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0007743661408312619,
+    "p_mob_healthy": 0.4650041460990906,
+    "p_hyb_healthy": 0.23288924992084503,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9986687898635864,
+      "Blotch": 0.00017405915423296392,
+      "Healthy": 0.0007743661408312619,
+      "Leaf Spot": 0.00038271528319455683
+    },
+    "probs_mob": {
+      "Aphids": 0.3964747190475464,
+      "Blotch": 0.06380932033061981,
+      "Healthy": 0.4650041460990906,
+      "Leaf Spot": 0.07471178472042084
+    },
+    "probs_hyb": {
+      "Aphids": 0.6975717544555664,
+      "Blotch": 0.03199169039726257,
+      "Healthy": 0.23288924992084503,
+      "Leaf Spot": 0.03754724934697151
+    },
+    "reasons": [
+      "MobNet predicted Healthy (46.5%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(39).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(39).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0005400665104389191,
+    "p_mob_healthy": 0.32307910919189453,
+    "p_hyb_healthy": 0.16180959343910217,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.99906986951828,
+      "Blotch": 9.1210262326058e-05,
+      "Healthy": 0.0005400665104389191,
+      "Leaf Spot": 0.0002988773339893669
+    },
+    "probs_mob": {
+      "Aphids": 0.5499362349510193,
+      "Blotch": 0.061809930950403214,
+      "Healthy": 0.32307910919189453,
+      "Leaf Spot": 0.06517469882965088
+    },
+    "probs_hyb": {
+      "Aphids": 0.7745030522346497,
+      "Blotch": 0.030950570479035378,
+      "Healthy": 0.16180959343910217,
+      "Leaf Spot": 0.03273678943514824
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.2%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(4).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(4).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0007845619111321867,
+    "p_mob_healthy": 0.4583744406700134,
+    "p_hyb_healthy": 0.22957950830459595,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9985389709472656,
+      "Blotch": 0.00029164261650294065,
+      "Healthy": 0.0007845619111321867,
+      "Leaf Spot": 0.000384819257305935
+    },
+    "probs_mob": {
+      "Aphids": 0.37886637449264526,
+      "Blotch": 0.08453132957220078,
+      "Healthy": 0.4583744406700134,
+      "Leaf Spot": 0.07822779566049576
+    },
+    "probs_hyb": {
+      "Aphids": 0.6887027025222778,
+      "Blotch": 0.04241148754954338,
+      "Healthy": 0.22957950830459595,
+      "Leaf Spot": 0.03930630907416344
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.8%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(41).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(41).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0004689949273597449,
+    "p_mob_healthy": 0.3606281876564026,
+    "p_hyb_healthy": 0.18054859340190887,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9990923404693604,
+      "Blotch": 0.00010190987813984975,
+      "Healthy": 0.0004689949273597449,
+      "Leaf Spot": 0.0003366885066498071
+    },
+    "probs_mob": {
+      "Aphids": 0.5458452105522156,
+      "Blotch": 0.038882676512002945,
+      "Healthy": 0.3606281876564026,
+      "Leaf Spot": 0.05464397370815277
+    },
+    "probs_hyb": {
+      "Aphids": 0.7724688053131104,
+      "Blotch": 0.019492292776703835,
+      "Healthy": 0.18054859340190887,
+      "Leaf Spot": 0.02749033086001873
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.1%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(42).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(42).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0006254403851926327,
+    "p_mob_healthy": 0.5387130379676819,
+    "p_hyb_healthy": 0.26966923475265503,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9987596273422241,
+      "Blotch": 0.00011307276145089418,
+      "Healthy": 0.0006254403851926327,
+      "Leaf Spot": 0.0005018042866140604
+    },
+    "probs_mob": {
+      "Aphids": 0.3073751926422119,
+      "Blotch": 0.07029852271080017,
+      "Healthy": 0.5387130379676819,
+      "Leaf Spot": 0.08361326903104782
+    },
+    "probs_hyb": {
+      "Aphids": 0.653067409992218,
+      "Blotch": 0.03520579636096954,
+      "Healthy": 0.26966923475265503,
+      "Leaf Spot": 0.04205753654241562
+    },
+    "reasons": [
+      "MobNet predicted Healthy (53.9%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(43).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(43).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0016071600839495659,
+    "p_mob_healthy": 0.46652752161026,
+    "p_hyb_healthy": 0.23406733572483063,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9973490238189697,
+      "Blotch": 0.00024563493207097054,
+      "Healthy": 0.0016071600839495659,
+      "Leaf Spot": 0.0007981192320585251
+    },
+    "probs_mob": {
+      "Aphids": 0.366537481546402,
+      "Blotch": 0.05671624094247818,
+      "Healthy": 0.46652752161026,
+      "Leaf Spot": 0.11021876335144043
+    },
+    "probs_hyb": {
+      "Aphids": 0.6819432377815247,
+      "Blotch": 0.02848093770444393,
+      "Healthy": 0.23406733572483063,
+      "Leaf Spot": 0.05550844222307205
+    },
+    "reasons": [
+      "MobNet predicted Healthy (46.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(44).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(44).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0003452205564826727,
+    "p_mob_healthy": 0.5094138383865356,
+    "p_hyb_healthy": 0.25487953424453735,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9991618394851685,
+      "Blotch": 7.834503776393831e-05,
+      "Healthy": 0.0003452205564826727,
+      "Leaf Spot": 0.00041465635877102613
+    },
+    "probs_mob": {
+      "Aphids": 0.36535757780075073,
+      "Blotch": 0.045951731503009796,
+      "Healthy": 0.5094138383865356,
+      "Leaf Spot": 0.07927686721086502
+    },
+    "probs_hyb": {
+      "Aphids": 0.6822596788406372,
+      "Blotch": 0.023015039041638374,
+      "Healthy": 0.25487953424453735,
+      "Leaf Spot": 0.03984576091170311
+    },
+    "reasons": [
+      "MobNet predicted Healthy (50.9%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(45).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(45).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00018404817092232406,
+    "p_mob_healthy": 0.4267442524433136,
+    "p_hyb_healthy": 0.21346415579319,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9996321201324463,
+      "Blotch": 6.075802957639098e-05,
+      "Healthy": 0.00018404817092232406,
+      "Leaf Spot": 0.00012314213381614536
+    },
+    "probs_mob": {
+      "Aphids": 0.4324871301651001,
+      "Blotch": 0.059958186000585556,
+      "Healthy": 0.4267442524433136,
+      "Leaf Spot": 0.08081033080816269
+    },
+    "probs_hyb": {
+      "Aphids": 0.7160596251487732,
+      "Blotch": 0.030009472742676735,
+      "Healthy": 0.21346415579319,
+      "Leaf Spot": 0.04046673700213432
+    },
+    "reasons": [
+      "Hybrid Healthy prob=21.3%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(46).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(46).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0008250408573076129,
+    "p_mob_healthy": 0.5736215710639954,
+    "p_hyb_healthy": 0.28722330927848816,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9986162185668945,
+      "Blotch": 0.00019639618403743953,
+      "Healthy": 0.0008250408573076129,
+      "Leaf Spot": 0.0003622818330768496
+    },
+    "probs_mob": {
+      "Aphids": 0.32659202814102173,
+      "Blotch": 0.04939579963684082,
+      "Healthy": 0.5736215710639954,
+      "Leaf Spot": 0.05039060488343239
+    },
+    "probs_hyb": {
+      "Aphids": 0.6626040935516357,
+      "Blotch": 0.024796098470687866,
+      "Healthy": 0.28722330927848816,
+      "Leaf Spot": 0.025376442819833755
+    },
+    "reasons": [
+      "MobNet predicted Healthy (57.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(47).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(47).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00043626147089526057,
+    "p_mob_healthy": 0.3423309326171875,
+    "p_hyb_healthy": 0.17138360440731049,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9992761015892029,
+      "Blotch": 7.467262912541628e-05,
+      "Healthy": 0.00043626147089526057,
+      "Leaf Spot": 0.00021303599351085722
+    },
+    "probs_mob": {
+      "Aphids": 0.5600500702857971,
+      "Blotch": 0.04408687353134155,
+      "Healthy": 0.3423309326171875,
+      "Leaf Spot": 0.0535321906208992
+    },
+    "probs_hyb": {
+      "Aphids": 0.7796630859375,
+      "Blotch": 0.02208077348768711,
+      "Healthy": 0.17138360440731049,
+      "Leaf Spot": 0.02687261253595352
+    },
+    "reasons": [
+      "Hybrid Healthy prob=17.1%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(48).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(48).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001342657022178173,
+    "p_mob_healthy": 0.5040346384048462,
+    "p_hyb_healthy": 0.2526886463165283,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9979945421218872,
+      "Blotch": 0.00015895791875664145,
+      "Healthy": 0.001342657022178173,
+      "Leaf Spot": 0.0005038854433223605
+    },
+    "probs_mob": {
+      "Aphids": 0.3210957646369934,
+      "Blotch": 0.08620540052652359,
+      "Healthy": 0.5040346384048462,
+      "Leaf Spot": 0.0886642336845398
+    },
+    "probs_hyb": {
+      "Aphids": 0.6595451831817627,
+      "Blotch": 0.04318217933177948,
+      "Healthy": 0.2526886463165283,
+      "Leaf Spot": 0.04458405822515488
+    },
+    "reasons": [
+      "MobNet predicted Healthy (50.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(49).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(49).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0022792911622673273,
+    "p_mob_healthy": 0.573261022567749,
+    "p_hyb_healthy": 0.28777015209198,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9965547323226929,
+      "Blotch": 0.0002720774500630796,
+      "Healthy": 0.0022792911622673273,
+      "Leaf Spot": 0.0008940063416957855
+    },
+    "probs_mob": {
+      "Aphids": 0.29192930459976196,
+      "Blotch": 0.0673493891954422,
+      "Healthy": 0.573261022567749,
+      "Leaf Spot": 0.06746023148298264
+    },
+    "probs_hyb": {
+      "Aphids": 0.6442420482635498,
+      "Blotch": 0.03381073474884033,
+      "Healthy": 0.28777015209198,
+      "Leaf Spot": 0.03417711704969406
+    },
+    "reasons": [
+      "MobNet predicted Healthy (57.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(5).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(5).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0005870310706086457,
+    "p_mob_healthy": 0.34045839309692383,
+    "p_hyb_healthy": 0.17052270472049713,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9987616539001465,
+      "Blotch": 0.0004197326779831201,
+      "Healthy": 0.0005870310706086457,
+      "Leaf Spot": 0.00023172434885054827
+    },
+    "probs_mob": {
+      "Aphids": 0.5217245817184448,
+      "Blotch": 0.0759839341044426,
+      "Healthy": 0.34045839309692383,
+      "Leaf Spot": 0.061833132058382034
+    },
+    "probs_hyb": {
+      "Aphids": 0.7602431178092957,
+      "Blotch": 0.03820183500647545,
+      "Healthy": 0.17052270472049713,
+      "Leaf Spot": 0.03103242814540863
+    },
+    "reasons": [
+      "Hybrid Healthy prob=17.1%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(50).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(50).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00046643169480375946,
+    "p_mob_healthy": 0.45299917459487915,
+    "p_hyb_healthy": 0.22673280537128448,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9992241859436035,
+      "Blotch": 0.00010899690096266568,
+      "Healthy": 0.00046643169480375946,
+      "Leaf Spot": 0.00020031066378578544
+    },
+    "probs_mob": {
+      "Aphids": 0.41725867986679077,
+      "Blotch": 0.06327420473098755,
+      "Healthy": 0.45299917459487915,
+      "Leaf Spot": 0.06646794080734253
+    },
+    "probs_hyb": {
+      "Aphids": 0.7082414627075195,
+      "Blotch": 0.031691599637269974,
+      "Healthy": 0.22673280537128448,
+      "Leaf Spot": 0.03333412483334541
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(56).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(56).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.007473137695342302,
+    "p_mob_healthy": 0.4232238531112671,
+    "p_hyb_healthy": 0.2153484970331192,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9790815114974976,
+      "Blotch": 0.0012519244337454438,
+      "Healthy": 0.007473137695342302,
+      "Leaf Spot": 0.012193345464766026
+    },
+    "probs_mob": {
+      "Aphids": 0.29853010177612305,
+      "Blotch": 0.12356490641832352,
+      "Healthy": 0.4232238531112671,
+      "Leaf Spot": 0.1546812355518341
+    },
+    "probs_hyb": {
+      "Aphids": 0.6388058066368103,
+      "Blotch": 0.062408413738012314,
+      "Healthy": 0.2153484970331192,
+      "Leaf Spot": 0.08343729376792908
+    },
+    "reasons": [
+      "MobNet predicted Healthy (42.3%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(58).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(58).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0008629579679109156,
+    "p_mob_healthy": 0.45068585872650146,
+    "p_hyb_healthy": 0.22577440738677979,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9982017278671265,
+      "Blotch": 0.0004177774244453758,
+      "Healthy": 0.0008629579679109156,
+      "Leaf Spot": 0.0005175370024517179
+    },
+    "probs_mob": {
+      "Aphids": 0.3727482557296753,
+      "Blotch": 0.0664849728345871,
+      "Healthy": 0.45068585872650146,
+      "Leaf Spot": 0.11008090525865555
+    },
+    "probs_hyb": {
+      "Aphids": 0.6854749917984009,
+      "Blotch": 0.033451374620199203,
+      "Healthy": 0.22577440738677979,
+      "Leaf Spot": 0.055299222469329834
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.1%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(59).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(59).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.004948676563799381,
+    "p_mob_healthy": 0.4370028078556061,
+    "p_hyb_healthy": 0.22097574174404144,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9817690849304199,
+      "Blotch": 0.0013258862309157848,
+      "Healthy": 0.004948676563799381,
+      "Leaf Spot": 0.01195634063333273
+    },
+    "probs_mob": {
+      "Aphids": 0.3494587540626526,
+      "Blotch": 0.10570419579744339,
+      "Healthy": 0.4370028078556061,
+      "Leaf Spot": 0.10783428698778152
+    },
+    "probs_hyb": {
+      "Aphids": 0.6656138896942139,
+      "Blotch": 0.05351503938436508,
+      "Healthy": 0.22097574174404144,
+      "Leaf Spot": 0.059895314276218414
+    },
+    "reasons": [
+      "MobNet predicted Healthy (43.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(6).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(6).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 4.859488399233669e-05,
+    "p_mob_healthy": 0.37755686044692993,
+    "p_hyb_healthy": 0.18880273401737213,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9998571872711182,
+      "Blotch": 3.098582601523958e-05,
+      "Healthy": 4.859488399233669e-05,
+      "Leaf Spot": 6.31168732070364e-05
+    },
+    "probs_mob": {
+      "Aphids": 0.4452736973762512,
+      "Blotch": 0.07861272245645523,
+      "Healthy": 0.37755686044692993,
+      "Leaf Spot": 0.09855679422616959
+    },
+    "probs_hyb": {
+      "Aphids": 0.7225654125213623,
+      "Blotch": 0.03932185471057892,
+      "Healthy": 0.18880273401737213,
+      "Leaf Spot": 0.049309954047203064
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.9%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(60).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(60).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0011320633348077536,
+    "p_mob_healthy": 0.33261165022850037,
+    "p_hyb_healthy": 0.16687186062335968,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9966467022895813,
+      "Blotch": 0.00030937170959077775,
+      "Healthy": 0.0011320633348077536,
+      "Leaf Spot": 0.0019119424978271127
+    },
+    "probs_mob": {
+      "Aphids": 0.4000701606273651,
+      "Blotch": 0.13451498746871948,
+      "Healthy": 0.33261165022850037,
+      "Leaf Spot": 0.13280321657657623
+    },
+    "probs_hyb": {
+      "Aphids": 0.698358416557312,
+      "Blotch": 0.06741218268871307,
+      "Healthy": 0.16687186062335968,
+      "Leaf Spot": 0.06735757738351822
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.7%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(67).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(67).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010306251933798194,
+    "p_mob_healthy": 0.3990217447280884,
+    "p_hyb_healthy": 0.20002618432044983,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9977285265922546,
+      "Blotch": 0.00029571951017715037,
+      "Healthy": 0.0010306251933798194,
+      "Leaf Spot": 0.0009452358935959637
+    },
+    "probs_mob": {
+      "Aphids": 0.500792384147644,
+      "Blotch": 0.046315282583236694,
+      "Healthy": 0.3990217447280884,
+      "Leaf Spot": 0.0538705550134182
+    },
+    "probs_hyb": {
+      "Aphids": 0.749260425567627,
+      "Blotch": 0.0233055017888546,
+      "Healthy": 0.20002618432044983,
+      "Leaf Spot": 0.027407895773649216
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.0%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(7).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(7).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.006498591974377632,
+    "p_mob_healthy": 0.5359554290771484,
+    "p_hyb_healthy": 0.27122700214385986,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9904758334159851,
+      "Blotch": 0.0016915366286411881,
+      "Healthy": 0.006498591974377632,
+      "Leaf Spot": 0.0013340903678908944
+    },
+    "probs_mob": {
+      "Aphids": 0.31523147225379944,
+      "Blotch": 0.07423443347215652,
+      "Healthy": 0.5359554290771484,
+      "Leaf Spot": 0.074578657746315
+    },
+    "probs_hyb": {
+      "Aphids": 0.6528536677360535,
+      "Blotch": 0.037962984293699265,
+      "Healthy": 0.27122700214385986,
+      "Leaf Spot": 0.03795637562870979
+    },
+    "reasons": [
+      "MobNet predicted Healthy (53.6%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(70).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(70).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0004359036101959646,
+    "p_mob_healthy": 0.47030583024024963,
+    "p_hyb_healthy": 0.23537085950374603,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9988411068916321,
+      "Blotch": 0.00011751446436392143,
+      "Healthy": 0.0004359036101959646,
+      "Leaf Spot": 0.0006054589175619185
+    },
+    "probs_mob": {
+      "Aphids": 0.37712690234184265,
+      "Blotch": 0.07087376713752747,
+      "Healthy": 0.47030583024024963,
+      "Leaf Spot": 0.08169349282979965
+    },
+    "probs_hyb": {
+      "Aphids": 0.6879839897155762,
+      "Blotch": 0.03549564257264137,
+      "Healthy": 0.23537085950374603,
+      "Leaf Spot": 0.04114947468042374
+    },
+    "reasons": [
+      "MobNet predicted Healthy (47.0%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(77).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(77).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010684806620702147,
+    "p_mob_healthy": 0.46704980731010437,
+    "p_hyb_healthy": 0.234059140086174,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9982176423072815,
+      "Blotch": 0.00016684713773429394,
+      "Healthy": 0.0010684806620702147,
+      "Leaf Spot": 0.0005470026517286897
+    },
+    "probs_mob": {
+      "Aphids": 0.4360818862915039,
+      "Blotch": 0.039010196924209595,
+      "Healthy": 0.46704980731010437,
+      "Leaf Spot": 0.057858120650053024
+    },
+    "probs_hyb": {
+      "Aphids": 0.7171497344970703,
+      "Blotch": 0.019588522613048553,
+      "Healthy": 0.234059140086174,
+      "Leaf Spot": 0.02920256182551384
+    },
+    "reasons": [
+      "MobNet predicted Healthy (46.7%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(82).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(82).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.026971830055117607,
+    "p_mob_healthy": 0.38551977276802063,
+    "p_hyb_healthy": 0.2062457948923111,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9644826650619507,
+      "Blotch": 0.0016920207999646664,
+      "Healthy": 0.026971830055117607,
+      "Leaf Spot": 0.0068535637110471725
+    },
+    "probs_mob": {
+      "Aphids": 0.38896307349205017,
+      "Blotch": 0.11187580972909927,
+      "Healthy": 0.38551977276802063,
+      "Leaf Spot": 0.11364135146141052
+    },
+    "probs_hyb": {
+      "Aphids": 0.6767228841781616,
+      "Blotch": 0.05678391456604004,
+      "Healthy": 0.2062457948923111,
+      "Leaf Spot": 0.06024745851755142
+    },
+    "reasons": [
+      "Hybrid Healthy prob=20.6%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(84).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(84).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.007382145617157221,
+    "p_mob_healthy": 0.4043484032154083,
+    "p_hyb_healthy": 0.205865278840065,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9915661811828613,
+      "Blotch": 0.00012373812205623835,
+      "Healthy": 0.007382145617157221,
+      "Leaf Spot": 0.0009278448414988816
+    },
+    "probs_mob": {
+      "Aphids": 0.35165542364120483,
+      "Blotch": 0.11856930702924728,
+      "Healthy": 0.4043484032154083,
+      "Leaf Spot": 0.12542685866355896
+    },
+    "probs_hyb": {
+      "Aphids": 0.6716108322143555,
+      "Blotch": 0.0593465231359005,
+      "Healthy": 0.205865278840065,
+      "Leaf Spot": 0.06317735463380814
+    },
+    "reasons": [
+      "MobNet predicted Healthy (40.4%)"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(85).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(85).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0011611940572038293,
+    "p_mob_healthy": 0.3477238416671753,
+    "p_hyb_healthy": 0.17444251477718353,
+    "pred_eff": "Aphids",
+    "pred_mob": "Aphids",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9982605576515198,
+      "Blotch": 0.00010352347453590482,
+      "Healthy": 0.0011611940572038293,
+      "Leaf Spot": 0.00047464604722335935
+    },
+    "probs_mob": {
+      "Aphids": 0.5105583071708679,
+      "Blotch": 0.057742711156606674,
+      "Healthy": 0.3477238416671753,
+      "Leaf Spot": 0.08397515118122101
+    },
+    "probs_hyb": {
+      "Aphids": 0.7544094324111938,
+      "Blotch": 0.028923116624355316,
+      "Healthy": 0.17444251477718353,
+      "Leaf Spot": 0.04222489893436432
+    },
+    "reasons": [
+      "Hybrid Healthy prob=17.4%"
+    ]
+  },
+  {
+    "filename": "aphids_disease_(99).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Aphids_Disease\\aphids_disease_(99).jpg",
+    "folder": "Aphids_Disease",
+    "true_class": "Aphids",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.014376494102180004,
+    "p_mob_healthy": 0.46296411752700806,
+    "p_hyb_healthy": 0.23867030441761017,
+    "pred_eff": "Aphids",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Aphids",
+    "probs_eff": {
+      "Aphids": 0.9719945192337036,
+      "Blotch": 0.0026223347522318363,
+      "Healthy": 0.014376494102180004,
+      "Leaf Spot": 0.01100652664899826
+    },
+    "probs_mob": {
+      "Aphids": 0.3028053641319275,
+      "Blotch": 0.07611895352602005,
+      "Healthy": 0.46296411752700806,
+      "Leaf Spot": 0.158111572265625
+    },
+    "probs_hyb": {
+      "Aphids": 0.6373999118804932,
+      "Blotch": 0.039370644837617874,
+      "Healthy": 0.23867030441761017,
+      "Leaf Spot": 0.08455905318260193
+    },
+    "reasons": [
+      "MobNet predicted Healthy (46.3%)"
+    ]
+  },
+  {
+    "filename": "blotch_(1).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(1).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.5234469771385193,
+    "p_mob_healthy": 0.8430875539779663,
+    "p_hyb_healthy": 0.6832672357559204,
+    "pred_eff": "Healthy",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Healthy",
+    "probs_eff": {
+      "Aphids": 0.075465627014637,
+      "Blotch": 0.3324907720088959,
+      "Healthy": 0.5234469771385193,
+      "Leaf Spot": 0.06859663873910904
+    },
+    "probs_mob": {
+      "Aphids": 0.05627168342471123,
+      "Blotch": 0.047946829348802567,
+      "Healthy": 0.8430875539779663,
+      "Leaf Spot": 0.052693940699100494
+    },
+    "probs_hyb": {
+      "Aphids": 0.06586865335702896,
+      "Blotch": 0.19021880626678467,
+      "Healthy": 0.6832672357559204,
+      "Leaf Spot": 0.06064528971910477
+    },
+    "reasons": [
+      "EffNet predicted Healthy (52.3%)",
+      "MobNet predicted Healthy (84.3%)"
+    ]
+  },
+  {
+    "filename": "blotch_(109).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(109).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00013386002683546394,
+    "p_mob_healthy": 0.5297537446022034,
+    "p_hyb_healthy": 0.26494380831718445,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 9.582451457390562e-05,
+      "Blotch": 0.9995905756950378,
+      "Healthy": 0.00013386002683546394,
+      "Leaf Spot": 0.00017984324949793518
+    },
+    "probs_mob": {
+      "Aphids": 0.08853626251220703,
+      "Blotch": 0.23567889630794525,
+      "Healthy": 0.5297537446022034,
+      "Leaf Spot": 0.14603108167648315
+    },
+    "probs_hyb": {
+      "Aphids": 0.044316042214632034,
+      "Blotch": 0.6176347136497498,
+      "Healthy": 0.26494380831718445,
+      "Leaf Spot": 0.07310546189546585
+    },
+    "reasons": [
+      "MobNet predicted Healthy (53.0%)"
+    ]
+  },
+  {
+    "filename": "blotch_(110).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(110).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010368494549766183,
+    "p_mob_healthy": 0.7567660212516785,
+    "p_hyb_healthy": 0.3789014220237732,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 0.0003961558104492724,
+      "Blotch": 0.9976758360862732,
+      "Healthy": 0.0010368494549766183,
+      "Leaf Spot": 0.000891181465703994
+    },
+    "probs_mob": {
+      "Aphids": 0.05405078083276749,
+      "Blotch": 0.09929490834474564,
+      "Healthy": 0.7567660212516785,
+      "Leaf Spot": 0.0898883119225502
+    },
+    "probs_hyb": {
+      "Aphids": 0.02722346782684326,
+      "Blotch": 0.5484853982925415,
+      "Healthy": 0.3789014220237732,
+      "Leaf Spot": 0.04538974538445473
+    },
+    "reasons": [
+      "MobNet predicted Healthy (75.7%)"
+    ]
+  },
+  {
+    "filename": "blotch_(111).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(111).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00031033027335070074,
+    "p_mob_healthy": 0.6380059719085693,
+    "p_hyb_healthy": 0.319158136844635,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 6.778995884815231e-05,
+      "Blotch": 0.9994869232177734,
+      "Healthy": 0.00031033027335070074,
+      "Leaf Spot": 0.0001349165104329586
+    },
+    "probs_mob": {
+      "Aphids": 0.09137483686208725,
+      "Blotch": 0.17187462747097015,
+      "Healthy": 0.6380059719085693,
+      "Leaf Spot": 0.09874451160430908
+    },
+    "probs_hyb": {
+      "Aphids": 0.04572131484746933,
+      "Blotch": 0.5856807827949524,
+      "Healthy": 0.319158136844635,
+      "Leaf Spot": 0.04943971335887909
+    },
+    "reasons": [
+      "MobNet predicted Healthy (63.8%)"
+    ]
+  },
+  {
+    "filename": "blotch_(113).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(113).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00021254835883155465,
+    "p_mob_healthy": 0.4317529797554016,
+    "p_hyb_healthy": 0.21598276495933533,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 0.00019399241136852652,
+      "Blotch": 0.9994725584983826,
+      "Healthy": 0.00021254835883155465,
+      "Leaf Spot": 0.00012088151561329141
+    },
+    "probs_mob": {
+      "Aphids": 0.07483979314565659,
+      "Blotch": 0.35743024945259094,
+      "Healthy": 0.4317529797554016,
+      "Leaf Spot": 0.13597699999809265
+    },
+    "probs_hyb": {
+      "Aphids": 0.037516891956329346,
+      "Blotch": 0.678451418876648,
+      "Healthy": 0.21598276495933533,
+      "Leaf Spot": 0.06804893910884857
+    },
+    "reasons": [
+      "MobNet predicted Healthy (43.2%)"
+    ]
+  },
+  {
+    "filename": "blotch_(169).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(169).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0009047536295838654,
+    "p_mob_healthy": 0.33768612146377563,
+    "p_hyb_healthy": 0.16929543018341064,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 0.0002882006228901446,
+      "Blotch": 0.9976937174797058,
+      "Healthy": 0.0009047536295838654,
+      "Leaf Spot": 0.0011133361840620637
+    },
+    "probs_mob": {
+      "Aphids": 0.05193999037146568,
+      "Blotch": 0.31164464354515076,
+      "Healthy": 0.33768612146377563,
+      "Leaf Spot": 0.2987292408943176
+    },
+    "probs_hyb": {
+      "Aphids": 0.026114095002412796,
+      "Blotch": 0.6546691656112671,
+      "Healthy": 0.16929543018341064,
+      "Leaf Spot": 0.14992128312587738
+    },
+    "reasons": [
+      "MobNet predicted Healthy (33.8%)"
+    ]
+  },
+  {
+    "filename": "blotch_(177).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(177).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.001310553401708603,
+    "p_mob_healthy": 0.26670390367507935,
+    "p_hyb_healthy": 0.13400723040103912,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 0.0007303704041987658,
+      "Blotch": 0.9969751834869385,
+      "Healthy": 0.001310553401708603,
+      "Leaf Spot": 0.0009839532431215048
+    },
+    "probs_mob": {
+      "Aphids": 0.2665450870990753,
+      "Blotch": 0.2185773104429245,
+      "Healthy": 0.26670390367507935,
+      "Leaf Spot": 0.24817372858524323
+    },
+    "probs_hyb": {
+      "Aphids": 0.13363772630691528,
+      "Blotch": 0.6077762246131897,
+      "Healthy": 0.13400723040103912,
+      "Leaf Spot": 0.12457884103059769
+    },
+    "reasons": [
+      "MobNet predicted Healthy (26.7%)"
+    ]
+  },
+  {
+    "filename": "blotch_(2).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(2).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.4378702938556671,
+    "p_mob_healthy": 0.864977240562439,
+    "p_hyb_healthy": 0.6514237523078918,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Healthy",
+    "probs_eff": {
+      "Aphids": 0.056177109479904175,
+      "Blotch": 0.45316293835639954,
+      "Healthy": 0.4378702938556671,
+      "Leaf Spot": 0.05278969556093216
+    },
+    "probs_mob": {
+      "Aphids": 0.05575627461075783,
+      "Blotch": 0.0401599183678627,
+      "Healthy": 0.864977240562439,
+      "Leaf Spot": 0.039106570184230804
+    },
+    "probs_hyb": {
+      "Aphids": 0.05596669018268585,
+      "Blotch": 0.24666142463684082,
+      "Healthy": 0.6514237523078918,
+      "Leaf Spot": 0.04594813287258148
+    },
+    "reasons": [
+      "MobNet predicted Healthy (86.5%)"
+    ]
+  },
+  {
+    "filename": "blotch_(3).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(3).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.9947145581245422,
+    "p_mob_healthy": 0.8498978018760681,
+    "p_hyb_healthy": 0.9223061800003052,
+    "pred_eff": "Healthy",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Healthy",
+    "probs_eff": {
+      "Aphids": 0.0013900682097300887,
+      "Blotch": 0.0031535644084215164,
+      "Healthy": 0.9947145581245422,
+      "Leaf Spot": 0.0007418315508402884
+    },
+    "probs_mob": {
+      "Aphids": 0.05923119932413101,
+      "Blotch": 0.04456267133355141,
+      "Healthy": 0.8498978018760681,
+      "Leaf Spot": 0.04630829393863678
+    },
+    "probs_hyb": {
+      "Aphids": 0.030310634523630142,
+      "Blotch": 0.023858118802309036,
+      "Healthy": 0.9223061800003052,
+      "Leaf Spot": 0.023525062948465347
+    },
+    "reasons": [
+      "EffNet predicted Healthy (99.5%)",
+      "MobNet predicted Healthy (85.0%)"
+    ]
+  },
+  {
+    "filename": "blotch_(8).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Blotch\\blotch_(8).jpg",
+    "folder": "Blotch",
+    "true_class": "Blotch",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00036196206929162145,
+    "p_mob_healthy": 0.4418199956417084,
+    "p_hyb_healthy": 0.22109097242355347,
+    "pred_eff": "Blotch",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Blotch",
+    "probs_eff": {
+      "Aphids": 0.0002452127228025347,
+      "Blotch": 0.9992274045944214,
+      "Healthy": 0.00036196206929162145,
+      "Leaf Spot": 0.00016532864538021386
+    },
+    "probs_mob": {
+      "Aphids": 0.12191210687160492,
+      "Blotch": 0.27814504504203796,
+      "Healthy": 0.4418199956417084,
+      "Leaf Spot": 0.1581229269504547
+    },
+    "probs_hyb": {
+      "Aphids": 0.06107866019010544,
+      "Blotch": 0.6386862397193909,
+      "Healthy": 0.22109097242355347,
+      "Leaf Spot": 0.07914412766695023
+    },
+    "reasons": [
+      "MobNet predicted Healthy (44.2%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(121).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(121).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00020852938177995384,
+    "p_mob_healthy": 0.481414258480072,
+    "p_hyb_healthy": 0.24081139266490936,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00035570384352467954,
+      "Blotch": 0.00031289702747017145,
+      "Healthy": 0.00020852938177995384,
+      "Leaf Spot": 0.9991229176521301
+    },
+    "probs_mob": {
+      "Aphids": 0.11172007024288177,
+      "Blotch": 0.13622640073299408,
+      "Healthy": 0.481414258480072,
+      "Leaf Spot": 0.27063924074172974
+    },
+    "probs_hyb": {
+      "Aphids": 0.056037887930870056,
+      "Blotch": 0.06826964765787125,
+      "Healthy": 0.24081139266490936,
+      "Leaf Spot": 0.6348810791969299
+    },
+    "reasons": [
+      "MobNet predicted Healthy (48.1%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(122).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(122).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0001837915915530175,
+    "p_mob_healthy": 0.48733779788017273,
+    "p_hyb_healthy": 0.24376079440116882,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 7.821928738849238e-05,
+      "Blotch": 0.0001018700932036154,
+      "Healthy": 0.0001837915915530175,
+      "Leaf Spot": 0.9996360540390015
+    },
+    "probs_mob": {
+      "Aphids": 0.13207784295082092,
+      "Blotch": 0.15540623664855957,
+      "Healthy": 0.48733779788017273,
+      "Leaf Spot": 0.2251780927181244
+    },
+    "probs_hyb": {
+      "Aphids": 0.06607802957296371,
+      "Blotch": 0.07775405049324036,
+      "Healthy": 0.24376079440116882,
+      "Leaf Spot": 0.6124070882797241
+    },
+    "reasons": [
+      "MobNet predicted Healthy (48.7%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(123).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(123).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0001375965221086517,
+    "p_mob_healthy": 0.4828820824623108,
+    "p_hyb_healthy": 0.2415098398923874,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00010090373689308763,
+      "Blotch": 0.000235527113545686,
+      "Healthy": 0.0001375965221086517,
+      "Leaf Spot": 0.9995260238647461
+    },
+    "probs_mob": {
+      "Aphids": 0.13529087603092194,
+      "Blotch": 0.13337987661361694,
+      "Healthy": 0.4828820824623108,
+      "Leaf Spot": 0.24844716489315033
+    },
+    "probs_hyb": {
+      "Aphids": 0.06769589334726334,
+      "Blotch": 0.06680770218372345,
+      "Healthy": 0.2415098398923874,
+      "Leaf Spot": 0.6239866018295288
+    },
+    "reasons": [
+      "MobNet predicted Healthy (48.3%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(132).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(132).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0003905962803401053,
+    "p_mob_healthy": 0.32895269989967346,
+    "p_hyb_healthy": 0.1646716445684433,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Leaf Spot",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.0002703523205127567,
+      "Blotch": 9.172616410069168e-05,
+      "Healthy": 0.0003905962803401053,
+      "Leaf Spot": 0.9992473125457764
+    },
+    "probs_mob": {
+      "Aphids": 0.13189485669136047,
+      "Blotch": 0.18589715659618378,
+      "Healthy": 0.32895269989967346,
+      "Leaf Spot": 0.3532552719116211
+    },
+    "probs_hyb": {
+      "Aphids": 0.06608260422945023,
+      "Blotch": 0.09299444407224655,
+      "Healthy": 0.1646716445684433,
+      "Leaf Spot": 0.6762512922286987
+    },
+    "reasons": [
+      "Hybrid Healthy prob=16.5%"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(133).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(133).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0001014026565826498,
+    "p_mob_healthy": 0.30656665563583374,
+    "p_hyb_healthy": 0.15333403646945953,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Leaf Spot",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 3.3339918445562944e-05,
+      "Blotch": 3.319667303003371e-05,
+      "Healthy": 0.0001014026565826498,
+      "Leaf Spot": 0.999832034111023
+    },
+    "probs_mob": {
+      "Aphids": 0.17134186625480652,
+      "Blotch": 0.15551765263080597,
+      "Healthy": 0.30656665563583374,
+      "Leaf Spot": 0.36657387018203735
+    },
+    "probs_hyb": {
+      "Aphids": 0.08568760007619858,
+      "Blotch": 0.07777542620897293,
+      "Healthy": 0.15333403646945953,
+      "Leaf Spot": 0.6832029819488525
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.3%"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(141).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(141).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0003306048456579447,
+    "p_mob_healthy": 0.7094622850418091,
+    "p_hyb_healthy": 0.3548964560031891,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 6.610451237065718e-05,
+      "Blotch": 0.0002127631159964949,
+      "Healthy": 0.0003306048456579447,
+      "Leaf Spot": 0.9993904829025269
+    },
+    "probs_mob": {
+      "Aphids": 0.11622438579797745,
+      "Blotch": 0.0676032155752182,
+      "Healthy": 0.7094622850418091,
+      "Leaf Spot": 0.10671019554138184
+    },
+    "probs_hyb": {
+      "Aphids": 0.05814524367451668,
+      "Blotch": 0.03390799090266228,
+      "Healthy": 0.3548964560031891,
+      "Leaf Spot": 0.5530503392219543
+    },
+    "reasons": [
+      "MobNet predicted Healthy (70.9%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(142).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(142).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00045429347665049136,
+    "p_mob_healthy": 0.5462228059768677,
+    "p_hyb_healthy": 0.27333855628967285,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00011285440268693492,
+      "Blotch": 0.000928388093598187,
+      "Healthy": 0.00045429347665049136,
+      "Leaf Spot": 0.9985045194625854
+    },
+    "probs_mob": {
+      "Aphids": 0.1606862097978592,
+      "Blotch": 0.11261230707168579,
+      "Healthy": 0.5462228059768677,
+      "Leaf Spot": 0.18047866225242615
+    },
+    "probs_hyb": {
+      "Aphids": 0.0803995355963707,
+      "Blotch": 0.05677034705877304,
+      "Healthy": 0.27333855628967285,
+      "Leaf Spot": 0.589491605758667
+    },
+    "reasons": [
+      "MobNet predicted Healthy (54.6%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(144).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(144).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 7.467019895557314e-05,
+    "p_mob_healthy": 0.4308716356754303,
+    "p_hyb_healthy": 0.21547316014766693,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 1.9436409274931066e-05,
+      "Blotch": 6.94707632646896e-05,
+      "Healthy": 7.467019895557314e-05,
+      "Leaf Spot": 0.9998364448547363
+    },
+    "probs_mob": {
+      "Aphids": 0.1724420040845871,
+      "Blotch": 0.13188399374485016,
+      "Healthy": 0.4308716356754303,
+      "Leaf Spot": 0.26480236649513245
+    },
+    "probs_hyb": {
+      "Aphids": 0.08623071759939194,
+      "Blotch": 0.06597673147916794,
+      "Healthy": 0.21547316014766693,
+      "Leaf Spot": 0.6323193907737732
+    },
+    "reasons": [
+      "MobNet predicted Healthy (43.1%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(145).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(145).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "val",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00017485844728071243,
+    "p_mob_healthy": 0.4832053482532501,
+    "p_hyb_healthy": 0.24169009923934937,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 4.817186345462687e-05,
+      "Blotch": 9.035541006596759e-05,
+      "Healthy": 0.00017485844728071243,
+      "Leaf Spot": 0.999686598777771
+    },
+    "probs_mob": {
+      "Aphids": 0.20255565643310547,
+      "Blotch": 0.07867687195539474,
+      "Healthy": 0.4832053482532501,
+      "Leaf Spot": 0.23556210100650787
+    },
+    "probs_hyb": {
+      "Aphids": 0.10130191594362259,
+      "Blotch": 0.03938361257314682,
+      "Healthy": 0.24169009923934937,
+      "Leaf Spot": 0.6176243424415588
+    },
+    "reasons": [
+      "MobNet predicted Healthy (48.3%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(155).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(155).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00034863429027609527,
+    "p_mob_healthy": 0.3007563054561615,
+    "p_hyb_healthy": 0.15055246651172638,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Leaf Spot",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00011979259579675272,
+      "Blotch": 0.00023778999457135797,
+      "Healthy": 0.00034863429027609527,
+      "Leaf Spot": 0.9992938041687012
+    },
+    "probs_mob": {
+      "Aphids": 0.2099013477563858,
+      "Blotch": 0.1362428069114685,
+      "Healthy": 0.3007563054561615,
+      "Leaf Spot": 0.3530995845794678
+    },
+    "probs_hyb": {
+      "Aphids": 0.10501056909561157,
+      "Blotch": 0.06824029982089996,
+      "Healthy": 0.15055246651172638,
+      "Leaf Spot": 0.6761966943740845
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.1%"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(25).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(25).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0004342432657722384,
+    "p_mob_healthy": 0.3148424029350281,
+    "p_hyb_healthy": 0.1576383262872696,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Leaf Spot",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.0001738090650178492,
+      "Blotch": 0.00028752273647114635,
+      "Healthy": 0.0004342432657722384,
+      "Leaf Spot": 0.9991044402122498
+    },
+    "probs_mob": {
+      "Aphids": 0.12989795207977295,
+      "Blotch": 0.15887583792209625,
+      "Healthy": 0.3148424029350281,
+      "Leaf Spot": 0.3963838517665863
+    },
+    "probs_hyb": {
+      "Aphids": 0.065035879611969,
+      "Blotch": 0.07958167791366577,
+      "Healthy": 0.1576383262872696,
+      "Leaf Spot": 0.6977441310882568
+    },
+    "reasons": [
+      "Hybrid Healthy prob=15.8%"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(44).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(44).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00010528716666158289,
+    "p_mob_healthy": 0.4802808165550232,
+    "p_hyb_healthy": 0.24019305408000946,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 4.251406426192261e-05,
+      "Blotch": 4.5663640776183456e-05,
+      "Healthy": 0.00010528716666158289,
+      "Leaf Spot": 0.9998065829277039
+    },
+    "probs_mob": {
+      "Aphids": 0.19072933495044708,
+      "Blotch": 0.08500534296035767,
+      "Healthy": 0.4802808165550232,
+      "Leaf Spot": 0.24398455023765564
+    },
+    "probs_hyb": {
+      "Aphids": 0.09538592398166656,
+      "Blotch": 0.042525503784418106,
+      "Healthy": 0.24019305408000946,
+      "Leaf Spot": 0.6218955516815186
+    },
+    "reasons": [
+      "MobNet predicted Healthy (48.0%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(45).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(45).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010175376664847136,
+    "p_mob_healthy": 0.6436653733253479,
+    "p_hyb_healthy": 0.3223414421081543,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00019007087394129485,
+      "Blotch": 0.0005620617303065956,
+      "Healthy": 0.0010175376664847136,
+      "Leaf Spot": 0.9982303977012634
+    },
+    "probs_mob": {
+      "Aphids": 0.12671349942684174,
+      "Blotch": 0.06152842938899994,
+      "Healthy": 0.6436653733253479,
+      "Leaf Spot": 0.1680927574634552
+    },
+    "probs_hyb": {
+      "Aphids": 0.06345178186893463,
+      "Blotch": 0.03104524500668049,
+      "Healthy": 0.3223414421081543,
+      "Leaf Spot": 0.5831615924835205
+    },
+    "reasons": [
+      "MobNet predicted Healthy (64.4%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(47).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(47).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00034447998041287065,
+    "p_mob_healthy": 0.5403661131858826,
+    "p_hyb_healthy": 0.2703552842140198,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00018533701950218529,
+      "Blotch": 0.00015702670498285443,
+      "Healthy": 0.00034447998041287065,
+      "Leaf Spot": 0.9993131160736084
+    },
+    "probs_mob": {
+      "Aphids": 0.19855991005897522,
+      "Blotch": 0.06521546095609665,
+      "Healthy": 0.5403661131858826,
+      "Leaf Spot": 0.195858433842659
+    },
+    "probs_hyb": {
+      "Aphids": 0.09937262535095215,
+      "Blotch": 0.03268624469637871,
+      "Healthy": 0.2703552842140198,
+      "Leaf Spot": 0.5975857973098755
+    },
+    "reasons": [
+      "MobNet predicted Healthy (54.0%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(48).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(48).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.000989906140603125,
+    "p_mob_healthy": 0.36626726388931274,
+    "p_hyb_healthy": 0.18362858891487122,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.0017086421139538288,
+      "Blotch": 0.0008469385211355984,
+      "Healthy": 0.000989906140603125,
+      "Leaf Spot": 0.9964544773101807
+    },
+    "probs_mob": {
+      "Aphids": 0.21578289568424225,
+      "Blotch": 0.11828572303056717,
+      "Healthy": 0.36626726388931274,
+      "Leaf Spot": 0.29966413974761963
+    },
+    "probs_hyb": {
+      "Aphids": 0.1087457686662674,
+      "Blotch": 0.059566330164670944,
+      "Healthy": 0.18362858891487122,
+      "Leaf Spot": 0.6480593085289001
+    },
+    "reasons": [
+      "MobNet predicted Healthy (36.6%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(49).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(49).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00027994730044156313,
+    "p_mob_healthy": 0.5937677025794983,
+    "p_hyb_healthy": 0.29702383279800415,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 8.23929367470555e-05,
+      "Blotch": 7.81950875534676e-05,
+      "Healthy": 0.00027994730044156313,
+      "Leaf Spot": 0.9995594620704651
+    },
+    "probs_mob": {
+      "Aphids": 0.13380056619644165,
+      "Blotch": 0.08409012109041214,
+      "Healthy": 0.5937677025794983,
+      "Leaf Spot": 0.18834155797958374
+    },
+    "probs_hyb": {
+      "Aphids": 0.06694147735834122,
+      "Blotch": 0.04208415746688843,
+      "Healthy": 0.29702383279800415,
+      "Leaf Spot": 0.5939505100250244
+    },
+    "reasons": [
+      "MobNet predicted Healthy (59.4%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(67).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(67).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0010699756676331162,
+    "p_mob_healthy": 0.5191239714622498,
+    "p_hyb_healthy": 0.2600969672203064,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00022057761088944972,
+      "Blotch": 0.0010945694521069527,
+      "Healthy": 0.0010699756676331162,
+      "Leaf Spot": 0.997614860534668
+    },
+    "probs_mob": {
+      "Aphids": 0.14281663298606873,
+      "Blotch": 0.1218390092253685,
+      "Healthy": 0.5191239714622498,
+      "Leaf Spot": 0.21622046828269958
+    },
+    "probs_hyb": {
+      "Aphids": 0.07151860743761063,
+      "Blotch": 0.06146679073572159,
+      "Healthy": 0.2600969672203064,
+      "Leaf Spot": 0.606917679309845
+    },
+    "reasons": [
+      "MobNet predicted Healthy (51.9%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(69).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(69).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "internal_test",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0001412419369444251,
+    "p_mob_healthy": 0.4583251476287842,
+    "p_hyb_healthy": 0.22923319041728973,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 5.0281843869015574e-05,
+      "Blotch": 0.0002387585846008733,
+      "Healthy": 0.0001412419369444251,
+      "Leaf Spot": 0.9995697140693665
+    },
+    "probs_mob": {
+      "Aphids": 0.11031584441661835,
+      "Blotch": 0.1153658926486969,
+      "Healthy": 0.4583251476287842,
+      "Leaf Spot": 0.3159931004047394
+    },
+    "probs_hyb": {
+      "Aphids": 0.05518306419253349,
+      "Blotch": 0.05780232697725296,
+      "Healthy": 0.22923319041728973,
+      "Leaf Spot": 0.6577814221382141
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.8%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(70).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(70).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.000978110358119011,
+    "p_mob_healthy": 0.42873358726501465,
+    "p_hyb_healthy": 0.2148558497428894,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00018955874838866293,
+      "Blotch": 0.0008732730057090521,
+      "Healthy": 0.000978110358119011,
+      "Leaf Spot": 0.9979590177536011
+    },
+    "probs_mob": {
+      "Aphids": 0.15348082780838013,
+      "Blotch": 0.1274983137845993,
+      "Healthy": 0.42873358726501465,
+      "Leaf Spot": 0.2902873754501343
+    },
+    "probs_hyb": {
+      "Aphids": 0.07683519273996353,
+      "Blotch": 0.06418579071760178,
+      "Healthy": 0.2148558497428894,
+      "Leaf Spot": 0.6441231966018677
+    },
+    "reasons": [
+      "MobNet predicted Healthy (42.9%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(71).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(71).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00012120632163714617,
+    "p_mob_healthy": 0.36442872881889343,
+    "p_hyb_healthy": 0.1822749674320221,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Leaf Spot",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 6.514185952255502e-05,
+      "Blotch": 0.0006091826944611967,
+      "Healthy": 0.00012120632163714617,
+      "Leaf Spot": 0.9992044568061829
+    },
+    "probs_mob": {
+      "Aphids": 0.110550656914711,
+      "Blotch": 0.12714454531669617,
+      "Healthy": 0.36442872881889343,
+      "Leaf Spot": 0.3978760540485382
+    },
+    "probs_hyb": {
+      "Aphids": 0.05530789867043495,
+      "Blotch": 0.06387686729431152,
+      "Healthy": 0.1822749674320221,
+      "Leaf Spot": 0.6985402703285217
+    },
+    "reasons": [
+      "Hybrid Healthy prob=18.2%"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(72).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(72).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0006428447086364031,
+    "p_mob_healthy": 0.44100266695022583,
+    "p_hyb_healthy": 0.2208227515220642,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.0002164549077861011,
+      "Blotch": 0.0005414746119640768,
+      "Healthy": 0.0006428447086364031,
+      "Leaf Spot": 0.9985992312431335
+    },
+    "probs_mob": {
+      "Aphids": 0.12261130660772324,
+      "Blotch": 0.1173366904258728,
+      "Healthy": 0.44100266695022583,
+      "Leaf Spot": 0.3190493583679199
+    },
+    "probs_hyb": {
+      "Aphids": 0.061413880437612534,
+      "Blotch": 0.05893908068537712,
+      "Healthy": 0.2208227515220642,
+      "Leaf Spot": 0.6588243246078491
+    },
+    "reasons": [
+      "MobNet predicted Healthy (44.1%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(85).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(85).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0006879009306430817,
+    "p_mob_healthy": 0.5271193981170654,
+    "p_hyb_healthy": 0.2639036476612091,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.0004116924828849733,
+      "Blotch": 0.0004805201606359333,
+      "Healthy": 0.0006879009306430817,
+      "Leaf Spot": 0.9984198808670044
+    },
+    "probs_mob": {
+      "Aphids": 0.17150060832500458,
+      "Blotch": 0.08587324619293213,
+      "Healthy": 0.5271193981170654,
+      "Leaf Spot": 0.2155066877603531
+    },
+    "probs_hyb": {
+      "Aphids": 0.0859561488032341,
+      "Blotch": 0.04317688196897507,
+      "Healthy": 0.2639036476612091,
+      "Leaf Spot": 0.6069632768630981
+    },
+    "reasons": [
+      "MobNet predicted Healthy (52.7%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(86).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(86).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 8.052113116718829e-05,
+    "p_mob_healthy": 0.3739466667175293,
+    "p_hyb_healthy": 0.18701359629631042,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 3.095871943514794e-05,
+      "Blotch": 8.059272659011185e-05,
+      "Healthy": 8.052113116718829e-05,
+      "Leaf Spot": 0.9998078942298889
+    },
+    "probs_mob": {
+      "Aphids": 0.2439936101436615,
+      "Blotch": 0.11445611715316772,
+      "Healthy": 0.3739466667175293,
+      "Leaf Spot": 0.26760363578796387
+    },
+    "probs_hyb": {
+      "Aphids": 0.12201228737831116,
+      "Blotch": 0.057268355041742325,
+      "Healthy": 0.18701359629631042,
+      "Leaf Spot": 0.633705735206604
+    },
+    "reasons": [
+      "MobNet predicted Healthy (37.4%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(87).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(87).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.00031618104549124837,
+    "p_mob_healthy": 0.45287421345710754,
+    "p_hyb_healthy": 0.2265951931476593,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00014738629397470504,
+      "Blotch": 0.00016088153643067926,
+      "Healthy": 0.00031618104549124837,
+      "Leaf Spot": 0.9993755221366882
+    },
+    "probs_mob": {
+      "Aphids": 0.2536889910697937,
+      "Blotch": 0.1193351224064827,
+      "Healthy": 0.45287421345710754,
+      "Leaf Spot": 0.17410166561603546
+    },
+    "probs_hyb": {
+      "Aphids": 0.12691818177700043,
+      "Blotch": 0.059748001396656036,
+      "Healthy": 0.2265951931476593,
+      "Leaf Spot": 0.5867385864257812
+    },
+    "reasons": [
+      "MobNet predicted Healthy (45.3%)"
+    ]
+  },
+  {
+    "filename": "leaf_spot_(88).jpg",
+    "path": "d:\\curuma\\turmeric_datasets\\dataset_01\\original\\Leaf_Spot\\leaf_spot_(88).jpg",
+    "folder": "Leaf_Spot",
+    "true_class": "Leaf Spot",
+    "split": "train",
+    "in_splits_csv": true,
+    "p_eff_healthy": 0.0001716749247862026,
+    "p_mob_healthy": 0.462315171957016,
+    "p_hyb_healthy": 0.23124341666698456,
+    "pred_eff": "Leaf Spot",
+    "pred_mob": "Healthy",
+    "pred_hyb": "Leaf Spot",
+    "probs_eff": {
+      "Aphids": 0.00012436498946044594,
+      "Blotch": 9.710777521831915e-05,
+      "Healthy": 0.0001716749247862026,
+      "Leaf Spot": 0.9996069073677063
+    },
+    "probs_mob": {
+      "Aphids": 0.21897180378437042,
+      "Blotch": 0.09926939010620117,
+      "Healthy": 0.462315171957016,
+      "Leaf Spot": 0.2194436639547348
+    },
+    "probs_hyb": {
+      "Aphids": 0.10954808443784714,
+      "Blotch": 0.04968325048685074,
+      "Healthy": 0.23124341666698456,
+      "Leaf Spot": 0.6095252633094788
+    },
+    "reasons": [
+      "MobNet predicted Healthy (46.2%)"
+    ]
+  }
+]

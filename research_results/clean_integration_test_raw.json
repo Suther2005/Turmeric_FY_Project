@@ -1,0 +1,206 @@
+[
+  {
+    "case_id": 1,
+    "name": "Genuine Turmeric Leaf (Dataset_01)",
+    "filename": "leaf_spot_(1).jpg",
+    "http_status": 200,
+    "disease_result": "Leaf Spot",
+    "confidence": 76.2,
+    "ood_status": "IN_DOMAIN",
+    "mahalanobis_distance": 23.77,
+    "ood_threshold": 63.1,
+    "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+    "probabilities": {
+      "Aphids": 9.05,
+      "Blotch": 10.9,
+      "Healthy": 3.83,
+      "Leaf Spot": 76.22
+    },
+    "ensemble_breakdown": null,
+    "ood_message": null,
+    "api_response": {
+      "disease": "Leaf Spot",
+      "confidence": 76.2,
+      "probabilities": {
+        "Aphids": 9.05,
+        "Blotch": 10.9,
+        "Healthy": 3.83,
+        "Leaf Spot": 76.22
+      },
+      "model_mode": "REAL_MODEL",
+      "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+      "ood_status": "IN_DOMAIN",
+      "mahalanobis_distance": 23.77,
+      "ood_threshold": 63.1,
+      "ood_method": "Mahalanobis Distance on EfficientNet-B0 Penultimate Embeddings (Ledoit-Wolf Regularized Safeguard)",
+      "extracted_features": {
+        "lesionDensity": "Concentric circular to elliptical necrotic spots",
+        "chlorosisSeverity": "Isolated chlorotic halo rings",
+        "colorVariance": "Dark brown center with pale yellow boundary",
+        "textureDistortion": "Localized foliar perforation and tissue breakdown"
+      },
+      "individual_predictions": {
+        "efficientnet_b0": {
+          "disease": "Leaf Spot",
+          "confidence": 99.75,
+          "probabilities": {
+            "Aphids": 0.06,
+            "Blotch": 0.14,
+            "Healthy": 0.04,
+            "Leaf Spot": 99.75
+          }
+        },
+        "mobilenet_v2": {
+          "disease": "Leaf Spot",
+          "confidence": 52.69,
+          "probabilities": {
+            "Aphids": 18.04,
+            "Blotch": 21.65,
+            "Healthy": 7.62,
+            "Leaf Spot": 52.69
+          }
+        }
+      },
+      "filename": "leaf_spot_(1).jpg"
+    },
+    "errors": null
+  },
+  {
+    "case_id": 2,
+    "name": "Anime / Cartoon (OOD Benchmark)",
+    "filename": "anime_01.png",
+    "http_status": 200,
+    "disease_result": "Non-Turmeric / Out-of-Domain",
+    "confidence": 0.0,
+    "ood_status": "OOD_REJECTED",
+    "mahalanobis_distance": 116.41,
+    "ood_threshold": 63.1,
+    "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+    "probabilities": {
+      "Aphids": 0.0,
+      "Blotch": 0.0,
+      "Healthy": 0.0,
+      "Leaf Spot": 0.0
+    },
+    "ensemble_breakdown": null,
+    "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+    "api_response": {
+      "disease": "Non-Turmeric / Out-of-Domain",
+      "confidence": 0.0,
+      "probabilities": {
+        "Aphids": 0.0,
+        "Blotch": 0.0,
+        "Healthy": 0.0,
+        "Leaf Spot": 0.0
+      },
+      "model_mode": "REAL_MODEL",
+      "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+      "ood_status": "OOD_REJECTED",
+      "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+      "mahalanobis_distance": 116.41,
+      "ood_threshold": 63.1,
+      "ood_method": "Mahalanobis Distance on EfficientNet-B0 Penultimate Embeddings (Ledoit-Wolf Regularized Safeguard)",
+      "extracted_features": {
+        "lesionDensity": "N/A (Specimen rejected by domain safeguard)",
+        "chlorosisSeverity": "N/A (Specimen rejected by domain safeguard)",
+        "colorVariance": "N/A (Specimen rejected by domain safeguard)",
+        "textureDistortion": "N/A (Specimen rejected by domain safeguard)"
+      },
+      "individual_predictions": null,
+      "filename": "anime_01.png"
+    },
+    "errors": null
+  },
+  {
+    "case_id": 3,
+    "name": "Unrelated Object (OOD Benchmark)",
+    "filename": "object_01.png",
+    "http_status": 200,
+    "disease_result": "Non-Turmeric / Out-of-Domain",
+    "confidence": 0.0,
+    "ood_status": "OOD_REJECTED",
+    "mahalanobis_distance": 113.01,
+    "ood_threshold": 63.1,
+    "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+    "probabilities": {
+      "Aphids": 0.0,
+      "Blotch": 0.0,
+      "Healthy": 0.0,
+      "Leaf Spot": 0.0
+    },
+    "ensemble_breakdown": null,
+    "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+    "api_response": {
+      "disease": "Non-Turmeric / Out-of-Domain",
+      "confidence": 0.0,
+      "probabilities": {
+        "Aphids": 0.0,
+        "Blotch": 0.0,
+        "Healthy": 0.0,
+        "Leaf Spot": 0.0
+      },
+      "model_mode": "REAL_MODEL",
+      "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+      "ood_status": "OOD_REJECTED",
+      "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+      "mahalanobis_distance": 113.01,
+      "ood_threshold": 63.1,
+      "ood_method": "Mahalanobis Distance on EfficientNet-B0 Penultimate Embeddings (Ledoit-Wolf Regularized Safeguard)",
+      "extracted_features": {
+        "lesionDensity": "N/A (Specimen rejected by domain safeguard)",
+        "chlorosisSeverity": "N/A (Specimen rejected by domain safeguard)",
+        "colorVariance": "N/A (Specimen rejected by domain safeguard)",
+        "textureDistortion": "N/A (Specimen rejected by domain safeguard)"
+      },
+      "individual_predictions": null,
+      "filename": "object_01.png"
+    },
+    "errors": null
+  },
+  {
+    "case_id": 4,
+    "name": "Real Turmeric Field Image (Dataset_02)",
+    "filename": "Healthy Leaf00001.JPG",
+    "http_status": 200,
+    "disease_result": "Non-Turmeric / Out-of-Domain",
+    "confidence": 0.0,
+    "ood_status": "OOD_REJECTED",
+    "mahalanobis_distance": 86.59,
+    "ood_threshold": 63.1,
+    "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+    "probabilities": {
+      "Aphids": 0.0,
+      "Blotch": 0.0,
+      "Healthy": 0.0,
+      "Leaf Spot": 0.0
+    },
+    "ensemble_breakdown": null,
+    "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+    "api_response": {
+      "disease": "Non-Turmeric / Out-of-Domain",
+      "confidence": 0.0,
+      "probabilities": {
+        "Aphids": 0.0,
+        "Blotch": 0.0,
+        "Healthy": 0.0,
+        "Leaf Spot": 0.0
+      },
+      "model_mode": "REAL_MODEL",
+      "model_architecture": "Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)",
+      "ood_status": "OOD_REJECTED",
+      "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
+      "mahalanobis_distance": 86.59,
+      "ood_threshold": 63.1,
+      "ood_method": "Mahalanobis Distance on EfficientNet-B0 Penultimate Embeddings (Ledoit-Wolf Regularized Safeguard)",
+      "extracted_features": {
+        "lesionDensity": "N/A (Specimen rejected by domain safeguard)",
+        "chlorosisSeverity": "N/A (Specimen rejected by domain safeguard)",
+        "colorVariance": "N/A (Specimen rejected by domain safeguard)",
+        "textureDistortion": "N/A (Specimen rejected by domain safeguard)"
+      },
+      "individual_predictions": null,
+      "filename": "Healthy Leaf00001.JPG"
+    },
+    "errors": null
+  }
+]

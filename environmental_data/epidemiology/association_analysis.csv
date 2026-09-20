@@ -1,0 +1,31 @@
+analysis_cohort,sample_size_n,feature_name,feature_display_label,feature_mean,feature_std,pdi_mean,pdi_std,spearman_rho,spearman_p_value,pearson_r,pearson_p_value,observed_effect_direction,statistical_significance_alpha_0_05,methodological_note
+All Foliar Pathogens Combined,8,cumulative_rainfall_14d_mm,14-Day Cumulative Rainfall (mm),107.15,44.64,40.33,7.44,0.119,0.7789,0.227,0.5889,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,rainfall_days_14d_count,14-Day Rain Days Count,11.75,2.59,40.33,7.44,0.147,0.7278,0.087,0.8369,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,temp_mean_degC,Mean Temperature (°C),26.16,1.29,40.33,7.44,-0.167,0.6932,-0.262,0.5304,Negative,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,hours_temp_favorable_22_32C,Hours in Favorable Temp 22-32°C (hrs),308.12,28.06,40.33,7.44,0.19,0.6514,0.323,0.4349,Positive,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,rh_mean_pct,Mean Relative Humidity (%),78.18,6.89,40.33,7.44,0.048,0.9108,0.142,0.738,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,hours_rh_ge_80pct,Hours with RH >= 80% (hrs),184.12,44.29,40.33,7.44,0.048,0.9108,0.027,0.949,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,hours_dew_condensation_proxy,Hours with Dew Condensation Proxy (hrs),97.0,43.27,40.33,7.44,0.071,0.8665,0.112,0.7914,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,wind_speed_mean_kmh,Mean Wind Speed (km/h),6.45,1.21,40.33,7.44,0.262,0.5309,-0.003,0.9946,Positive,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,solar_rad_mean_Wm2,Mean Downward Solar Radiation (W/m²),200.61,30.45,40.33,7.44,0.024,0.9554,0.1,0.8131,Neutral / Weak,False,Exploratory small-sample correlation (n=8). Non-causal.
+All Foliar Pathogens Combined,8,soil_moisture_0_7cm_mean_m3m3,Mean Soil Moisture 0-7cm (m³/m³),0.32,0.06,40.33,7.44,-0.214,0.6103,0.171,0.6853,Negative,False,Exploratory small-sample correlation (n=8). Non-causal.
+Leaf Spot Only (Colletotrichum),4,cumulative_rainfall_14d_mm,14-Day Cumulative Rainfall (mm),87.35,50.15,36.92,3.19,0.8,0.2,0.909,0.0907,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,rainfall_days_14d_count,14-Day Rain Days Count,11.75,2.86,36.92,3.19,0.316,0.6838,0.643,0.3566,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,temp_mean_degC,Mean Temperature (°C),27.07,1.12,36.92,3.19,-0.2,0.8,-0.518,0.482,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,hours_temp_favorable_22_32C,Hours in Favorable Temp 22-32°C (hrs),298.5,36.18,36.92,3.19,0.2,0.8,0.574,0.4261,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,rh_mean_pct,Mean Relative Humidity (%),74.58,7.48,36.92,3.19,0.2,0.8,0.565,0.4351,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,hours_rh_ge_80pct,Hours with RH >= 80% (hrs),160.5,42.17,36.92,3.19,0.2,0.8,0.61,0.3896,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,hours_dew_condensation_proxy,Hours with Dew Condensation Proxy (hrs),70.5,41.33,36.92,3.19,0.4,0.6,0.631,0.3689,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,wind_speed_mean_kmh,Mean Wind Speed (km/h),6.88,1.43,36.92,3.19,-0.2,0.8,-0.454,0.5457,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,solar_rad_mean_Wm2,Mean Downward Solar Radiation (W/m²),213.8,23.63,36.92,3.19,-0.4,0.6,-0.67,0.3295,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Spot Only (Colletotrichum),4,soil_moisture_0_7cm_mean_m3m3,Mean Soil Moisture 0-7cm (m³/m³),0.28,0.07,36.92,3.19,0.2,0.8,0.518,0.4821,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,cumulative_rainfall_14d_mm,14-Day Cumulative Rainfall (mm),126.95,26.19,43.72,8.79,-0.8,0.2,-0.564,0.4364,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,rainfall_days_14d_count,14-Day Rain Days Count,11.75,2.28,43.72,8.79,0.0,1.0,-0.126,0.8742,Neutral / Weak,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,temp_mean_degC,Mean Temperature (°C),25.26,0.65,43.72,8.79,0.2,0.8,0.526,0.4742,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,hours_temp_favorable_22_32C,Hours in Favorable Temp 22-32°C (hrs),317.75,8.98,43.72,8.79,0.0,1.0,0.039,0.961,Neutral / Weak,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,rh_mean_pct,Mean Relative Humidity (%),81.78,3.61,43.72,8.79,-0.4,0.6,-0.739,0.2605,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,hours_rh_ge_80pct,Hours with RH >= 80% (hrs),207.75,32.08,43.72,8.79,-0.4,0.6,-0.798,0.2021,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,hours_dew_condensation_proxy,Hours with Dew Condensation Proxy (hrs),123.5,25.14,43.72,8.79,-0.4,0.6,-0.866,0.134,Negative,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,wind_speed_mean_kmh,Mean Wind Speed (km/h),6.02,0.74,43.72,8.79,1.0,0.0,0.764,0.2362,Positive,True,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,solar_rad_mean_Wm2,Mean Downward Solar Radiation (W/m²),187.42,30.79,43.72,8.79,0.4,0.6,0.686,0.3136,Positive,False,Small subset (n=4). Descriptive direction only.
+Leaf Blotch Only (Taphrina),4,soil_moisture_0_7cm_mean_m3m3,Mean Soil Moisture 0-7cm (m³/m³),0.35,0.02,43.72,8.79,-0.8,0.2,-0.874,0.1263,Negative,False,Small subset (n=4). Descriptive direction only.

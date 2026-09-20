@@ -1,0 +1,82 @@
+======================================================================
+DS01 DEFINITIVE STRUCTURE PROBE  (jtttfbx342)
+======================================================================
+
+[A] Probing version-specific API endpoints...
+  v1 → 100 sample records
+    First file: aphids_disease_(100).jpg
+    folder_id : ccc522cc-7cfa-4650-aef7-3bc36c66f6cb
+  v2 → 100 sample records
+    First file: aphids_disease_(100).jpg
+    folder_id : ccc522cc-7cfa-4650-aef7-3bc36c66f6cb
+
+[B] Probing specific offsets to find actual file count...
+  offset=     0: 100 records  first=aphids_disease_(100).jpg  
+  offset=   100: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   200: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   400: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   800: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   860: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   865: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   866: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=   900: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=  1000: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=  1728: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=  4360: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=  4361: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+  offset=  8700: 100 records  first=aphids_disease_(100).jpg  <<< WRAP
+
+  Wrap-around detected at offset=100
+  => Actual unique file count is approximately 100
+
+[C] Collecting unique files by sampling every 100 offsets...
+  offset=    0: 100 batch, 100 unique total, first=aphids_disease_(100).jpg
+  offset=100: wrap-around confirmed (sha match). Stopping.
+
+  TOTAL UNIQUE FILES FOUND: 100
+
+[D] Analysing collected unique files...
+  Folder IDs: {'ccc522cc-7cfa-4650-aef7-3bc36c66f6cb': 100}
+  Filename prefix counts: {'aphids_disease': 100}
+
+  First 5 files (sorted): ['aphids_disease_(10).jpg', 'aphids_disease_(100).jpg', 'aphids_disease_(101).jpg', 'aphids_disease_(102).jpg', 'aphids_disease_(103).jpg']
+  Last  5 files (sorted): ['aphids_disease_(186).jpg', 'aphids_disease_(187).jpg', 'aphids_disease_(188).jpg', 'aphids_disease_(189).jpg', 'aphids_disease_(190).jpg']
+  Created date range: 2024-12-30 → 2024-12-30
+  Total size: 384.6 MB  |  Avg: 3.85 MB/file
+
+[E] Reading Mendeley dataset page HTML for structural clues...
+  Folder name hints from HTML: []
+  File count hints from HTML: ['4']
+  Version hints: ['2']
+  Found '865' in HTML page
+  Found '3496/3,496' in HTML page
+  Found '4361/4,361' in HTML page
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+Total unique files discovered via API sampling: 100
+Unique folder_ids: {'ccc522cc-7cfa-4650-aef7-3bc36c66f6cb': 100}
+Prefix breakdown:  {'aphids_disease': 100}
+
+Files with 'aug_' prefix (augmented): 0
+Files without 'aug_' prefix (original): 100
+Expected original count (from paper): 865
+Match: NO - got 100
+
+API BEHAVIOUR DIAGNOSIS:
+  The /files endpoint returns max 100 records per page.
+  Offset-based pagination wraps after all unique records are exhausted.
+  There is ONE folder_id covering all files.
+  Originals are distinguishable by filename (no 'aug_' prefix).
+
+DOWNLOAD STRATEGY:
+  Cannot filter by folder (only 1 folder, contains all files).
+  Must fetch ALL unique files and filter by filename pattern:
+    ORIGINAL = filename does NOT start with 'aug_'
+    AUGMENTED = filename starts with 'aug_'
+  Use wrap-around detection to know when all unique files are fetched.
+
+CONFIRMED ORIGINAL FOLDER_ID:
+  ccc522cc-7cfa-4650-aef7-3bc36c66f6cb  (the ONLY folder)
+======================================================================

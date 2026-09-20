@@ -1,0 +1,133 @@
+{
+  "dataset_splits": {
+    "train": 606,
+    "val": 130,
+    "test": 0
+  },
+  "total_ood": 50,
+  "ood_categories": [
+    "anime_cartoon",
+    "document_ui",
+    "human_portraits",
+    "non_turmeric_botanical",
+    "unrelated_objects"
+  ],
+  "shrinkage_intensity": 0.08596475072185411,
+  "tier1": {
+    "threshold": 0.25,
+    "val_foliar": {
+      "mean": 0.17742919166666665,
+      "min": 0.06116108333333333,
+      "p05": 0.07449867083333334
+    },
+    "ood_foliar": {
+      "mean": 0.16469066666666665,
+      "max": 0.7601111111111111,
+      "p95": 0.7218888888888889
+    },
+    "val_pass_rate": "19/130 (14.62%)",
+    "ood_reject_rate": "38/50 (76.00%)"
+  },
+  "tier2": {
+    "val_mahal": {
+      "mean": 45.13491515760517,
+      "std": 8.019306842445678,
+      "min": 22.93146855882044,
+      "max": 73.19978984545317,
+      "p95": 59.34889832917754,
+      "p98": 61.973284867995275,
+      "p99": 65.4075685572989
+    },
+    "ood_mahal": {
+      "mean": 103.58374425943572,
+      "min": 54.13806819124773,
+      "max": 142.17506979188113,
+      "by_category": {
+        "anime_cartoon": {
+          "mean": 115.03342021816415,
+          "min": 97.16966349824719
+        },
+        "document_ui": {
+          "mean": 103.12308562231699,
+          "min": 92.22276601512826
+        },
+        "human_portraits": {
+          "mean": 98.89386899026464,
+          "min": 90.27527187920244
+        },
+        "non_turmeric_botanical": {
+          "mean": 78.902839583883,
+          "min": 54.13806819124773
+        },
+        "unrelated_objects": {
+          "mean": 121.96550688254986,
+          "min": 99.00932051188005
+        }
+      }
+    },
+    "candidates": {
+      "TPR 95% (Val P95)": {
+        "threshold": 59.35,
+        "in_domain_acceptance": "123/130 (94.62%)",
+        "val_false_rejection": 7,
+        "ood_rejection": "46/50 (92.00%)",
+        "ood_false_acceptance": 4,
+        "per_category_rejection": {
+          "anime_cartoon": 10,
+          "document_ui": 10,
+          "human_portraits": 10,
+          "non_turmeric_botanical": 6,
+          "unrelated_objects": 10
+        }
+      },
+      "TPR 98% (Val P98)": {
+        "threshold": 61.97,
+        "in_domain_acceptance": "127/130 (97.69%)",
+        "val_false_rejection": 3,
+        "ood_rejection": "46/50 (92.00%)",
+        "ood_false_acceptance": 4,
+        "per_category_rejection": {
+          "anime_cartoon": 10,
+          "document_ui": 10,
+          "human_portraits": 10,
+          "non_turmeric_botanical": 6,
+          "unrelated_objects": 10
+        }
+      },
+      "TPR 99% (Val P99)": {
+        "threshold": 65.41,
+        "in_domain_acceptance": "128/130 (98.46%)",
+        "val_false_rejection": 2,
+        "ood_rejection": "46/50 (92.00%)",
+        "ood_false_acceptance": 4,
+        "per_category_rejection": {
+          "anime_cartoon": 10,
+          "document_ui": 10,
+          "human_portraits": 10,
+          "non_turmeric_botanical": 6,
+          "unrelated_objects": 10
+        }
+      },
+      "Max Val In-Domain": {
+        "threshold": 73.2,
+        "in_domain_acceptance": "130/130 (100.00%)",
+        "val_false_rejection": 0,
+        "ood_rejection": "46/50 (92.00%)",
+        "ood_false_acceptance": 4,
+        "per_category_rejection": {
+          "anime_cartoon": 10,
+          "document_ui": 10,
+          "human_portraits": 10,
+          "non_turmeric_botanical": 6,
+          "unrelated_objects": 10
+        }
+      }
+    }
+  },
+  "combined": {
+    "in_domain_acceptance": "19/130 (14.62%)",
+    "ood_rejection": "46/50 (92.00%)",
+    "false_rejections": 111,
+    "false_acceptances": 4
+  }
+}

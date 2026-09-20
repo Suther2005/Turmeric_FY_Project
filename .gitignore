@@ -1,0 +1,116 @@
+# =============================================================================
+# Curuma / TurmeriCare AI - .gitignore
+# =============================================================================
+
+# --- Environment & Credentials ---
+.env
+.env.*
+*.env
+*.pem
+*.key
+credentials.json
+secrets/
+
+# --- Python Build & Cache ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# --- Virtual Environments ---
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# --- Node / Frontend Artifacts ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+.npm/
+.vite/
+
+# --- Model Checkpoints & Large Binary Weights ---
+# (Weights are excluded from Git due to GitHub size limits; see backend/checkpoints/README.md)
+*.pth
+*.pt
+*.bin
+*.onnx
+*.tflite
+*.h5
+*.pkl
+backend/checkpoints/*.pth
+backend/checkpoints/*.pt
+
+# --- Raw Datasets & Image Archives ---
+# (Raw multi-gigabyte datasets are stored on research storage / cloud manifests)
+turmeric_datasets/dataset_01/
+turmeric_datasets/dataset_02/
+turmeric_datasets/dataset_03/
+turmeric_datasets/dataset_04/
+turmeric_datasets/raw/
+turmeric_datasets/curated/
+turmeric_datasets/leaf_detection/
+turmeric_datasets/splits/
+turmeric_datasets/*.zip
+turmeric_datasets/*.tar.gz
+turmeric_datasets/*.7z
+
+# Exclude general raw image formats unless in public/ or research benchmarks
+*.jpg
+*.jpeg
+*.png
+*.JPG
+*.JPEG
+*.PNG
+!public/**/*
+!src/assets/**/*
+!research_results/ood_benchmark/**/*.png
+!research_results/ood_benchmark/**/*.jpg
+
+# --- Logs & Temp Files ---
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.system_generated/
+scratch/
+backend/scratch_*.py
+
+# --- OS & IDE Metadata ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Auto-generated & Experimental Annotation Artifacts ---
+turmeric_datasets/auto_annotations/
+turmeric_datasets/annotations/

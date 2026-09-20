@@ -1,0 +1,600 @@
+dataset,filename,relative_path,ds02_class,mapped_ds01_class,compatibility_status,usable_for_external_benchmark
+Dataset_02,Dry Leaf00001.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00001.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00002.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00002.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00003.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00003.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00004.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00004.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00005.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00005.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00006.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00006.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00007.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00007.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00008.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00008.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00009.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00009.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00010.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00010.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00011.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00011.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00012.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00012.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00013.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00013.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00014.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00014.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00015.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00015.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00016.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00016.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00017.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00017.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00018.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00018.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00019.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00019.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00020.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00020.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00021.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00021.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00022.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00022.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00023.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00023.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00024.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00024.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00025.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00025.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00026.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00026.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00027.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00027.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00028.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00028.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00029.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00029.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00030.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00030.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00031.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00031.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00032.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00032.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00033.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00033.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00034.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00034.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00035.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00035.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00036.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00036.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00037.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00037.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00038.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00038.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00039.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00039.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00040.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00040.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00041.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00041.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00042.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00042.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00043.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00043.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00044.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00044.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00045.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00045.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00046.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00046.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00047.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00047.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00048.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00048.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00049.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00049.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00050.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00050.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00051.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00051.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00052.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00052.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00053.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00053.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00054.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00054.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00055.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00055.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00056.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00056.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00057.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00057.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00058.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00058.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00059.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00059.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00060.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00060.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00061.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00061.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00062.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00062.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00063.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00063.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00064.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00064.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00065.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00065.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00066.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00066.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00067.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00067.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00068.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00068.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00069.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00069.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00070.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00070.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00071.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00071.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00072.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00072.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00073.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00073.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00074.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00074.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00075.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00075.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00076.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00076.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00077.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00077.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00078.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00078.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00079.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00079.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00080.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00080.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00081.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00081.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00082.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00082.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00083.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00083.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00084.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00084.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00085.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00085.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00086.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00086.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00087.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00087.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00088.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00088.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00089.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00089.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00090.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00090.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00091.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00091.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00092.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00092.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00093.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00093.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00094.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00094.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00095.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00095.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00096.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00096.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00097.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00097.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00098.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00098.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00099.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00099.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00100.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00100.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00101.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00101.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00102.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00102.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00103.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00103.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00104.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00104.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00105.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00105.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00106.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00106.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00107.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00107.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00108.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00108.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00109.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00109.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00110.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00110.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00111.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00111.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00112.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00112.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00113.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00113.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00114.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00114.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00115.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00115.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00116.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00116.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00117.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00117.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00118.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00118.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00119.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00119.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00120.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00120.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00121.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00121.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00122.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00122.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00123.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00123.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00124.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00124.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00125.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00125.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00126.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00126.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00127.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00127.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00128.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00128.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00129.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00129.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00130.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00130.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00131.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00131.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00132.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00132.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00133.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00133.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00134.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00134.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00135.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00135.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00136.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00136.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00137.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00137.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00138.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00138.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00139.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00139.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00140.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00140.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00141.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00141.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00142.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00142.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00143.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00143.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00144.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00144.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00145.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00145.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00146.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00146.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00147.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00147.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00148.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00148.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00149.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00149.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00150.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00150.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00151.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00151.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00152.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00152.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00153.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00153.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00154.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00154.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00155.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00155.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00156.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00156.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00157.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00157.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00158.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00158.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00159.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00159.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00160.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00160.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00161.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00161.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00162.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00162.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00163.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00163.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00164.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00164.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00165.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00165.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00166.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00166.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00167.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00167.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00168.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00168.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00169.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00169.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00170.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00170.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00171.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00171.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00172.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00172.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00173.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00173.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00174.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00174.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00175.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00175.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00176.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00176.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00177.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00177.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00178.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00178.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00179.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00179.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00180.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00180.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00181.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00181.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00182.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00182.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00183.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00183.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00184.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00184.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00185.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00185.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00186.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00186.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00187.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00187.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00188.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00188.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00189.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00189.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00190.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00190.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00191.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00191.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00192.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00192.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00193.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00193.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00194.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00194.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00195.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00195.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00196.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00196.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00197.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00197.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00198.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00198.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00199.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00199.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00200.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00200.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00201.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00201.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00202.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00202.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Dry Leaf00203.JPG,dataset_02\original\Turmeric Plant Disease\Dry Leaf\Dry Leaf00203.JPG,Dry Leaf,NONE (OOD),INCOMPATIBLE_OOD,NO_OOD_ONLY
+Dataset_02,Healthy Leaf00001.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00001.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00002.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00002.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00003.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00003.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00004.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00004.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00005.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00005.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00006.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00006.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00007.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00007.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00008.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00008.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00009.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00009.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00010.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00010.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00011.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00011.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00012.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00012.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00013.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00013.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00014.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00014.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00015.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00015.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00016.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00016.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00017.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00017.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00018.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00018.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00019.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00019.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00020.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00020.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00021.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00021.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00022.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00022.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00023.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00023.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00024.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00024.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00025.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00025.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00026.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00026.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00027.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00027.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00028.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00028.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00029.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00029.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00030.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00030.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00031.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00031.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00032.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00032.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00033.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00033.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00034.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00034.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00035.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00035.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00036.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00036.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00037.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00037.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00038.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00038.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00039.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00039.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00040.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00040.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00041.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00041.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00042.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00042.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00043.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00043.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00044.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00044.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00045.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00045.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00046.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00046.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00047.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00047.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00048.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00048.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00049.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00049.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00050.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00050.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00051.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00051.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00052.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00052.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00053.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00053.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00054.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00054.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00055.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00055.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00056.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00056.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00057.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00057.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00058.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00058.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00059.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00059.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00060.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00060.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00061.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00061.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00062.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00062.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00063.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00063.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00064.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00064.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00065.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00065.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00066.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00066.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00067.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00067.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00068.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00068.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00069.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00069.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00070.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00070.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00071.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00071.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00072.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00072.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00073.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00073.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00074.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00074.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00075.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00075.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00076.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00076.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00077.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00077.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00078.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00078.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00079.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00079.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00080.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00080.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00081.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00081.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00082.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00082.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00083.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00083.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00084.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00084.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00085.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00085.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00086.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00086.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00087.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00087.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00088.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00088.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00089.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00089.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00090.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00090.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00091.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00091.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00092.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00092.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00093.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00093.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00094.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00094.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00095.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00095.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00096.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00096.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00097.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00097.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00098.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00098.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00099.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00099.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00100.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00100.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00101.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00101.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00102.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00102.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00103.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00103.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00104.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00104.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00105.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00105.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00106.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00106.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00107.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00107.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00108.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00108.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00109.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00109.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00110.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00110.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00111.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00111.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00112.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00112.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00113.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00113.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00114.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00114.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00115.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00115.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00116.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00116.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00117.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00117.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00118.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00118.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00119.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00119.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00120.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00120.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00121.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00121.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00122.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00122.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00123.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00123.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00124.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00124.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00125.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00125.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00126.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00126.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00127.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00127.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00128.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00128.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00129.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00129.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00130.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00130.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00131.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00131.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00132.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00132.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00133.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00133.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00134.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00134.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00135.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00135.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00136.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00136.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00137.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00137.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00138.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00138.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00139.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00139.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00140.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00140.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00141.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00141.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00142.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00142.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00143.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00143.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00144.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00144.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00145.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00145.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00146.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00146.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00147.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00147.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00148.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00148.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00149.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00149.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00150.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00150.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00151.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00151.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00152.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00152.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00153.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00153.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00154.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00154.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00155.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00155.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00156.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00156.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00157.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00157.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00158.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00158.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00159.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00159.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00160.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00160.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00161.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00161.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00162.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00162.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00163.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00163.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00164.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00164.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00165.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00165.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00166.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00166.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00167.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00167.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00168.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00168.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00169.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00169.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00170.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00170.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00171.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00171.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00172.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00172.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00173.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00173.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00174.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00174.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00175.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00175.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00176.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00176.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00177.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00177.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00178.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00178.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00179.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00179.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00180.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00180.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00181.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00181.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00182.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00182.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00183.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00183.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00184.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00184.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00185.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00185.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00186.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00186.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00187.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00187.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00188.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00188.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00189.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00189.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00190.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00190.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00191.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00191.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00192.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00192.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00193.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00193.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00194.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00194.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00195.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00195.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00196.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00196.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Healthy Leaf00197.JPG,dataset_02\original\Turmeric Plant Disease\Healthy Leaf\Healthy Leaf00197.JPG,Healthy Leaf,Healthy_Leaf,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00001.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00001.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00002.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00002.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00003.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00003.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00004.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00004.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00005.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00005.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00006.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00006.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00007.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00007.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00008.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00008.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00009.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00009.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00010.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00010.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00011.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00011.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00012.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00012.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00013.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00013.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00014.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00014.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00015.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00015.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00016.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00016.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00017.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00017.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00018.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00018.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00019.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00019.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00020.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00020.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00021.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00021.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00022.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00022.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00023.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00023.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00024.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00024.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00025.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00025.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00026.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00026.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00027.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00027.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00028.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00028.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00029.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00029.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00030.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00030.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00031.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00031.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00032.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00032.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00033.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00033.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00034.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00034.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00035.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00035.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00036.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00036.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00037.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00037.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00038.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00038.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00039.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00039.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00040.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00040.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00041.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00041.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00042.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00042.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00043.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00043.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00044.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00044.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00045.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00045.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00046.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00046.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00047.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00047.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00048.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00048.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00049.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00049.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00050.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00050.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00051.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00051.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00052.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00052.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00053.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00053.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00054.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00054.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00055.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00055.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00056.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00056.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00057.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00057.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00058.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00058.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00059.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00059.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00060.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00060.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00061.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00061.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00062.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00062.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00063.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00063.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00064.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00064.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00065.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00065.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00066.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00066.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00067.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00067.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00068.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00068.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00069.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00069.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00070.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00070.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00071.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00071.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00072.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00072.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00073.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00073.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00074.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00074.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00075.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00075.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00076.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00076.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00077.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00077.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00078.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00078.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00079.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00079.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00080.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00080.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00081.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00081.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00082.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00082.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00083.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00083.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00084.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00084.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00085.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00085.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00086.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00086.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00087.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00087.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00088.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00088.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00089.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00089.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00090.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00090.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00091.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00091.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00092.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00092.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00093.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00093.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00094.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00094.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00095.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00095.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00096.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00096.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00097.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00097.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00098.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00098.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00099.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00099.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00100.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00100.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00101.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00101.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00102.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00102.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00103.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00103.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00104.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00104.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00105.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00105.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00106.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00106.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00107.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00107.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00108.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00108.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00109.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00109.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00110.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00110.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00111.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00111.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00112.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00112.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00113.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00113.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00114.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00114.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00115.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00115.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00116.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00116.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00117.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00117.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00118.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00118.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00119.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00119.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00120.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00120.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00121.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00121.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00122.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00122.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00123.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00123.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00124.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00124.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00125.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00125.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00126.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00126.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00127.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00127.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00128.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00128.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00129.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00129.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00130.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00130.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00131.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00131.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00132.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00132.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00133.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00133.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00134.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00134.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00135.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00135.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00136.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00136.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00137.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00137.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00138.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00138.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00139.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00139.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00140.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00140.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00141.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00141.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00142.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00142.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00143.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00143.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00144.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00144.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00145.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00145.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00146.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00146.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00147.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00147.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00148.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00148.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00149.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00149.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00150.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00150.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00151.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00151.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00152.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00152.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00153.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00153.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00154.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00154.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00155.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00155.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00156.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00156.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00157.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00157.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00158.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00158.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00159.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00159.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00160.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00160.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00161.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00161.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00162.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00162.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00163.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00163.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00164.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00164.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00165.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00165.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00166.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00166.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00167.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00167.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00168.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00168.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00169.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00169.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00170.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00170.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00171.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00171.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00172.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00172.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00173.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00173.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00174.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00174.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00175.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00175.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00176.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00176.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00177.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00177.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00178.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00178.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00179.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00179.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00180.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00180.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00181.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00181.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00182.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00182.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00183.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00183.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00184.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00184.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00185.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00185.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00186.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00186.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00187.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00187.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00188.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00188.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00189.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00189.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00190.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00190.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00191.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00191.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00192.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00192.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00193.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00193.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00194.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00194.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00195.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00195.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00196.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00196.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00197.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00197.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00198.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00198.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
+Dataset_02,Leaf Blotch00199.JPG,dataset_02\original\Turmeric Plant Disease\Leaf Blotch\Leaf Blotch00199.JPG,Leaf Blotch,Blotch,DIRECT_MATCH,YES
