@@ -266,6 +266,76 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     });
   };
 
+  // Helper to normalize oversized photos (e.g. 4000x3000 camera shots) to max 1024px before sending to inference
+  const normalizeImageForUpload = async (file: File): Promise<File> => {
+    if (!file.type.startsWith('image/')) return file;
+
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        if (!result) {
+          resolve(file);
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          const MAX_DIM = 1024;
+          let width = img.width;
+          let height = img.height;
+
+          // If already within bounds, avoid re-encoding
+          if (width <= MAX_DIM && height <= MAX_DIM) {
+            resolve(file);
+            return;
+          }
+
+          if (width > height) {
+            height = Math.round((height * MAX_DIM) / width);
+            width = MAX_DIM;
+          } else {
+            width = Math.round((width * MAX_DIM) / height);
+            height = MAX_DIM;
+          }
+
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(img, 0, 0, width, height);
+              canvas.toBlob(
+                (blob) => {
+                  if (blob) {
+                    const normalizedFileName = file.name.replace(/\.[^/.]+$/, '') + '.jpg';
+                    const normalizedFile = new File([blob], normalizedFileName, {
+                      type: 'image/jpeg',
+                      lastModified: Date.now(),
+                    });
+                    resolve(normalizedFile);
+                  } else {
+                    resolve(file);
+                  }
+                },
+                'image/jpeg',
+                0.88
+              );
+            } else {
+              resolve(file);
+            }
+          } catch {
+            resolve(file);
+          }
+        };
+        img.onerror = () => resolve(file);
+        img.src = result;
+      };
+      reader.onerror = () => resolve(file);
+      reader.readAsDataURL(file);
+    });
+  };
+
   // History & Toasts & Modals (Persisted in localStorage: curuma_history)
   const [predictionHistory, setPredictionHistory] = useState<PredictionHistoryRecord[]>(() => {
     try {
@@ -637,9 +707,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setAnalysisError(null);
 
     if (uploadedFile) {
-      // Live server-side prediction on uploaded custom image
+      // Normalize oversized photos client-side to max 1024px to prevent large JPEG decompression memory spikes on Render Free
+      const normalizedFile = await normalizeImageForUpload(uploadedFile);
       const formData = new FormData();
-      formData.append('file', uploadedFile);
+      formData.append('file', normalizedFile);
 
       // Backend endpoint configuration (Production Render + Localhost dev support)
       const RENDER_PROD_URL = 'https://curuma-backend.onrender.com/api/predict';
@@ -648,14 +719,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         : null;
 
       const primaryUrl = envCustomUrl || RENDER_PROD_URL;
-      const candidateUrls = Array.from(
-        new Set([
-          primaryUrl,
-          RENDER_PROD_URL,
-          '/api/predict',
-          'http://127.0.0.1:8000/api/predict',
-        ])
-      );
+      const candidateUrls = import.meta.env.PROD
+        ? [primaryUrl]
+        : Array.from(new Set([primaryUrl, '/api/predict', 'http://127.0.0.1:8000/api/predict']));
 
       try {
         let response: Response | null = null;
@@ -673,15 +739,25 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             });
             clearTimeout(timeoutId);
 
-            if (res && (res.ok || res.status < 500)) {
+            if (res && res.ok) {
               response = res;
               break;
+            } else if (res && res.status < 500) {
+              response = res; // Client errors (4xx) should not fall back
+              break;
             } else if (res && res.status >= 500) {
-              response = res; // Keep 5xx response to inspect error details if all fail
+              response = res; // Server error (502/503 from Render)
+              if (import.meta.env.PROD || url === RENDER_PROD_URL) {
+                // Fail fast without waiting through non-existent localhost fallback timeouts
+                break;
+              }
             }
           } catch (fetchErr: any) {
             lastError = fetchErr;
             console.warn(`Fetch to ${url} failed:`, fetchErr);
+            if (import.meta.env.PROD) {
+              break;
+            }
           }
         }
 
