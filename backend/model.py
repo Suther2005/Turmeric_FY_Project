@@ -18,6 +18,7 @@ Features:
 
 import os
 import io
+import time
 import math
 import numpy as np
 import torch
@@ -122,6 +123,8 @@ class DiseaseInferenceEngine:
         if self.ood_stats_path and os.path.isfile(self.ood_stats_path):
             self.load_ood_stats(self.ood_stats_path)
 
+        torch.set_num_threads(1)
+
     @property
     def is_loaded(self) -> bool:
         """Returns True if required models are loaded."""
@@ -214,7 +217,7 @@ class DiseaseInferenceEngine:
         """Extracts 1280-dim embedding vector from EfficientNet-B0 before classification head."""
         if self.efficientnet_model is None:
             raise RuntimeError("EfficientNet-B0 model is required for OOD embedding extraction.")
-        with torch.no_grad():
+        with torch.inference_mode():
             feat = self.efficientnet_model.features(tensor)
             feat = self.efficientnet_model.avgpool(feat)
             emb = torch.flatten(feat, 1).squeeze(0).cpu().numpy()
@@ -225,15 +228,16 @@ class DiseaseInferenceEngine:
         if not self.ood_enabled or self.ood_class_means is None or self.ood_precision_matrix is None:
             return 0.0
 
-        emb = self.extract_penultimate_embedding(tensor)
-        min_dist = float("inf")
-        for c in range(len(self.class_names)):
-            diff = emb - self.ood_class_means[c]
-            d2 = np.dot(diff, np.dot(self.ood_precision_matrix, diff))
-            dist = math.sqrt(max(0.0, float(d2)))
-            if dist < min_dist:
-                min_dist = dist
-        return min_dist
+        with torch.inference_mode():
+            emb = self.extract_penultimate_embedding(tensor)
+            min_dist = float("inf")
+            for c in range(len(self.class_names)):
+                diff = emb - self.ood_class_means[c]
+                d2 = np.dot(diff, np.dot(self.ood_precision_matrix, diff))
+                dist = math.sqrt(max(0.0, float(d2)))
+                if dist < min_dist:
+                    min_dist = dist
+            return min_dist
 
     def predict_image_bytes(self, image_bytes: bytes) -> Dict[str, Any]:
         """
@@ -246,12 +250,21 @@ class DiseaseInferenceEngine:
                 "Inference requires verified trained weights."
             )
 
-        image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+        t0 = time.perf_counter()
+
+        # Safe memory-conscious PIL decoding: downscale oversized photos (e.g. 4000x3000) to max 1024px before tensor conversion
+        with Image.open(io.BytesIO(image_bytes)) as pil_img:
+            if pil_img.width > 1024 or pil_img.height > 1024:
+                pil_img.thumbnail((1024, 1024), Image.Resampling.BILINEAR)
+            image = pil_img.convert("RGB")
+
         tensor = INFERENCE_TRANSFORMS(image).unsqueeze(0).to(self.device)
+        t_prep = (time.perf_counter() - t0) * 1000
 
         # -------------------------------------------------------------
         # 1. Mahalanobis OOD Domain Safeguard Check (Pre-classification)
         # -------------------------------------------------------------
+        t_ood_start = time.perf_counter()
         mahal_dist = 0.0
         is_ood_rejected = False
 
@@ -260,8 +273,11 @@ class DiseaseInferenceEngine:
             if mahal_dist > self.ood_threshold:
                 is_ood_rejected = True
 
+        t_ood = (time.perf_counter() - t_ood_start) * 1000
+
         if is_ood_rejected:
             # OOD Rejected: Clearly refuse disease classification
+            print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | OOD={t_ood:.1f}ms (Dist={mahal_dist:.2f} > {self.ood_threshold}) -> OOD_REJECTED")
             return {
                 "disease": "Non-Turmeric / Out-of-Domain",
                 "confidence": 0.0,
@@ -290,10 +306,11 @@ class DiseaseInferenceEngine:
         # -------------------------------------------------------------
         # 2. In-Domain Classification (Hybrid Ensemble)
         # -------------------------------------------------------------
+        t_inf_start = time.perf_counter()
         probs_eff = None
         probs_mob = None
 
-        with torch.no_grad():
+        with torch.inference_mode():
             if self.efficientnet_model is not None:
                 logits_eff = self.efficientnet_model(tensor)
                 probs_eff = torch.softmax(logits_eff, dim=1).squeeze(0).cpu().numpy()
@@ -301,6 +318,8 @@ class DiseaseInferenceEngine:
             if self.mobilenet_model is not None:
                 logits_mob = self.mobilenet_model(tensor)
                 probs_mob = torch.softmax(logits_mob, dim=1).squeeze(0).cpu().numpy()
+
+        t_inf = (time.perf_counter() - t_inf_start) * 1000
 
         # Hybrid Soft-Voting late fusion: P_hybrid = alpha * P_eff + (1 - alpha) * P_mob
         if self.mode == "hybrid" and probs_eff is not None and probs_mob is not None:

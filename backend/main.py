@@ -20,6 +20,7 @@ if str(BACKEND_DIR) not in sys.path:
 from fastapi import FastAPI, File, UploadFile, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from starlette.concurrency import run_in_threadpool
 from PIL import Image, UnidentifiedImageError
 
 try:
@@ -156,10 +157,14 @@ async def predict_disease(file: UploadFile = File(...)) -> Dict[str, Any]:
             detail="Uploaded file is corrupted or not a valid decodeable image."
         )
 
-    # Perform inference
+    # Perform inference off the main asyncio loop to prevent event-loop blocking on limited vCPU containers
     try:
-        result = engine.predict_image_bytes(image_bytes)
+        t_req_start = time.perf_counter()
+        print(f"[API /api/predict] Processing '{file.filename}' ({len(image_bytes) / 1024:.1f} KB)...")
+        result = await run_in_threadpool(engine.predict_image_bytes, image_bytes)
         result["filename"] = file.filename
+        t_total = (time.perf_counter() - t_req_start) * 1000
+        print(f"[API /api/predict] Successfully completed '{file.filename}' in {t_total:.1f} ms -> {result['disease']} ({result['confidence']}%)")
         return result
     except Exception as e:
         # Avoid exposing raw server tracebacks to the client
@@ -172,8 +177,10 @@ async def predict_disease(file: UploadFile = File(...)) -> Dict[str, Any]:
 
 if __name__ == "__main__":
     import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    host = os.environ.get("HOST", "0.0.0.0" if os.environ.get("PORT") else "127.0.0.1")
     # Check if checkpoint exists and reload engine
     if CHECKPOINT_PATH.exists() and not engine.is_loaded:
         engine.load_checkpoint(str(CHECKPOINT_PATH))
-    print("[TurmeriCare API] Starting server on http://localhost:8000")
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    print(f"[TurmeriCare API] Starting server on http://{host}:{port}")
+    uvicorn.run(app, host=host, port=port)
