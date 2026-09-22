@@ -3,6 +3,7 @@ import {
   EnvironmentalParameters,
   EnvironmentalRiskResult,
   ImageAnalysisResult,
+  LocationOption,
   MultimodalFusionResult,
   PageId,
   PredictionHistoryRecord,
@@ -22,9 +23,16 @@ import {
 import {
   evaluateResearchEnvironmentalRisk,
   HISTORICAL_REANALYSIS_PRESETS,
+  HourlyEnvironmentalRecord,
   ResearchDiseaseType,
   ResearchRiskOutput,
 } from '../utils/researchRiskEngine';
+import {
+  fetchLiveWeather14Day,
+  formatLocationDisplay,
+  reverseGeocodeCoordinates,
+  TAMIL_NADU_LOCATIONS,
+} from '../services/weatherService';
 import { Language } from '../utils/translations';
 
 interface ToastMessage {
@@ -58,8 +66,9 @@ interface AppContextType {
   envParameters: EnvironmentalParameters;
   updateEnvParameter: (key: keyof EnvironmentalParameters, value: number) => void;
   resetEnvParameters: () => void;
-  envDataSource: 'manual' | 'sensor' | 'reanalysis';
-  setEnvDataSource: (source: 'manual' | 'sensor' | 'reanalysis') => void;
+  analyzeManualFieldConditions: (params: EnvironmentalParameters) => EnvironmentalRiskResult;
+  envDataSource: 'manual' | 'sensor' | 'reanalysis' | 'live_weather';
+  setEnvDataSource: (source: 'manual' | 'sensor' | 'reanalysis' | 'live_weather') => void;
   sensorStatus: SensorStatus;
   currentSeason: SeasonalContext;
   envRiskResult: EnvironmentalRiskResult;
@@ -70,6 +79,7 @@ interface AppContextType {
   runMultimodalFusion: () => void;
   predictionHistory: PredictionHistoryRecord[];
   saveCurrentAnalysisToHistory: () => void;
+  deletePredictionRecord: (id: string) => void;
   toasts: ToastMessage[];
   addToast: (toast: Omit<ToastMessage, 'id'>) => void;
   removeToast: (id: string) => void;
@@ -86,6 +96,20 @@ interface AppContextType {
   setActivePresetMode: (mode: string) => void;
   applyHistoricalPreset: (presetKey: string) => void;
   researchRiskResult: ResearchRiskOutput | null;
+  // Step 2 Live Weather API Accessors
+  selectedLocation: LocationOption;
+  setSelectedLocation: (location: LocationOption) => void;
+  plantingDate: string | null;
+  setPlantingDate: (date: string | null) => void;
+  isWeatherLoading: boolean;
+  weatherError: string | null;
+  liveHourlyRecords: HourlyEnvironmentalRecord[] | null;
+  fetchLiveWeatherData: (targetLoc?: LocationOption) => Promise<void>;
+  // Geolocation Accessors
+  isLocating: boolean;
+  locationStatus: 'idle' | 'detecting' | 'success' | 'unavailable' | 'error';
+  locationErrorMessage: string | null;
+  detectCurrentLocation: () => Promise<void>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -101,10 +125,53 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [analysisError, setAnalysisError] = useState<string | null>(null);
 
   // Environmental Source & Hardware Readiness (No fake live simulation)
-  const [envDataSource, setEnvDataSource] = useState<'manual' | 'sensor' | 'reanalysis'>('manual');
+  const [envDataSource, setEnvDataSource] = useState<'manual' | 'sensor' | 'reanalysis' | 'live_weather'>('manual');
   const [sensorStatus] = useState<SensorStatus>({
     isConnected: false, // Default false until real hardware sends data
   });
+
+  // Step 2 Live Weather API State
+  const [selectedLocation, setSelectedLocationState] = useState<LocationOption>(() => {
+    try {
+      const saved = localStorage.getItem('curuma_selected_location');
+      if (saved) {
+        return JSON.parse(saved);
+      }
+    } catch (e) {
+      console.warn('Failed to parse saved location', e);
+    }
+    return TAMIL_NADU_LOCATIONS[0];
+  });
+  const [plantingDate, setPlantingDateState] = useState<string | null>(null);
+  const [isWeatherLoading, setIsWeatherLoading] = useState<boolean>(false);
+  const [weatherError, setWeatherError] = useState<string | null>(null);
+  const [liveHourlyRecords, setLiveHourlyRecords] = useState<HourlyEnvironmentalRecord[] | null>(null);
+
+  // Geolocation State
+  const [isLocating, setIsLocating] = useState<boolean>(false);
+  const [locationStatus, setLocationStatus] = useState<'idle' | 'detecting' | 'success' | 'unavailable' | 'error'>('idle');
+  const [locationErrorMessage, setLocationErrorMessage] = useState<string | null>(null);
+
+  const setSelectedLocation = (location: LocationOption) => {
+    setSelectedLocationState(location);
+    try {
+      localStorage.setItem('curuma_selected_location', JSON.stringify(location));
+    } catch (e) {
+      console.warn('Failed to persist location', e);
+    }
+  };
+
+  const handleSetPlantingDate = (date: string | null) => {
+    setPlantingDateState(date);
+    if (date) {
+      const pTime = new Date(date).getTime();
+      const nTime = new Date().getTime();
+      if (!isNaN(pTime)) {
+        const diffDays = Math.max(1, Math.floor((nTime - pTime) / (1000 * 60 * 60 * 24)));
+        setCropDap(diffDays);
+      }
+    }
+  };
 
   // Seasonal Intelligence Context (Contextual advisory layer for Tamil Nadu)
   const [currentSeason] = useState<SeasonalContext>({
@@ -124,7 +191,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     DEMO_SAMPLES[0].defaultParams
   );
 
-  // Research Risk Result (Only populated when actual historical time series is loaded)
+  // Research Risk Result (Only populated when actual historical time series or live weather is loaded)
   const [researchRiskResult, setResearchRiskResult] = useState<ResearchRiskOutput | null>(null);
 
   // Legacy fallback / instantaneous current condition heuristic
@@ -150,10 +217,70 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   );
   const [isFusionAnalyzing, setIsFusionAnalyzing] = useState<boolean>(false);
 
-  // History & Toasts & Modals
-  const [predictionHistory, setPredictionHistory] = useState<PredictionHistoryRecord[]>(
-    INITIAL_PREDICTION_HISTORY
-  );
+  // Helper to create an optimized persistent base64 data URL for offline/refresh persistence
+  const createPersistentDataUrl = async (file: File | Blob): Promise<string> => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const result = event.target?.result as string;
+        if (!result) {
+          resolve('');
+          return;
+        }
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            const MAX_DIM = 400;
+            let width = img.width;
+            let height = img.height;
+            if (width > height) {
+              if (width > MAX_DIM) {
+                height = Math.round((height * MAX_DIM) / width);
+                width = MAX_DIM;
+              }
+            } else {
+              if (height > MAX_DIM) {
+                width = Math.round((width * MAX_DIM) / height);
+                height = MAX_DIM;
+              }
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+              ctx.drawImage(img, 0, 0, width, height);
+              resolve(canvas.toDataURL('image/jpeg', 0.85));
+            } else {
+              resolve(result);
+            }
+          } catch {
+            resolve(result);
+          }
+        };
+        img.onerror = () => resolve(result);
+        img.src = result;
+      };
+      reader.onerror = () => resolve('');
+      reader.readAsDataURL(file);
+    });
+  };
+
+  // History & Toasts & Modals (Persisted in localStorage: curuma_history)
+  const [predictionHistory, setPredictionHistory] = useState<PredictionHistoryRecord[]>(() => {
+    try {
+      const saved = localStorage.getItem('curuma_history');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (e) {
+      console.warn('Failed to parse saved history from localStorage', e);
+    }
+    return [];
+  });
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
   const [isReportModalOpen, setIsReportModalOpen] = useState<boolean>(false);
   const [activeReportRecord, setActiveReportRecord] = useState<PredictionHistoryRecord | null>(null);
@@ -169,6 +296,170 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  // Fetch Live Weather from Open-Meteo for selected location
+  const fetchLiveWeatherData = async (targetLoc?: LocationOption) => {
+    const loc = targetLoc || selectedLocation;
+    setIsWeatherLoading(true);
+    setWeatherError(null);
+    setSelectedLocation(loc);
+
+    try {
+      const res = await fetchLiveWeather14Day(loc);
+      setLiveHourlyRecords(res.records);
+      setEnvDataSource('live_weather');
+      setActivePresetMode('LIVE_WEATHER');
+
+      // 1. Evaluate 14-day research risk pipeline with live data
+      const result = evaluateResearchEnvironmentalRisk(
+        selectedResearchDisease,
+        res.records,
+        { dap: cropDap },
+        'LIVE_WEATHER_OPEN_METEO'
+      );
+      setResearchRiskResult(result);
+
+      // 2. Update instantaneous parameters with latest reading (preserve manual-only leafWetness & soilPh)
+      const cur = res.currentHourRecord;
+      setEnvParameters((prev) => {
+        const updated: EnvironmentalParameters = {
+          ...prev,
+          temperature: cur.temperature_2m,
+          humidity: cur.relative_humidity_2m,
+          rainfall: cur.precipitation,
+          windSpeed: cur.wind_speed_10m !== undefined ? Math.round(cur.wind_speed_10m) : prev.windSpeed,
+          sunlightHours:
+            cur.shortwave_radiation !== undefined
+              ? Math.min(14, Math.max(0, parseFloat(((cur.shortwave_radiation / 350) * 12).toFixed(1))))
+              : prev.sunlightHours,
+          soilMoisture:
+            cur.soil_moisture_0_to_7cm !== undefined
+              ? Math.round(cur.soil_moisture_0_to_7cm * 100)
+              : prev.soilMoisture,
+        };
+        const newEnvResult = calculateEnvironmentalRisk(updated);
+        setEnvRiskResult(newEnvResult);
+        setMultimodalResult(calculateMultimodalFusion(imageResult, newEnvResult));
+        return updated;
+      });
+
+      addToast({
+        type: 'success',
+        title: language === 'ta' ? 'நேரலை வானிலை பெறப்பட்டது' : 'Live Weather Loaded',
+        message: `${loc.name} (${loc.district}) • 14-day Open-Meteo series`,
+      });
+    } catch (err: any) {
+      console.error('Weather fetch error:', err);
+      const errorMsg = err.message || 'Failed to fetch live weather data.';
+      setWeatherError(errorMsg);
+      setResearchRiskResult(null);
+      setLiveHourlyRecords(null);
+      addToast({
+        type: 'error',
+        title: language === 'ta' ? 'வானிலை தரவு பிழை' : 'Weather Fetch Error',
+        message: errorMsg,
+      });
+    } finally {
+      setIsWeatherLoading(false);
+    }
+  };
+
+  // Automatic Current Location Detection via Browser Geolocation API
+  const detectCurrentLocation = async () => {
+    if (!navigator.geolocation) {
+      const msg =
+        language === 'ta'
+          ? 'உங்கள் சாதனத்தில் அமைவிட சேவை கிடைக்கவில்லை'
+          : 'Geolocation is not supported by your device or browser.';
+      setLocationStatus('unavailable');
+      setLocationErrorMessage(msg);
+      addToast({
+        type: 'warning',
+        title: language === 'ta' ? 'அமைவிடம் கிடைக்கவில்லை' : 'Location Unavailable',
+        message: msg,
+      });
+      return;
+    }
+
+    setIsLocating(true);
+    setLocationStatus('detecting');
+    setLocationErrorMessage(null);
+
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        try {
+          const { latitude, longitude, accuracy } = position.coords;
+          const resolvedLocation = await reverseGeocodeCoordinates(latitude, longitude, accuracy);
+
+          setSelectedLocation(resolvedLocation);
+          setLocationStatus('success');
+          setIsLocating(false);
+
+          await fetchLiveWeatherData(resolvedLocation);
+
+          addToast({
+            type: 'success',
+            title: language === 'ta' ? 'தற்போதைய அமைவிடம் கண்டறியப்பட்டது' : 'Current Location Detected',
+            message: `${resolvedLocation.name}, ${resolvedLocation.district}`,
+          });
+        } catch (err: any) {
+          setIsLocating(false);
+          setLocationStatus('error');
+          const msg =
+            language === 'ta'
+              ? 'அமைவிட முகவரியை பெற முடியவில்லை. கைமுறையாக தேர்வு செய்யவும்.'
+              : 'Could not resolve location address. Please select manually.';
+          setLocationErrorMessage(msg);
+          addToast({
+            type: 'error',
+            title: language === 'ta' ? 'அமைவிடப் பிழை' : 'Location Error',
+            message: msg,
+          });
+        }
+      },
+      (error) => {
+        setIsLocating(false);
+        let userMsg = '';
+        if (error.code === error.PERMISSION_DENIED) {
+          setLocationStatus('unavailable');
+          userMsg =
+            language === 'ta'
+              ? 'அமைவிட அனுமதி மறுக்கப்பட்டது. மாவட்டத்தை கைமுறையாக தேர்ந்தெடுக்கவும்.'
+              : 'Location permission was denied. Please select your district manually.';
+        } else if (error.code === error.POSITION_UNAVAILABLE) {
+          setLocationStatus('unavailable');
+          userMsg =
+            language === 'ta'
+              ? 'சாதன அமைவிடம் கிடைக்கவில்லை. கைமுறையாக தேர்ந்தெடுக்கவும்.'
+              : 'Location position is unavailable on your device.';
+        } else if (error.code === error.TIMEOUT) {
+          setLocationStatus('unavailable');
+          userMsg =
+            language === 'ta'
+              ? 'அமைவிட கோரிக்கை நேரம் முடிந்தது. மீண்டும் முயற்சிக்கவும்.'
+              : 'Location request timed out. Please try again or select manually.';
+        } else {
+          setLocationStatus('unavailable');
+          userMsg =
+            language === 'ta'
+              ? 'அமைவிடத்தை கண்டறிய முடியவில்லை. கைமுறையாக தேர்ந்தெடுக்கவும்.'
+              : 'Failed to detect current location. Please select manually.';
+        }
+
+        setLocationErrorMessage(userMsg);
+        addToast({
+          type: 'warning',
+          title: language === 'ta' ? 'அமைவிடம் கிடைக்கவில்லை' : 'Location Unavailable',
+          message: userMsg,
+        });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 60000,
+      }
+    );
   };
 
   // Switch demo/reference sample (Research mode)
@@ -204,7 +495,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Set disease for research risk engine
   const handleSetSelectedResearchDisease = (disease: ResearchDiseaseType) => {
     setSelectedResearchDisease(disease);
-    if (activePresetMode !== 'MANUAL_SLIDERS') {
+    if (activePresetMode === 'LIVE_WEATHER' && liveHourlyRecords) {
+      const result = evaluateResearchEnvironmentalRisk(
+        disease,
+        liveHourlyRecords,
+        { dap: cropDap },
+        'LIVE_WEATHER_OPEN_METEO'
+      );
+      setResearchRiskResult(result);
+    } else if (activePresetMode !== 'MANUAL_SLIDERS') {
       const preset = HISTORICAL_REANALYSIS_PRESETS[activePresetMode];
       if (preset) {
         const result = evaluateResearchEnvironmentalRisk(
@@ -221,7 +520,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Set crop DAP for research risk engine
   const handleSetCropDap = (dap: number) => {
     setCropDap(dap);
-    if (activePresetMode !== 'MANUAL_SLIDERS') {
+    if (activePresetMode === 'LIVE_WEATHER' && liveHourlyRecords) {
+      const result = evaluateResearchEnvironmentalRisk(
+        selectedResearchDisease,
+        liveHourlyRecords,
+        { dap },
+        'LIVE_WEATHER_OPEN_METEO'
+      );
+      setResearchRiskResult(result);
+    } else if (activePresetMode !== 'MANUAL_SLIDERS') {
       const preset = HISTORICAL_REANALYSIS_PRESETS[activePresetMode];
       if (preset) {
         const result = evaluateResearchEnvironmentalRisk(
@@ -237,6 +544,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   // Apply historical verified preset (Real ERA5-Land contiguous 336-hour data)
   const applyHistoricalPreset = (presetKey: string) => {
+    if (presetKey === 'LIVE_WEATHER') {
+      fetchLiveWeatherData(selectedLocation);
+      return;
+    }
+
     setActivePresetMode(presetKey);
     if (presetKey === 'MANUAL_SLIDERS') {
       setEnvDataSource('manual');
@@ -293,6 +605,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     });
   };
 
+  // Analyze manual field conditions
+  const analyzeManualFieldConditions = (params: EnvironmentalParameters): EnvironmentalRiskResult => {
+    setActivePresetMode('MANUAL_SLIDERS');
+    setEnvDataSource('manual');
+    setResearchRiskResult(null);
+    setEnvParameters(params);
+    const newEnvResult = calculateEnvironmentalRisk(params);
+    setEnvRiskResult(newEnvResult);
+    setMultimodalResult(calculateMultimodalFusion(imageResult, newEnvResult));
+    return newEnvResult;
+  };
+
   // Run Image Analysis (Live API with graceful fallback)
   const runImageAnalysis = async () => {
     if (!uploadedFile && !customImagePreview && !isResearchSample) {
@@ -318,10 +642,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       formData.append('file', uploadedFile);
 
       try {
-        const response = await fetch('http://localhost:8000/api/predict', {
-          method: 'POST',
-          body: formData,
-        });
+        let response: Response;
+        try {
+          response = await fetch('/api/predict', {
+            method: 'POST',
+            body: formData,
+          });
+        } catch {
+          response = await fetch('http://127.0.0.1:8000/api/predict', {
+            method: 'POST',
+            body: formData,
+          });
+        }
 
         if (!response.ok) {
           const errData = await response.json().catch(() => ({}));
@@ -362,9 +694,58 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setImageResult(newResult);
         setHasAnalyzedImage(true);
         setIsResearchSample(false);
+        let newFusion = multimodalResult;
         if (!isOod) {
-          const newFusion = calculateMultimodalFusion(newResult, envRiskResult);
+          newFusion = calculateMultimodalFusion(newResult, envRiskResult);
           setMultimodalResult(newFusion);
+
+          // AUTO-PERSIST TO HISTORY (localStorage key: curuma_history)
+          const persistentDataUrl = await createPersistentDataUrl(uploadedFile);
+          const now = new Date();
+          const formattedDate = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          const formattedTime = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+          const newHistoryRecord: PredictionHistoryRecord = {
+            id: `pred-${Date.now()}`,
+            date: formattedDate,
+            time: formattedTime,
+            timestamp: now.toISOString(),
+            imageName: uploadedFile.name,
+            imageUrl: persistentDataUrl || customImagePreview || '',
+            disease: newResult.disease,
+            confidence: newResult.confidence,
+            probabilities: {
+              Blotch: data.probabilities?.Blotch ?? 0,
+              LeafSpot: data.probabilities?.['Leaf Spot'] ?? data.probabilities?.LeafSpot ?? 0,
+              'Leaf Spot': data.probabilities?.['Leaf Spot'] ?? data.probabilities?.LeafSpot ?? 0,
+              leafSpot: data.probabilities?.['Leaf Spot'] ?? data.probabilities?.LeafSpot ?? 0,
+              leafBlotch: data.probabilities?.Blotch ?? 0,
+              Aphids: data.probabilities?.Aphids ?? 0,
+              aphids: data.probabilities?.Aphids ?? 0,
+              Healthy: data.probabilities?.Healthy ?? 0,
+              healthy: data.probabilities?.Healthy ?? 0,
+            },
+            environmentalRisk: envRiskResult.score,
+            overallRisk: newFusion.overallRisk,
+            status: newFusion.riskLevel === 'High' ? 'High' : newFusion.riskLevel === 'Moderate' ? 'Moderate' : 'Low',
+            notes: newFusion.whyThisRisk[0] || `${newResult.disease} diagnosed with ${newResult.confidence}% confidence.`,
+            recommendation: newFusion.recommendation,
+            parameters: { ...envParameters },
+            dataSource: envDataSource,
+            location: formatLocationDisplay(selectedLocation, 'en'),
+            latitude: selectedLocation.latitude,
+            longitude: selectedLocation.longitude,
+          };
+
+          setPredictionHistory((prev) => {
+            const updated = [newHistoryRecord, ...prev];
+            try {
+              localStorage.setItem('curuma_history', JSON.stringify(updated));
+            } catch (e) {
+              console.warn('Failed to persist history to localStorage', e);
+            }
+            return updated;
+          });
         }
 
         if (isOod) {
@@ -394,7 +775,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setIsImageAnalyzing(false);
       }
     } else {
-      // Research reference sample analysis
+      // Research reference sample analysis (does NOT create farm scan history records)
       setTimeout(() => {
         const result = calculateImagePrediction(selectedSample.disease);
         const demoResult: ImageAnalysisResult = {
@@ -407,6 +788,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setIsImageAnalyzing(false);
         const newFusion = calculateMultimodalFusion(demoResult, envRiskResult);
         setMultimodalResult(newFusion);
+
         addToast({
           type: 'success',
           title: language === 'ta' ? 'நோய் கண்டறிதல் முடிந்தது' : 'Crop Analysis Complete',
@@ -448,10 +830,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }, 1200);
   };
 
-  // Save analysis
+  // Save analysis (manual trigger fallback if needed)
   const saveCurrentAnalysisToHistory = () => {
     const today = new Date();
     const formattedDate = `${today.getDate().toString().padStart(2, '0')} Sep 2026`;
+    const formattedTime = today.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
     const imageName = uploadedFile
       ? uploadedFile.name
       : `${selectedSample.disease.toLowerCase().replace(/\s+/g, '_')}_field_scan.jpg`;
@@ -459,23 +842,56 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const newRecord: PredictionHistoryRecord = {
       id: `pred-${Date.now()}`,
       date: formattedDate,
+      time: formattedTime,
+      timestamp: today.toISOString(),
       imageName: imageName,
       imageUrl: customImagePreview || selectedSample.imageUrl,
       disease: multimodalResult.disease,
       confidence: multimodalResult.imageConfidence,
+      probabilities: imageResult.probabilities,
       environmentalRisk: multimodalResult.environmentalRisk,
       overallRisk: multimodalResult.overallRisk,
       status: multimodalResult.riskLevel === 'High' ? 'High' : multimodalResult.riskLevel === 'Moderate' ? 'Moderate' : 'Low',
       notes: `Field diagnosis recorded on ${formattedDate}. ${multimodalResult.whyThisRisk[0] || ''}`,
+      recommendation: multimodalResult.recommendation,
       parameters: { ...envParameters },
       dataSource: envDataSource,
+      location: formatLocationDisplay(selectedLocation, 'en'),
+      latitude: selectedLocation.latitude,
+      longitude: selectedLocation.longitude,
     };
 
-    setPredictionHistory((prev) => [newRecord, ...prev]);
+    setPredictionHistory((prev) => {
+      const updated = [newRecord, ...prev];
+      try {
+        localStorage.setItem('curuma_history', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('Failed to persist history to localStorage', e);
+      }
+      return updated;
+    });
+
     addToast({
       type: 'success',
       title: language === 'ta' ? 'பதிவேட்டில் சேர்க்கப்பட்டது' : 'Farm Record Saved',
       message: `${newRecord.disease} (${newRecord.confidence}%).`,
+    });
+  };
+
+  const deletePredictionRecord = (id: string) => {
+    setPredictionHistory((prev) => {
+      const updated = prev.filter((r) => r.id !== id);
+      try {
+        localStorage.setItem('curuma_history', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('Failed to persist history deletion', e);
+      }
+      return updated;
+    });
+    addToast({
+      type: 'info',
+      title: language === 'ta' ? 'பதிவு நீக்கப்பட்டது' : 'Record Deleted',
+      message: language === 'ta' ? 'பரிசோதனை பதிவு நீக்கப்பட்டது.' : 'History record removed.',
     });
   };
 
@@ -485,6 +901,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setActiveReportRecord(record);
     } else {
       const today = new Date();
+      const formattedTime = today.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
       const imageName = uploadedFile
         ? uploadedFile.name
         : `${selectedSample.disease.toLowerCase()}_field.jpg`;
@@ -492,16 +909,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setActiveReportRecord({
         id: 'current-active-report',
         date: `${today.getDate().toString().padStart(2, '0')} Sep 2026`,
+        time: formattedTime,
+        timestamp: today.toISOString(),
         imageName: imageName,
         imageUrl: customImagePreview || selectedSample.imageUrl,
         disease: multimodalResult.disease,
         confidence: multimodalResult.imageConfidence,
+        probabilities: imageResult.probabilities,
         environmentalRisk: multimodalResult.environmentalRisk,
         overallRisk: multimodalResult.overallRisk,
         status: multimodalResult.riskLevel === 'High' ? 'High' : multimodalResult.riskLevel === 'Moderate' ? 'Moderate' : 'Low',
         notes: multimodalResult.recommendation,
+        recommendation: multimodalResult.recommendation,
         parameters: { ...envParameters },
         dataSource: envDataSource,
+        location: formatLocationDisplay(selectedLocation, 'en'),
+        latitude: selectedLocation.latitude,
+        longitude: selectedLocation.longitude,
       });
     }
     setIsReportModalOpen(true);
@@ -533,6 +957,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         envParameters,
         updateEnvParameter,
         resetEnvParameters,
+        analyzeManualFieldConditions,
         envDataSource,
         setEnvDataSource,
         sensorStatus,
@@ -545,6 +970,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         runMultimodalFusion,
         predictionHistory,
         saveCurrentAnalysisToHistory,
+        deletePredictionRecord,
         toasts,
         addToast,
         removeToast,
@@ -560,6 +986,18 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setActivePresetMode,
         applyHistoricalPreset,
         researchRiskResult,
+        selectedLocation,
+        setSelectedLocation,
+        plantingDate,
+        setPlantingDate: handleSetPlantingDate,
+        isWeatherLoading,
+        weatherError,
+        liveHourlyRecords,
+        fetchLiveWeatherData,
+        isLocating,
+        locationStatus,
+        locationErrorMessage,
+        detectCurrentLocation,
       }}
     >
       {children}

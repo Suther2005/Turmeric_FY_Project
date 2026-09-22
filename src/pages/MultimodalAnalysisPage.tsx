@@ -45,6 +45,7 @@ export const MultimodalAnalysisPage: React.FC = () => {
     researchRiskResult,
     selectedResearchDisease,
     cropDap,
+    plantingDate,
     hasAnalyzedImage,
   } = useApp();
 
@@ -59,11 +60,11 @@ export const MultimodalAnalysisPage: React.FC = () => {
     language === 'ta' ? 'இறுதி பயிர் அபாய நிலை & பரிந்துரைகளை உருவாக்குகிறது...' : 'Synthesizing final risk score & decision recommendations...',
   ];
 
-  const diseaseKey = multimodalResult.disease as keyof typeof TRANSLATIONS.diseases;
+  const diseaseKey = (multimodalResult?.disease || 'Healthy') as keyof typeof TRANSLATIONS.diseases;
   const diseaseInfo = TRANSLATIONS.diseases[diseaseKey] || {
-    en: multimodalResult.disease,
-    ta: multimodalResult.disease,
-    desc: { en: '', ta: '' },
+    en: multimodalResult?.disease || 'Healthy',
+    ta: multimodalResult?.disease || 'ஆரோக்கியமானது',
+    desc: { en: 'No active foliar disease detected.', ta: 'செயலில் உள்ள இலை நோய்கள் கண்டறியப்படவில்லை.' },
   };
 
   const handleStartFusion = () => {
@@ -157,60 +158,68 @@ export const MultimodalAnalysisPage: React.FC = () => {
             </div>
             <span
               className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                (researchRiskResult?.riskLevel === 'HIGH' || envRiskResult.level === 'High')
+                (researchRiskResult?.riskLevel === 'HIGH' || envRiskResult?.level === 'High')
                   ? 'bg-rose-50 text-rose-800 border-rose-200'
-                  : (researchRiskResult?.riskLevel === 'MODERATE' || envRiskResult.level === 'Moderate')
+                  : (researchRiskResult?.riskLevel === 'MODERATE' || envRiskResult?.level === 'Moderate')
                   ? 'bg-amber-50 text-amber-800 border-amber-200'
                   : 'bg-emerald-50 text-emerald-800 border-emerald-200'
               }`}
             >
               {researchRiskResult
                 ? `${researchRiskResult.riskLevel} ${language === 'ta' ? 'அபாயம்' : 'Risk'} (${TRANSLATIONS.status.scientificNotice[language]})`
-                : `${envRiskResult.level} ${language === 'ta' ? 'அபாயம்' : 'Risk'}`}
+                : `${envRiskResult?.level || 'Low'} ${language === 'ta' ? 'அபாயம்' : 'Risk'}`}
             </span>
           </div>
           <div className="text-base font-extrabold text-slate-900 font-display">
-            {selectedResearchDisease}: {researchRiskResult ? researchRiskResult.riskLevel : envRiskResult.level}
+            {selectedResearchDisease || 'Leaf Spot'}: {researchRiskResult ? researchRiskResult.riskLevel : (envRiskResult?.level || 'Low')}
           </div>
           <p className="text-xs text-slate-500 line-clamp-2">
-            {researchRiskResult?.explanation.contributingFactors[0] || envRiskResult.contributingFactors[0] || 'Standard protective thresholds'}
+            {researchRiskResult?.explanation?.contributingFactors?.[0] || envRiskResult?.contributingFactors?.[0] || 'Standard protective thresholds'}
           </p>
         </div>
 
         {/* Pillar 3: Seasonal & Crop Stage Context */}
-        <div className="bg-white p-5 rounded-3xl border border-[#e2ece6] shadow-card space-y-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-              <span className="text-base">📅</span>
-              <span>{language === 'ta' ? 'பருவக்காலம் (Season & DAP)' : 'Season & Phenology'}</span>
+        <div className="bg-white p-5 rounded-3xl border border-[#e2ece6] shadow-card space-y-3 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
+                <span className="text-base">📅</span>
+                <span>{language === 'ta' ? 'பருவக்காலம் & பயிர் பருவம்' : 'Season & Crop Stage'}</span>
+              </div>
+              <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded-full">
+                {plantingDate
+                  ? (language === 'ta' ? `பயிர் வயது: ~${cropDap || 0} நாட்கள்` : `Crop Age: ~${cropDap || 0} DAP`)
+                  : (language === 'ta' ? 'பயிர் வயது இல்லை' : 'Crop age unavailable')}
+              </span>
             </div>
-            <span className="text-[10px] font-bold px-2 py-0.5 bg-slate-100 text-slate-700 rounded-full">
-              {cropDap} DAP Context
-            </span>
+            <div className="text-base font-extrabold text-slate-900 font-display">
+              {TRANSLATIONS.season.currentSeason[language]}
+            </div>
+            <p className="text-xs text-slate-600 leading-relaxed font-medium">
+              {language === 'ta'
+                ? 'தற்போதைய பருவக்கால சூழலின் அடிப்படையில் பயிரை நெருக்கமாக கண்காணிக்க பரிந்துரைக்கப்படுகிறது.'
+                : 'This period may require closer crop monitoring based on the available seasonal context.'}
+            </p>
           </div>
-          <div className="text-base font-extrabold text-slate-900 font-display">
-            {TRANSLATIONS.season.currentSeason[language]}
-          </div>
-          <p className="text-xs text-slate-500 line-clamp-2">
-            {researchRiskResult?.phenologyContext.susceptibilityNote ||
-              (language === 'ta'
-                ? 'வளர்ச்சிப் பருவத்தில் உள்ள பயிர்களை வாரந்தோறும் கண்காணிக்கவும்.'
-                : 'Scout emerging foliar canopy regularly during vegetative and rhizome development.')}
+          <p className="text-[10px] text-slate-400 font-medium italic border-t border-slate-100 pt-2">
+            {language === 'ta'
+              ? 'பருவக்கால தகவல் உயிரியல் பின்னணி வழிகாட்டல் மட்டுமே; இது சுயாதீன நோய் கணிப்பு அல்ல.'
+              : 'Seasonal information is contextual guidance, not an independent disease prediction.'}
           </p>
         </div>
       </div>
 
       {/* COMBINED OVERALL CROP RISK CARD (DEVELOPMENT PROTOTYPE PREVIEW) */}
       <div className="bg-white rounded-3xl p-6 md:p-8 border-2 border-agri-300 shadow-card space-y-6">
-        <div className="p-3 bg-amber-50/90 rounded-2xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
+        <div className="p-3.5 bg-amber-50/90 rounded-2xl border border-amber-200 text-xs text-amber-900 flex items-start gap-2.5">
           <ShieldAlert className="w-4 h-4 text-amber-700 shrink-0 mt-0.5" />
           <div>
             <span className="font-bold block">
-              {language === 'ta' ? 'உருவாக்க நிலை முன்மாதிரி அறிவிப்பு:' : 'Development Prototype / Decision Support Notice:'}
+              {language === 'ta' ? 'முடிவு ஆதரவு அறிவிப்பு:' : 'Decision Support Notice:'}
             </span>
             {language === 'ta'
-              ? 'பல்தரவு ஒருங்கிணைப்பு என்பது முடிவெடுக்கும் ஆதரவு அமைப்பாகும்; இது இன்னும் தனித்த களத் தரவுகளுடன் முழுமையாக சரிபார்க்கப்படவில்லை.'
-              : 'Multimodal fusion is a developmental decision-support heuristic and has not been prospectively validated against paired field datasets.'}
+              ? 'பல்தரவு ஒருங்கிணைப்பு என்பது முடிவெடுக்கும் ஆதரவு குறியீடாகும்; இது நிகழ்தகவு மதிப்பீடு அல்ல.'
+              : 'Multimodal fusion is a heuristic decision-support index, not a calibrated statistical probability.'}
           </div>
         </div>
 
@@ -224,23 +233,40 @@ export const MultimodalAnalysisPage: React.FC = () => {
                 {language === 'ta' ? 'ஒருங்கிணைந்த மதிப்பீடு' : 'Multimodal Assessment'}
               </span>
               <h2 className="text-xl md:text-2xl font-black text-slate-900 font-display">
-                {TRANSLATIONS.status.overallRisk[language]}
+                {language === 'ta' ? 'ஒட்டுமொத்த பயிர் அபாயம்' : 'Overall Crop Risk'}
               </h2>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span
-              className={`px-4 py-1.5 rounded-full text-sm font-black uppercase tracking-wider ${
-                multimodalResult.riskLevel === 'High'
-                  ? 'bg-rose-100 text-rose-800 border border-rose-300'
-                  : multimodalResult.riskLevel === 'Moderate'
-                  ? 'bg-amber-100 text-amber-800 border border-amber-300'
-                  : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-              }`}
-            >
-              {multimodalResult.riskLevel} {language === 'ta' ? 'அபாயம்' : 'Risk'} ({multimodalResult.overallRisk}%)
-            </span>
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-col items-end">
+              <span
+                className={`px-4 py-1.5 rounded-full text-sm font-black uppercase tracking-wider ${
+                  multimodalResult?.riskLevel === 'High'
+                    ? 'bg-rose-100 text-rose-800 border border-rose-300'
+                    : multimodalResult?.riskLevel === 'Moderate'
+                    ? 'bg-amber-100 text-amber-800 border border-amber-300'
+                    : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                }`}
+              >
+                {multimodalResult?.riskLevel === 'High'
+                  ? language === 'ta'
+                    ? 'அதிக அபாயம் (HIGH RISK)'
+                    : 'HIGH RISK'
+                  : multimodalResult?.riskLevel === 'Moderate'
+                  ? language === 'ta'
+                    ? 'மிதமான அபாயம் (MODERATE RISK)'
+                    : 'MODERATE RISK'
+                  : language === 'ta'
+                  ? 'குறைவான அபாயம் (LOW RISK)'
+                  : 'LOW RISK'}
+              </span>
+              <span className="text-[11px] font-bold text-slate-500 mt-1">
+                {language === 'ta'
+                  ? `முடிவு ஆதரவு குறியீடு: ${multimodalResult?.overallRisk ?? 0} / 100`
+                  : `Decision Support Index: ${multimodalResult?.overallRisk ?? 0} / 100`}
+              </span>
+            </div>
 
             <button
               onClick={handleStartFusion}
@@ -257,11 +283,12 @@ export const MultimodalAnalysisPage: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
           <div className="md:col-span-5 flex justify-center">
             <RiskGauge
-              score={multimodalResult.overallRisk}
+              score={multimodalResult?.overallRisk ?? 0}
               size={200}
               strokeWidth={16}
               showLabel={true}
-              subtitle={language === 'ta' ? 'மொத்த அபாயம்' : 'COMBINED RISK'}
+              subtitle={language === 'ta' ? 'முடிவு ஆதரவு குறியீடு' : 'DECISION SUPPORT INDEX'}
+              displayValue={`${multimodalResult?.overallRisk ?? 0} / 100`}
             />
           </div>
 
@@ -270,7 +297,7 @@ export const MultimodalAnalysisPage: React.FC = () => {
               {language === 'ta' ? 'இந்த அபாய நிலைக்கான காரணங்கள்:' : 'Why this risk level was evaluated:'}
             </span>
             <div className="space-y-2">
-              {multimodalResult.whyThisRisk.map((reason, idx) => (
+              {(multimodalResult?.whyThisRisk || ['Visual foliar scan and environmental parameters synthesized.']).map((reason, idx) => (
                 <div
                   key={idx}
                   className="p-3 bg-slate-50 rounded-2xl text-xs text-slate-700 border border-slate-200/80 flex items-start gap-2.5"
@@ -290,7 +317,7 @@ export const MultimodalAnalysisPage: React.FC = () => {
             <span>{language === 'ta' ? 'முதன்மைப் பரிந்துரை' : 'Primary Recommended Field Action'}</span>
           </div>
           <p className="text-xs md:text-sm text-emerald-50 leading-relaxed">
-            {multimodalResult.recommendation}
+            {multimodalResult?.recommendation || 'Regular preventive crop monitoring.'}
           </p>
         </div>
 
@@ -320,15 +347,15 @@ export const MultimodalAnalysisPage: React.FC = () => {
               <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl">
                 <div>
                   <span className="text-slate-400 font-bold block">Visual Modality Weight:</span>
-                  <span className="text-slate-800 font-mono font-bold">58% ({multimodalResult.modalityWeights.visualWeight})</span>
+                  <span className="text-slate-800 font-mono font-bold">58% ({multimodalResult?.modalityWeights?.visualWeight ?? '0.58'})</span>
                 </div>
                 <div>
                   <span className="text-slate-400 font-bold block">Environmental Modality Weight:</span>
-                  <span className="text-slate-800 font-mono font-bold">42% ({multimodalResult.modalityWeights.environmentalWeight})</span>
+                  <span className="text-slate-800 font-mono font-bold">42% ({multimodalResult?.modalityWeights?.environmentalWeight ?? '0.42'})</span>
                 </div>
               </div>
               <p className="text-slate-500 font-mono text-[11px]">
-                Fusion Synergy: {multimodalResult.fusionSynergyNote}
+                Fusion Synergy: {multimodalResult?.fusionSynergyNote || 'Multimodal fusion cross-attention synthesized.'}
               </p>
             </div>
           )}

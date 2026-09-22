@@ -61,3 +61,65 @@
   box-shadow: 0 0 10px #22c55e;
   animation: scanLine 2.2s ease-in-out infinite alternate;
 }
+
+/* ==========================================================================
+   A4 Landscape Print Styles for Curuma Farm Intelligence Reports
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 8mm 10mm;
+  }
+
+  *, *:before, *:after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body, #root {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Table formatting for print */
+  .curuma-print-table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto !important;
+  }
+
+  .curuma-print-table thead {
+    display: table-header-group !important;
+  }
+
+  .curuma-print-table tfoot {
+    display: table-footer-group !important;
+  }
+
+  .curuma-print-table tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .curuma-print-table th,
+  .curuma-print-table td {
+    padding: 6px 8px !important;
+  }
+
+  .curuma-print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .curuma-print-header {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+}

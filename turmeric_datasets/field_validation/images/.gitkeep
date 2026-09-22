@@ -1,0 +1,4 @@
+# Field validation images directory
+# Place raw, un-augmented field validation images here following the naming convention:
+# FV_<LOC>_<YYYYMMDD>_<SEQ>.<ext>
+# Example: FV_ERODE_20261015_001.jpg

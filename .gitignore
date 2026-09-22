@@ -92,6 +92,20 @@ turmeric_datasets/*.7z
 !research_results/ood_benchmark/**/*.png
 !research_results/ood_benchmark/**/*.jpg
 
+# External Mendeley single-leaf benchmark validation image assets (~9.5 MB)
+research_results/external_mendeley_single_leaf_50/**/*.jpg
+research_results/external_mendeley_single_leaf_50/**/*.jpeg
+research_results/external_mendeley_single_leaf_50/**/*.png
+research_results/external_mendeley_single_leaf_50/**/*.JPG
+research_results/external_mendeley_single_leaf_50/**/*.JPEG
+research_results/external_mendeley_single_leaf_50/**/*.PNG
+research_results/external_mendeley_single_leaf_50/*.jpg
+research_results/external_mendeley_single_leaf_50/*.jpeg
+research_results/external_mendeley_single_leaf_50/*.png
+research_results/external_mendeley_single_leaf_50/*.JPG
+research_results/external_mendeley_single_leaf_50/*.JPEG
+research_results/external_mendeley_single_leaf_50/*.PNG
+
 # --- Logs & Temp Files ---
 *.log
 npm-debug.log*

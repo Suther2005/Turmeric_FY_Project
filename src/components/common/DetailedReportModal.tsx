@@ -48,12 +48,18 @@ export const DetailedReportModal: React.FC = () => {
               <h3 className="text-base font-bold tracking-tight font-display">
                 {t.title[language]}
               </h3>
-              <p className="text-xs text-agri-200 flex items-center gap-2">
+              <p className="text-xs text-agri-200 flex items-center gap-2 flex-wrap">
                 <span>{t.recordId[language]} {activeReportRecord.id}</span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3 h-3" /> {activeReportRecord.date}
+                  <Calendar className="w-3 h-3" /> {activeReportRecord.date} {activeReportRecord.time ? `• ${activeReportRecord.time}` : ''}
                 </span>
+                {activeReportRecord.location && (
+                  <>
+                    <span>•</span>
+                    <span>📍 {activeReportRecord.location}</span>
+                  </>
+                )}
               </p>
             </div>
           </div>
@@ -123,15 +129,50 @@ export const DetailedReportModal: React.FC = () => {
               <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider self-start mb-1.5">
                 {t.specimen[language]}
               </span>
-              <div className="relative w-full h-32 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner">
+              <div className="relative w-full h-32 rounded-xl overflow-hidden border border-slate-200 bg-slate-100 shadow-inner flex items-center justify-center">
                 <img
                   src={activeReportRecord.imageUrl}
                   alt={activeReportRecord.disease}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-slate-50"
                 />
               </div>
             </div>
           </div>
+
+          {/* Probabilities Breakdown if available */}
+          {activeReportRecord.probabilities && (
+            <div className="space-y-3 p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <h4 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                {language === 'ta' ? 'கணிப்பு நிகழ்தகவுகள்' : 'Prediction Probabilities (All Classes)'}
+              </h4>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                <div className="p-2.5 bg-white rounded-lg border border-slate-100">
+                  <div className="text-slate-500 font-medium">Leaf Spot</div>
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    {(activeReportRecord.probabilities['Leaf Spot'] ?? activeReportRecord.probabilities.LeafSpot ?? activeReportRecord.probabilities.leafSpot ?? 0).toFixed(1)}%
+                  </div>
+                </div>
+                <div className="p-2.5 bg-white rounded-lg border border-slate-100">
+                  <div className="text-slate-500 font-medium">Leaf Blotch</div>
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    {(activeReportRecord.probabilities.Blotch ?? activeReportRecord.probabilities['Leaf Blotch'] ?? activeReportRecord.probabilities.leafBlotch ?? 0).toFixed(1)}%
+                  </div>
+                </div>
+                <div className="p-2.5 bg-white rounded-lg border border-slate-100">
+                  <div className="text-slate-500 font-medium">Aphids</div>
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    {(activeReportRecord.probabilities.Aphids ?? activeReportRecord.probabilities.aphids ?? 0).toFixed(1)}%
+                  </div>
+                </div>
+                <div className="p-2.5 bg-white rounded-lg border border-slate-100">
+                  <div className="text-slate-500 font-medium">Healthy</div>
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    {(activeReportRecord.probabilities.Healthy ?? activeReportRecord.probabilities.healthy ?? 0).toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Environmental Context Section */}
           <div className="space-y-3">

@@ -99,19 +99,46 @@ export interface MultimodalFusionResult {
   fusionSynergyNote: string;
 }
 
+export interface LocationOption {
+  id: string;
+  name: string;
+  tamilName: string;
+  district: string;
+  latitude: number;
+  longitude: number;
+  description: string;
+  state: string;
+  isCurrentLocation?: boolean;
+  accuracy?: number;
+}
+
 export interface PredictionHistoryRecord {
   id: string;
   date: string;
+  time?: string;
+  timestamp?: string;
   imageName: string;
   imageUrl: string;
   disease: DiseaseType;
   confidence: number;
+  probabilities?: {
+    Blotch?: number;
+    LeafSpot?: number;
+    'Leaf Spot'?: number;
+    Aphids?: number;
+    Healthy?: number;
+    [key: string]: number | undefined;
+  };
   environmentalRisk: number;
   overallRisk: number;
   status: 'High' | 'Moderate' | 'Low' | 'Moderate-High';
   notes?: string;
+  recommendation?: string;
   parameters: EnvironmentalParameters;
-  dataSource?: 'manual' | 'sensor' | 'reanalysis';
+  dataSource?: 'manual' | 'sensor' | 'reanalysis' | 'live_weather';
+  location?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface ModelMetric {
@@ -144,8 +171,10 @@ export type PageId =
   | 'dashboard'
   | 'disease-detection'
   | 'environmental-risk'
+  | 'field-conditions'
   | 'multimodal-analysis'
   | 'history'
   | 'model-comparison'
   | 'analytics'
   | 'recommendations';
+

@@ -1,42 +1,42 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { TRANSLATIONS } from '../utils/translations';
+import { LocationSelectorModal } from '../components/common/LocationSelectorModal';
 import { HISTORICAL_REANALYSIS_PRESETS, ResearchDiseaseType } from '../utils/researchRiskEngine';
+import { TRANSLATIONS } from '../utils/translations';
+import { formatLocationDisplay } from '../services/weatherService';
 import {
-  Thermometer,
-  Droplets,
-  CloudRain,
-  Sprout,
-  Compass,
-  Sun,
-  Wind,
-  ArrowRight,
-  RotateCcw,
-  Sliders,
-  CheckCircle2,
-  AlertTriangle,
-  Info,
-  ShieldCheck,
+  MapPin,
   ChevronDown,
-  ChevronUp,
-  Database,
+  ChevronRight,
+  RotateCcw,
+  CloudSun,
+  Droplets,
+  Thermometer,
+  Wind,
+  CloudRain,
+  AlertTriangle,
+  CheckCircle2,
+  Info,
   Calendar,
-  Layers,
-  FlaskConical,
-  Eye,
-  Activity,
-  FileCheck,
+  BarChart2,
+  Lightbulb,
+  Sprout,
+  Navigation,
 } from 'lucide-react';
 
 export const EnvironmentalRiskPage: React.FC = () => {
   const navigate = useNavigate();
   const {
     language,
+    selectedLocation,
+    fetchLiveWeatherData,
+    isWeatherLoading,
+    weatherError,
+    liveHourlyRecords,
     envParameters,
-    updateEnvParameter,
-    resetEnvParameters,
     envDataSource,
+    researchRiskResult,
     envRiskResult,
     selectedResearchDisease,
     setSelectedResearchDisease,
@@ -44,729 +44,686 @@ export const EnvironmentalRiskPage: React.FC = () => {
     setCropDap,
     activePresetMode,
     applyHistoricalPreset,
-    researchRiskResult,
   } = useApp();
 
+  const [showLocationModal, setShowLocationModal] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const t = TRANSLATIONS;
+  const [timeNow, setTimeNow] = useState<number>(Date.now());
 
-  // Disease Descriptions for Farmer Guidance
-  const diseaseGuidance = {
-    'Leaf Spot': {
-      ta: {
-        name: 'மஞ்சள் இலைப்புள்ளி நோய்',
-        pathogen: 'Colletotrichum capsici',
-        watchFor: 'இலையின் நடுப்பகுதியில் தோன்றும் வட்டவடிவ கரும்பழுப்பு நிற புள்ளிகள் மற்றும் மஞ்சள் வளையங்கள்.',
-        action: 'மழைநீர் தேங்காமல் பாத்தி வடிகால் அமைக்கவும். அறிகுறிகள் தென்பட்டால் உள்ளூர் தமிழ்நாடு வேளாண்மைப் பல்கலைக்கழக (TNAU) அல்லது ICAR-KVK வழிகாட்டுதலின்படி மேலாண்மை செய்யவும்.',
-      },
-      en: {
-        name: 'Turmeric Leaf Spot',
-        pathogen: 'Colletotrichum capsici',
-        watchFor: 'Circular necrotic brown spots with distinct concentric rings and yellow chlorotic halos on upper leaf surfaces.',
-        action: 'Ensure field drainage to prevent waterlogging and splash dispersal. If symptoms appear, follow TNAU / ICAR-KVK / local agricultural extension and product-label guidance.',
-      },
-    },
-    'Leaf Blotch': {
-      ta: {
-        name: 'மஞ்சள் இலைக்கருகல் நோய்',
-        pathogen: 'Taphrina maculans',
-        watchFor: 'இலைகளின் இருபுறமும் தோன்றும் சிறிய, செவ்வக வடிவ பழுப்பு மற்றும் கரும் புள்ளிகள்.',
-        action: 'காற்றோட்டத்தை மேம்படுத்தவும். அடர்ந்த இலைகளின் அடிப்பகுதியில் காலை பனிநீர் நீண்ட நேரம் தங்குவதைத் தவிர்க்கவும். தமிழ்நாடு வேளாண் வழிகாட்டுதலைப் பின்பற்றவும்.',
-      },
-      en: {
-        name: 'Turmeric Leaf Blotch',
-        pathogen: 'Taphrina maculans',
-        watchFor: 'Numerous small, rectangular, reddish-brown to dark spots appearing simultaneously on both leaf surfaces.',
-        action: 'Improve canopy aeration. Minimize prolonged evening moisture and morning condensation. Follow TNAU / ICAR-KVK and product-label disease management guidance.',
-      },
-    },
-    'Aphids': {
-      ta: {
-        name: 'அசுவினி & இலைப்பேன் தாக்குதல்',
-        pathogen: 'Aphis gossypii / Thrips',
-        watchFor: 'இலைகளின் அடிப்பகுதியில் பூச்சிகள் கூட்டமாக இருத்தல், இலைகள் சுருங்குதல் மற்றும் தேன்பனி படிவுகள்.',
-        action: 'வறண்ட வெயில் காலத்தில் செடிகளை அடிக்கடி கண்காணிக்கவும். வேப்ப எண்ணெய் கரைசல் அல்லது பரிந்துரைக்கப்பட்ட பூச்சிக்கட்டுப்பாட்டு வழிகாட்டுதல்களைப் பின்பற்றவும்.',
-      },
-      en: {
-        name: 'Aphids & Thrips Infestation',
-        pathogen: 'Aphis gossypii / Thrips',
-        watchFor: 'Insect colonies clustering under leaf veins, inward foliar curling, and sticky honeydew secretions.',
-        action: 'Scout regularly during warm, dry spells. Apply organic neem formulations or follow ICAR-IISR / TNAU extension guidelines.',
-      },
-    },
+  // Auto-fetch current weather on component mount if not already live
+  useEffect(() => {
+    if (envDataSource !== 'live_weather' && !researchRiskResult && !isWeatherLoading) {
+      fetchLiveWeatherData(selectedLocation);
+    }
+  }, []);
+
+  // Update relative time counter periodically
+  useEffect(() => {
+    const interval = setInterval(() => setTimeNow(Date.now()), 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Calculate dynamic relative update timestamp from actual fetch timestamp
+  const relativeUpdateTime = useMemo(() => {
+    const fetchIso = researchRiskResult?.timestamp;
+    if (!fetchIso) {
+      return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+    }
+    try {
+      const fetchedTime = new Date(fetchIso).getTime();
+      const diffMs = Math.max(0, timeNow - fetchedTime);
+      const diffMinutes = Math.floor(diffMs / 60000);
+      if (diffMinutes < 1) {
+        return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+      }
+      if (diffMinutes < 60) {
+        return language === 'ta'
+          ? `${diffMinutes} நிமிடம் முன்`
+          : `Updated ${diffMinutes}m ago`;
+      }
+      const diffHours = Math.floor(diffMinutes / 60);
+      return language === 'ta'
+        ? `${diffHours} மணி நேரம் முன்`
+        : `Updated ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+    } catch {
+      return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+    }
+  }, [researchRiskResult?.timestamp, timeNow, language]);
+
+  // 14-day simple condition ratings for farmer-first UI
+  const get14DayRating = (type: 'humidity' | 'rainfall' | 'temperature') => {
+    const features = researchRiskResult?.exposureFeatures;
+    if (!features) {
+      return {
+        label: language === 'ta' ? 'சாதகமானது' : 'Favourable',
+        badgeClass: 'bg-[#e6f7ec] text-[#1b8a43]',
+      };
+    }
+
+    if (type === 'humidity') {
+      if (features.hours_rh_ge_80pct >= 80) {
+        return {
+          label: language === 'ta' ? 'சாதகமானது' : 'Favourable',
+          badgeClass: 'bg-[#e6f7ec] text-[#1b8a43]',
+        };
+      }
+      if (features.hours_rh_ge_80pct >= 40) {
+        return {
+          label: language === 'ta' ? 'மிதமானது' : 'Moderate',
+          badgeClass: 'bg-[#fef3d6] text-[#b45309]',
+        };
+      }
+      return {
+        label: language === 'ta' ? 'இயல்பானது' : 'Normal',
+        badgeClass: 'bg-[#e6f7ec] text-[#1b8a43]',
+      };
+    }
+
+    if (type === 'rainfall') {
+      if (features.cumulative_rainfall_14d_mm >= 40) {
+        return {
+          label: language === 'ta' ? 'அடிக்கடி' : 'Frequent',
+          badgeClass: 'bg-[#ebf4fd] text-[#2d6fa8]',
+        };
+      }
+      if (features.cumulative_rainfall_14d_mm >= 10) {
+        return {
+          label: language === 'ta' ? 'இயல்பானது' : 'Normal',
+          badgeClass: 'bg-[#ebf4fd] text-[#2d6fa8]',
+        };
+      }
+      return {
+        label: language === 'ta' ? 'குறைவானது' : 'Low',
+        badgeClass: 'bg-[#f1f5f9] text-[#475569]',
+      };
+    }
+
+    // Temperature (22-32°C favorable hours)
+    if (features.hours_temp_favorable_22_32C >= 100) {
+      return {
+        label: language === 'ta' ? 'சாதகமானது' : 'Favourable',
+        badgeClass: 'bg-[#e6f7ec] text-[#1b8a43]',
+      };
+    }
+    return {
+      label: language === 'ta' ? 'குறைந்த சாதகம்' : 'Less Suitable',
+      badgeClass: 'bg-[#f1f5f9] text-[#475569]',
+    };
   };
 
-  const currentGuidance = diseaseGuidance[selectedResearchDisease][language === 'ta' ? 'ta' : 'en'];
+  const humidityRating = get14DayRating('humidity');
+  const rainfallRating = get14DayRating('rainfall');
+  const tempRating = get14DayRating('temperature');
+
+  // Overall environmental risk level (Pure Categorical: Low / Moderate / High)
+  const riskCategory: 'Low' | 'Moderate' | 'High' = researchRiskResult
+    ? researchRiskResult.riskLevel === 'HIGH'
+      ? 'High'
+      : researchRiskResult.riskLevel === 'MODERATE'
+      ? 'Moderate'
+      : 'Low'
+    : envRiskResult.level === 'High'
+    ? 'High'
+    : envRiskResult.level === 'Moderate'
+    ? 'Moderate'
+    : 'Low';
+
+  const riskBadgeStyle =
+    riskCategory === 'High'
+      ? 'bg-[#fde8e8] text-[#d32f2f]'
+      : riskCategory === 'Moderate'
+      ? 'bg-[#fef3d6] text-[#c97a00]'
+      : 'bg-[#e6f7ec] text-[#1b8a43]';
+
+  const riskDescription =
+    riskCategory === 'High'
+      ? language === 'ta'
+        ? 'சமீபத்திய நாட்களில் அதிக அபாயகரமான வானிலை நிலவியுள்ளது. பயிரை தவறாமல் கண்காணிக்கவும்.'
+        : 'Higher-risk environmental conditions have been observed recently. Check your crop regularly.'
+      : riskCategory === 'Moderate'
+      ? language === 'ta'
+        ? 'சமீபத்திய வானிலை நோய் வளர்ச்சிக்கு சாதகமாக அமையலாம்.'
+        : 'Recent weather conditions may be favourable for disease development.'
+      : language === 'ta'
+      ? 'சமீபத்திய வானிலை நோய் வளர்ச்சிக்கு குறைவான சாதகமாக உள்ளது.'
+      : 'Recent weather conditions are less favourable for disease development.';
 
   return (
-    <div className="space-y-6 md:space-y-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-amber-700 uppercase tracking-wider">
-              {language === 'ta' ? 'சூழலியல் அபாய மதிப்பீடு' : 'Environmental Risk Assessment'}
-            </span>
-            <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200">
-              {t.status.scientificNotice[language]}
-            </span>
+    <div className="space-y-5 max-w-6xl mx-auto pb-12">
+      {/* 1. Breadcrumbs */}
+      <div className="flex items-center text-xs font-medium text-slate-400 gap-1.5 pt-1">
+        <Link to="/dashboard" className="hover:text-emerald-700 transition-colors">
+          Curuma
+        </Link>
+        <span>›</span>
+        <span>{language === 'ta' ? 'விவசாய சேவைகள்' : 'Farmer Services'}</span>
+        <span>›</span>
+        <span className="text-slate-700 font-semibold">
+          {language === 'ta' ? 'வானிலை & அபாயம்' : 'Weather & Risk'}
+        </span>
+      </div>
+
+      {/* 2. Header Banner with Landscape Aesthetic */}
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-50/70 via-teal-50/40 to-slate-50/30 p-6 md:p-7 border border-[#e4efe7] flex flex-col md:flex-row md:items-center justify-between gap-4">
+        {/* Subtle Decorative Landscape Backdrop */}
+        <div className="absolute right-0 bottom-0 top-0 w-1/2 opacity-15 pointer-events-none overflow-hidden">
+          <svg viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full object-cover">
+            <path d="M0 120C100 80 180 110 260 70C340 30 380 90 400 120H0Z" fill="#10b981" />
+            <path d="M120 120C200 90 280 115 360 85C400 70 420 100 440 120H120Z" fill="#059669" />
+          </svg>
+        </div>
+
+        <div className="relative z-10 space-y-1">
+          <div className="flex items-center gap-2.5">
+            <div className="w-9 h-9 rounded-2xl bg-amber-100/90 text-amber-600 flex items-center justify-center shadow-xs">
+              <CloudSun className="w-5 h-5 text-amber-500" />
+            </div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display tracking-tight">
+              {language === 'ta' ? 'வானிலை & வயல் அபாயம்' : 'Weather & Field Risk'}
+            </h1>
           </div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display mt-0.5">
-            {t.nav.fieldConditions[language]}
-          </h1>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-xs md:text-sm text-slate-500 font-medium pl-0.5">
             {language === 'ta'
-              ? 'வரலாற்று வானிலை மற்றும் கள அளவீடுகள் மூலம் பயிர் நோய்களுக்கான சூழல் சாதக நிலையை மதிப்பிடுதல் (ஆராய்ச்சி அடிப்படை).'
-              : 'Evaluate microclimate favorability for specific turmeric foliar pathologies using environmental features.'}
+              ? 'உங்கள் வயலுக்கான தற்போதைய வானிலை மற்றும் சமீபத்திய களச்சூழல்.'
+              : 'Current weather and recent conditions for your field.'}
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={resetEnvParameters}
-            className="px-3.5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs border border-slate-200 transition-colors flex items-center gap-1.5 shadow-xs cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>{language === 'ta' ? 'மீட்டமை' : 'Reset Defaults'}</span>
-          </button>
-
-          <button
-            onClick={() => navigate('/multimodal-analysis')}
-            className="px-4 py-2.5 rounded-xl bg-agri-800 hover:bg-agri-900 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-sm flex items-center gap-2 cursor-pointer"
-          >
-            <span>{t.actions.proceedToCombined[language]}</span>
-            <ArrowRight className="w-4 h-4 text-emerald-400" />
-          </button>
-        </div>
-      </div>
-
-      {/* 1. DISEASE SELECTOR TABS (Disease-Specific Risk Evaluation) */}
-      <div className="bg-white rounded-3xl p-4 md:p-5 border border-[#e2ece6] shadow-card space-y-3">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-          <div className="flex items-center gap-2">
-            <FlaskConical className="w-4 h-4 text-agri-700" />
-            <h3 className="text-sm font-bold text-slate-900 font-display">
-              {language === 'ta' ? 'இலக்கு நோய் / பூச்சி தேர்வு:' : 'Target Crop Pathology Selection:'}
-            </h3>
+        {/* Right Badge */}
+        <div className="relative z-10 hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white/90 border border-emerald-200/80 shadow-xs text-right">
+          <Sprout className="w-6 h-6 text-emerald-600 shrink-0" />
+          <div className="text-left">
+            <span className="text-[11px] font-bold text-slate-800 block leading-tight">
+              {language === 'ta' ? 'ஆரோக்கியமான மஞ்சள்' : 'Healthy Turmeric'}
+            </span>
+            <span className="text-[11px] font-bold text-emerald-700 block leading-tight">
+              {language === 'ta' ? 'பலமான விவசாயிகள்' : 'Stronger Farmers'}
+            </span>
           </div>
-          <span className="text-[11px] text-slate-400">
-            {language === 'ta' ? 'ஒவ்வொரு நோய்க்கும் தனித்தனி உயிரியல் விதிகள் உள்ளன' : 'Separate biological risk pathways per disease'}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {(['Leaf Spot', 'Leaf Blotch', 'Aphids'] as ResearchDiseaseType[]).map((disease) => {
-            const isSelected = selectedResearchDisease === disease;
-            return (
-              <button
-                key={disease}
-                onClick={() => setSelectedResearchDisease(disease)}
-                className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
-                  isSelected
-                    ? 'bg-agri-50/80 border-agri-600 ring-2 ring-agri-600/20 shadow-xs'
-                    : 'bg-slate-50/60 border-slate-200 hover:bg-slate-100/70 text-slate-700'
-                }`}
-              >
-                <div className="flex items-center justify-between mb-1">
-                  <span className={`text-xs font-extrabold ${isSelected ? 'text-agri-900' : 'text-slate-800'}`}>
-                    {disease === 'Leaf Spot' ? 'Leaf Spot' : disease === 'Leaf Blotch' ? 'Leaf Blotch' : 'Aphids / Thrips'}
-                  </span>
-                  {isSelected && <CheckCircle2 className="w-4 h-4 text-agri-700" />}
-                </div>
-                <span className="text-[10px] text-slate-500 font-mono">
-                  {disease === 'Leaf Spot'
-                    ? 'Colletotrichum capsici'
-                    : disease === 'Leaf Blotch'
-                    ? 'Taphrina maculans'
-                    : 'Aphis gossypii'}
-                </span>
-              </button>
-            );
-          })}
         </div>
       </div>
 
-      {/* 2. DATA SOURCE & PRESET SELECTOR BANNER */}
-      <div className="bg-white rounded-3xl p-5 border border-[#e2ece6] shadow-card space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-slate-100 text-slate-700 flex items-center justify-center text-lg">
-              <Database className="w-5 h-5 text-agri-800" />
+      {weatherError && (
+        <div className="p-4 bg-amber-50 border border-amber-200 rounded-2xl flex items-start gap-3 shadow-xs">
+          <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+          <div className="text-xs text-amber-900">
+            <span className="font-bold block mb-0.5">
+              {language === 'ta' ? 'வானிலை தகவல் அறிவிப்பு' : 'Weather Notice'}
+            </span>
+            <span>{weatherError}</span>
+          </div>
+        </div>
+      )}
+
+      {/* 3. Row 1: Current Weather Card & Recent Conditions Card (2 Equal Columns) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Card 1: Current Weather */}
+        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between space-y-6">
+          <div className="space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h2 className="text-base font-extrabold text-slate-900 font-display">
+                {language === 'ta' ? 'தற்போதைய வானிலை' : 'Current Weather'}
+              </h2>
+              <span className="text-xs font-semibold text-slate-400">
+                {relativeUpdateTime}
+              </span>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h3 className="text-sm font-bold text-slate-900 font-display">
-                  {language === 'ta' ? 'சுற்றுச்சூழல் தரவு ஆதாரம்' : 'Environmental Data Source'}
-                </h3>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full border bg-slate-50 text-slate-700 border-slate-300">
-                  {envDataSource === 'reanalysis'
-                    ? t.status.historicalReanalysisSource[language]
-                    : envDataSource === 'sensor'
-                    ? (language === 'ta' ? 'நேரலை சென்சார் கட்டமைப்பு (இணைப்பு நிலுவை)' : 'Sensor Grid Interface (Awaiting Hardware)')
-                    : (language === 'ta' ? 'கையேடு கள உள்ளீடு' : 'Manual Field Input')}
+
+            {/* 4 Simple Metrics */}
+            <div className="grid grid-cols-4 gap-2 text-center pt-1">
+              {/* Temperature */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-2xl bg-red-50 text-red-500 flex items-center justify-center mb-1.5 shadow-2xs">
+                  <Thermometer className="w-5 h-5 text-red-500" />
+                </div>
+                <span className="text-lg md:text-xl font-black text-slate-900 font-mono">
+                  {envParameters.temperature}°C
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 mt-0.5">
+                  {language === 'ta' ? 'வெப்பநிலை' : 'Temperature'}
                 </span>
               </div>
-              <p className="text-xs text-slate-500 mt-0.5">
-                {envDataSource === 'reanalysis'
-                  ? (language === 'ta'
-                      ? 'தமிழ்நாட்டின் வரலாற்று ECMWF ERA5-Land மணிநேர வானிலை தரவுத்தொகுப்பு (14-நாள்/336 மணிநேர தொடர்).'
-                      : 'ECMWF ERA5-Land historical hourly meteorological reanalysis dataset (Tamil Nadu, 14-day / 336-hour series).')
-                  : t.status.manualTemporalWarning[language]}
+
+              {/* Humidity */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center mb-1.5 shadow-2xs">
+                  <Droplets className="w-5 h-5 text-blue-500" />
+                </div>
+                <span className="text-lg md:text-xl font-black text-slate-900 font-mono">
+                  {envParameters.humidity}%
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 mt-0.5">
+                  {language === 'ta' ? 'ஈரப்பதம்' : 'Humidity'}
+                </span>
+              </div>
+
+              {/* Rainfall */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-2xl bg-sky-50 text-sky-500 flex items-center justify-center mb-1.5 shadow-2xs">
+                  <CloudRain className="w-5 h-5 text-sky-500" />
+                </div>
+                <span className="text-lg md:text-xl font-black text-slate-900 font-mono">
+                  {envParameters.rainfall} mm
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 mt-0.5">
+                  {language === 'ta' ? 'மழை' : 'Rainfall'}
+                </span>
+              </div>
+
+              {/* Wind */}
+              <div className="flex flex-col items-center">
+                <div className="w-9 h-9 rounded-2xl bg-cyan-50 text-cyan-500 flex items-center justify-center mb-1.5 shadow-2xs">
+                  <Wind className="w-5 h-5 text-cyan-600" />
+                </div>
+                <span className="text-lg md:text-xl font-black text-slate-900 font-mono">
+                  {envParameters.windSpeed} km/h
+                </span>
+                <span className="text-[11px] font-medium text-slate-400 mt-0.5">
+                  {language === 'ta' ? 'காற்று' : 'Wind'}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Location Box inside Current Weather Card */}
+          <div className="p-3 bg-[#f8faf9] rounded-2xl border border-[#e4ece7] flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2 font-semibold text-slate-700 truncate">
+              {selectedLocation.isCurrentLocation ? (
+                <Navigation className="w-4 h-4 text-emerald-600 fill-emerald-600 shrink-0" />
+              ) : (
+                <MapPin className="w-4 h-4 text-slate-500 shrink-0" />
+              )}
+              <span className="truncate">{formatLocationDisplay(selectedLocation, language)}</span>
+            </div>
+
+            <button
+              onClick={() => setShowLocationModal(true)}
+              className="text-xs font-bold text-emerald-700 hover:text-emerald-900 cursor-pointer ml-2 shrink-0 transition-colors"
+            >
+              {language === 'ta' ? 'அமைவிடம் மாற்று' : 'Change Location'}
+            </button>
+          </div>
+        </div>
+
+        {/* Card 2: Recent Conditions (Last 14 days) */}
+        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between space-y-4">
+          <div>
+            <div className="flex items-center gap-2 border-b border-slate-100 pb-3">
+              <Calendar className="w-4 h-4 text-emerald-600" />
+              <h2 className="text-base font-extrabold text-slate-900 font-display">
+                {language === 'ta' ? 'சமீபத்திய சூழல் (கடந்த 14 நாட்கள்)' : 'Recent Conditions (Last 14 days)'}
+              </h2>
+            </div>
+
+            {/* 3 Metric Rows */}
+            <div className="space-y-3 mt-4">
+              {/* Humidity Row */}
+              <div className="flex items-center justify-between py-1.5 border-b border-slate-50">
+                <div className="flex items-center gap-3">
+                  <Droplets className="w-4 h-4 text-blue-500" />
+                  <span className="text-xs md:text-sm font-semibold text-slate-700">
+                    {language === 'ta' ? 'ஈரப்பதம்' : 'Humidity'}
+                  </span>
+                </div>
+                <span className={`px-4 py-1 rounded-xl text-xs font-bold ${humidityRating.badgeClass}`}>
+                  {humidityRating.label}
+                </span>
+              </div>
+
+              {/* Rainfall Row */}
+              <div className="flex items-center justify-between py-1.5 border-b border-slate-50">
+                <div className="flex items-center gap-3">
+                  <CloudRain className="w-4 h-4 text-slate-700" />
+                  <span className="text-xs md:text-sm font-semibold text-slate-700">
+                    {language === 'ta' ? 'மழைப்பொழிவு' : 'Rainfall'}
+                  </span>
+                </div>
+                <span className={`px-4 py-1 rounded-xl text-xs font-bold ${rainfallRating.badgeClass}`}>
+                  {rainfallRating.label}
+                </span>
+              </div>
+
+              {/* Temperature Row */}
+              <div className="flex items-center justify-between py-1.5">
+                <div className="flex items-center gap-3">
+                  <Thermometer className="w-4 h-4 text-red-500" />
+                  <span className="text-xs md:text-sm font-semibold text-slate-700">
+                    {language === 'ta' ? 'வெப்பநிலை' : 'Temperature'}
+                  </span>
+                </div>
+                <span className={`px-4 py-1 rounded-xl text-xs font-bold ${tempRating.badgeClass}`}>
+                  {tempRating.label}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs text-slate-400 pt-1">
+            <Info className="w-4 h-4 text-blue-500 shrink-0" />
+            <span>
+              {language === 'ta'
+                ? 'உங்கள் பகுதியில் நிலவிய சமீபத்திய வானிலை முறைகளின் அடிப்படையில்.'
+                : 'Based on recent weather patterns in your area.'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Row 2: Field Risk Card & Crop Watch Card (2 Equal Columns) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* Card 3: Field Risk */}
+        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between relative overflow-hidden min-h-[175px]">
+          <div className="space-y-3 z-10">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">🍃</span>
+              <h2 className="text-base font-extrabold text-slate-900 font-display">
+                {language === 'ta' ? 'வயல் ஆபத்து நிலை' : 'Field Risk'}
+              </h2>
+            </div>
+
+            {/* Categorical Badge Box */}
+            <div className="pt-0.5">
+              <div className={`inline-block px-6 py-2 rounded-2xl text-xl font-black tracking-wide ${riskBadgeStyle}`}>
+                {riskCategory === 'High'
+                  ? language === 'ta'
+                    ? 'அதிகம் (High)'
+                    : 'High'
+                  : riskCategory === 'Moderate'
+                  ? language === 'ta'
+                    ? 'மிதமானது (Moderate)'
+                    : 'Moderate'
+                  : language === 'ta'
+                  ? 'குறைவானது (Low)'
+                  : 'Low'}
+              </div>
+            </div>
+
+            <p className="text-xs md:text-sm text-slate-600 max-w-sm leading-relaxed pt-0.5">
+              {riskDescription}
+            </p>
+          </div>
+
+          {/* Decorative Plant Art on background */}
+          <div className="absolute right-4 bottom-1 opacity-20 pointer-events-none">
+            <svg width="115" height="100" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M50 75C50 75 52 40 75 30C75 30 65 55 50 75Z" fill="#10b981" />
+              <path d="M50 75C50 75 48 40 25 30C25 30 35 55 50 75Z" fill="#34d399" />
+              <path d="M50 75V15" stroke="#059669" strokeWidth="3.5" strokeLinecap="round" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Card 4: Crop Watch */}
+        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between relative overflow-hidden min-h-[175px]">
+          <div className="space-y-2.5 z-10">
+            <div className="flex items-center gap-2">
+              <BarChart2 className="w-5 h-5 text-emerald-600" />
+              <h2 className="text-base font-extrabold text-slate-900 font-display">
+                {language === 'ta' ? 'பயிர் கண்காணிப்பு' : 'Crop Watch'}
+              </h2>
+            </div>
+
+            <div className="space-y-1.5 pt-0.5">
+              <h3 className="text-sm md:text-base font-extrabold text-slate-900 leading-snug">
+                {riskCategory === 'High'
+                  ? language === 'ta'
+                    ? 'பயிர்களை தீவிரமாக கண்காணிக்க வேண்டிய நேரம்.'
+                    : 'Current conditions warrant closer crop monitoring.'
+                  : riskCategory === 'Moderate'
+                  ? language === 'ta'
+                    ? 'பயிர்களை தொடர்ந்து கண்காணிக்க உகந்த சூழல்.'
+                    : 'Current conditions are suitable for closer crop monitoring.'
+                  : language === 'ta'
+                  ? 'பயிர்கள் இயல்பான வளர்ச்சி நிலையில் உள்ளன.'
+                  : 'Current conditions are suitable for standard crop scouting.'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
+                {language === 'ta'
+                  ? 'குறிப்பாக மழைப்பொழிவு அல்லது அதிக ஈரப்பதம் உள்ள நாட்களில் இலைகளை தவறாமல் சோதிக்கவும்.'
+                  : 'Keep checking your leaves regularly, especially after rainfall or high humidity periods.'}
               </p>
             </div>
           </div>
 
-          {/* Preset Buttons */}
-          <div className="flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => applyHistoricalPreset('MANUAL_SLIDERS')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activePresetMode === 'MANUAL_SLIDERS'
-                  ? 'bg-agri-800 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              {language === 'ta' ? 'கையேடு உள்ளீடு' : 'Manual Sliders'}
-            </button>
-            <button
-              onClick={() => applyHistoricalPreset('ERODE_OCT_2021')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activePresetMode === 'ERODE_OCT_2021'
-                  ? 'bg-agri-800 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              Erode 2021 Reanalysis
-            </button>
-            <button
-              onClick={() => applyHistoricalPreset('DHARMAPURI_OCT_2023_APHIDS')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activePresetMode === 'DHARMAPURI_OCT_2023_APHIDS'
-                  ? 'bg-agri-800 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              Dharmapuri 2023 Dry Spell
-            </button>
-          </div>
-        </div>
-
-        {/* Crop Stage / DAP Context Banner */}
-        <div className="p-3.5 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2.5">
-            <Calendar className="w-4 h-4 text-emerald-700 shrink-0" />
-            <div>
-              <span className="font-bold text-slate-800">
-                {language === 'ta' ? 'பயிர் வளர்ச்சி நிலை (DAP):' : 'Crop Growth Stage Context (DAP):'}
-              </span>{' '}
-              <span className="text-slate-600 font-medium">
-                {cropDap} {language === 'ta' ? 'நாட்கள்' : 'Days After Planting'} (
-                {cropDap < 100
-                  ? 'Vegetative Stage'
-                  : cropDap <= 170
-                  ? 'Rhizome Development Stage'
-                  : 'Late Maturity / Senescence'}
-                )
-              </span>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] text-slate-400">{language === 'ta' ? 'மாற்றுக:' : 'Adjust DAP:'}</span>
-            <input
-              type="range"
-              min="30"
-              max="240"
-              step="5"
-              value={cropDap}
-              onChange={(e) => setCropDap(parseInt(e.target.value))}
-              className="w-28 accent-emerald-600 cursor-pointer"
-            />
-            <span className="font-mono font-bold text-slate-800 w-10 text-right">{cropDap}d</span>
+          {/* Decorative Leaf on right */}
+          <div className="absolute right-4 bottom-1 opacity-20 pointer-events-none">
+            <svg width="105" height="100" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M70 70C70 70 85 45 75 20C65 35 60 55 70 70Z" fill="#10b981" />
+              <path d="M30 70C30 70 15 45 25 20C35 35 40 55 30 70Z" fill="#34d399" />
+            </svg>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-        {/* Left Column: Interactive Microclimate Controls */}
-        <div className="lg:col-span-8 space-y-6">
-          <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card space-y-6">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2">
-                <Sliders className="w-4 h-4 text-agri-700" />
-                <h3 className="text-sm font-bold text-slate-900 font-display">
-                  {language === 'ta' ? 'கள வானிலை அளவீடுகள்' : 'Field Microclimate Parameters'}
-                </h3>
-              </div>
-              <span className="text-[11px] text-slate-400">
-                {language === 'ta' ? 'தேவைக்கேற்ப அளவுகளை மாற்றலாம்' : 'Adjust sliders to test candidate microclimates'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* 1. Temperature */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
-                      <Thermometer className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.temperature[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-slate-900">
-                    {envParameters.temperature} °C
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="15"
-                  max="45"
-                  step="0.5"
-                  value={envParameters.temperature}
-                  onChange={(e) => updateEnvParameter('temperature', parseFloat(e.target.value))}
-                  className="w-full accent-rose-600 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>15°C</span>
-                  <span className="text-emerald-700 font-semibold">{language === 'ta' ? 'பூஞ்சை உகந்தது: 22-32°C' : 'Fungal Optimum: 22-32°C'}</span>
-                  <span>45°C</span>
-                </div>
-              </div>
-
-              {/* 2. Relative Humidity */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center">
-                      <Droplets className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.humidity[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-cyan-700">
-                    {envParameters.humidity} %
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="20"
-                  max="100"
-                  value={envParameters.humidity}
-                  onChange={(e) => updateEnvParameter('humidity', parseInt(e.target.value))}
-                  className="w-full accent-cyan-600 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>20%</span>
-                  <span className="text-amber-600 font-semibold">{language === 'ta' ? 'உயர் ஈரப்பதம் ≥80%' : 'High moisture ≥80%'}</span>
-                  <span>100%</span>
-                </div>
-              </div>
-
-              {/* 3. Rainfall */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-                      <CloudRain className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.rainfall[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-blue-700">
-                    {envParameters.rainfall} mm
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="200"
-                  step="1"
-                  value={envParameters.rainfall}
-                  onChange={(e) => updateEnvParameter('rainfall', parseFloat(e.target.value))}
-                  className="w-full accent-blue-600 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>0 mm</span>
-                  <span className="text-blue-700 font-semibold">{language === 'ta' ? 'தெறிப்பு பரவல் ≥40mm' : 'Splash Dispersal ≥40mm'}</span>
-                  <span>200 mm</span>
-                </div>
-              </div>
-
-              {/* 4. Soil Moisture (Root Zone) */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                      <Compass className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.soilMoisture[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-emerald-700">
-                    {envParameters.soilMoisture} %
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="10"
-                  max="100"
-                  value={envParameters.soilMoisture}
-                  onChange={(e) => updateEnvParameter('soilMoisture', parseInt(e.target.value))}
-                  className="w-full accent-emerald-600 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>10%</span>
-                  <span className="text-emerald-700 font-semibold">{language === 'ta' ? 'பரிந்துரை: 35-65%' : 'Optimal: 35-65%'}</span>
-                  <span>100%</span>
-                </div>
-              </div>
-
-              {/* 5. Sunlight Duration */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-yellow-50 text-yellow-600 flex items-center justify-center">
-                      <Sun className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.sunlightHours[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-yellow-700">
-                    {envParameters.sunlightHours} hrs
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="14"
-                  step="0.5"
-                  value={envParameters.sunlightHours}
-                  onChange={(e) => updateEnvParameter('sunlightHours', parseFloat(e.target.value))}
-                  className="w-full accent-yellow-500 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>0 hrs</span>
-                  <span>14 hrs</span>
-                </div>
-              </div>
-
-              {/* 6. Wind Speed */}
-              <div className="p-4 rounded-2xl bg-slate-50/80 border border-slate-200 space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-bold text-slate-700">
-                    <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center">
-                      <Wind className="w-4 h-4" />
-                    </div>
-                    <span>{t.env.windSpeed[language]}</span>
-                  </div>
-                  <span className="text-sm font-extrabold font-mono text-indigo-700">
-                    {envParameters.windSpeed} km/h
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="0"
-                  max="40"
-                  value={envParameters.windSpeed}
-                  onChange={(e) => updateEnvParameter('windSpeed', parseInt(e.target.value))}
-                  className="w-full accent-indigo-600 cursor-pointer"
-                />
-                <div className="flex justify-between text-[10px] text-slate-400">
-                  <span>0 km/h</span>
-                  <span>40 km/h</span>
-                </div>
-              </div>
-            </div>
+      {/* 5. Row 3: General Advice Card (Full Width) */}
+      <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <Lightbulb className="w-5 h-5 text-amber-500" />
+            <h2 className="text-base font-extrabold text-slate-900 font-display">
+              {language === 'ta' ? 'பொதுவான ஆலோசனைகள்' : 'General Advice'}
+            </h2>
           </div>
 
-          {/* FARMER DECISION SUPPORT GUIDANCE CARDS */}
-          <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card space-y-5">
-            <div className="border-b border-slate-100 pb-3">
-              <span className="text-[11px] font-bold text-agri-700 uppercase tracking-wider block">
-                {language === 'ta' ? 'விவசாய வழிகாட்டுதல்' : 'Farmer Decision Support'}
-              </span>
-              <h3 className="text-base font-bold text-slate-900 font-display">
-                {currentGuidance.name} ({currentGuidance.pathogen})
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* What should I watch for? */}
-              <div className="p-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 space-y-2">
-                <div className="flex items-center gap-2 text-xs font-bold text-amber-900">
-                  <Eye className="w-4 h-4 text-amber-700" />
-                  <span>{language === 'ta' ? 'கண்காணிக்க வேண்டிய அறிகுறிகள்:' : 'What should I watch for?'}</span>
-                </div>
-                <p className="text-xs text-amber-950 leading-relaxed font-medium">
-                  {currentGuidance.watchFor}
-                </p>
+          <div className="space-y-2 text-xs md:text-sm text-slate-700 font-medium">
+            <div className="flex items-center gap-2.5">
+              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                ✓
               </div>
-
-              {/* What should I do? */}
-              <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 space-y-2">
-                <div className="flex items-center gap-2 text-xs font-bold text-emerald-900">
-                  <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                  <span>{language === 'ta' ? 'பரிந்துரைக்கப்படும் களப்பணி:' : 'What should I do?'}</span>
-                </div>
-                <p className="text-xs text-emerald-950 leading-relaxed font-medium">
-                  {currentGuidance.action}
-                </p>
-              </div>
+              <span>{language === 'ta' ? 'வயலில் தண்ணீர் தேங்காமல் வடிகால் வசதியை சரியாக பராமரிக்கவும்.' : 'Keep your field well drained.'}</span>
             </div>
-
-            {/* Official Guidance Note */}
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-start gap-2">
-              <Info className="w-4 h-4 text-slate-500 shrink-0 mt-0.5" />
-              <span>
-                {language === 'ta'
-                  ? 'பயிர் பாதுகாப்பு மருந்துகளைப் பயன்படுத்தும்போது, தமிழ்நாடு வேளாண்மைப் பல்கலைக்கழகம் (TNAU) / ICAR-IISR, உள்ளூர் வேளாண் விரிவாக்க அலுவலர்கள் மற்றும் தயாரிப்பு லேபிள் வழிகாட்டுதல்களை கண்டிப்பாகப் பின்பற்றவும்.'
-                  : 'When applying crop protection inputs, follow TNAU / ICAR-IISR / local agricultural extension and product-label guidance.'}
-              </span>
+            <div className="flex items-center gap-2.5">
+              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                ✓
+              </div>
+              <span>{language === 'ta' ? 'பயிர்களுக்கு இடையே போதுமான காற்றோட்டம் இருப்பதை உறுதிசெய்யவும்.' : 'Maintain good air flow between plants.'}</span>
+            </div>
+            <div className="flex items-center gap-2.5">
+              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
+                ✓
+              </div>
+              <span>{language === 'ta' ? 'மழைக்குப் பின் இலைகளைத் தவறாமல் பரிசோதிக்கவும்.' : 'Check leaves regularly, especially after rain.'}</span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Environmental Risk Output Card */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white rounded-3xl p-6 border-2 border-agri-200 shadow-card space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div>
-                <span className="text-[11px] font-bold text-agri-700 uppercase tracking-wider block">
-                  {researchRiskResult
-                    ? t.status.fourteenDayHistoricalAssessment[language]
-                    : t.status.currentFieldConditions[language]}
-                </span>
-                <h3 className="text-base font-bold text-slate-900 font-display">
-                  {selectedResearchDisease} Risk
-                </h3>
-              </div>
-              <span
-                className={`px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-wider ${
-                  researchRiskResult
-                    ? researchRiskResult.riskLevel === 'HIGH'
-                      ? 'bg-rose-100 text-rose-800 border border-rose-300'
-                      : researchRiskResult.riskLevel === 'MODERATE'
-                      ? 'bg-amber-100 text-amber-800 border border-amber-300'
-                      : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                    : envRiskResult.level === 'High'
-                    ? 'bg-rose-100 text-rose-800 border border-rose-300'
-                    : envRiskResult.level === 'Moderate'
-                    ? 'bg-amber-100 text-amber-800 border border-amber-300'
-                    : 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                }`}
-              >
-                {researchRiskResult
-                  ? `${researchRiskResult.riskLevel} Risk`
-                  : t.status.currentConditionAssessment[language]}
+        {/* Right Badge Box */}
+        <div className="w-full md:w-auto p-4 rounded-2xl bg-[#eef8f1] border border-[#d8f0e0] flex items-center justify-center gap-3 shrink-0">
+          <Sprout className="w-6 h-6 text-emerald-600" />
+          <div>
+            <span className="text-xs font-extrabold text-emerald-950 block font-display">
+              {language === 'ta' ? 'ஆரோக்கியமான பயிர்கள்' : 'Healthy Plants'}
+            </span>
+            <span className="text-[11px] font-bold text-emerald-700">
+              {language === 'ta' ? 'சிறந்த மகசூல்' : 'Better Yields'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* 6. Collapsible Advanced & Research Section (COLLAPSED BY DEFAULT) */}
+      <div className="border border-slate-200 rounded-3xl bg-white overflow-hidden shadow-xs">
+        <button
+          onClick={() => setShowAdvanced(!showAdvanced)}
+          className="w-full px-6 py-4 flex items-center justify-between text-left font-bold text-xs text-slate-700 hover:bg-slate-50 cursor-pointer transition-colors"
+        >
+          <div className="flex items-center gap-2.5">
+            <span className="text-base">⚙️</span>
+            <span>
+              {showAdvanced
+                ? (language === 'ta' ? '▼ மேம்பட்ட / ஆராய்ச்சி விவரங்கள்' : '▼ Advanced / Research Details')
+                : (language === 'ta' ? '▶ மேம்பட்ட / ஆராய்ச்சி விவரங்கள்' : '▶ Advanced / Research Details')}
+            </span>
+          </div>
+          {showAdvanced ? (
+            <ChevronDown className="w-4 h-4 text-slate-500" />
+          ) : (
+            <ChevronRight className="w-4 h-4 text-slate-500" />
+          )}
+        </button>
+
+        {showAdvanced && (
+          <div className="p-6 border-t border-slate-200 bg-slate-50/60 space-y-6">
+            {/* Research Validation Scope Note */}
+            <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-2xl text-xs text-blue-900 leading-relaxed flex items-start gap-3">
+              <Info className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
+              <span>
+                {language === 'ta'
+                  ? 'வரலாற்று சரிபார்ப்பு தற்போது சரிபார்க்கப்பட்ட நோய்/சுற்றுச்சூழல் பதிவுகள் உள்ள தேர்ந்தெடுக்கப்பட்ட தமிழ்நாடு இடங்களுக்கு மட்டுமே பொருந்தும். மற்ற ஆதரிக்கப்படும் இடங்களுக்கு நேரலை வானிலை மதிப்பீடு செயல்படுகிறது.'
+                  : 'Historical validation currently covers selected Tamil Nadu locations where verified disease/environment observations were available. Live weather assessment is available for other supported locations.'}
               </span>
             </div>
 
-            {/* Assessment State Display */}
-            {researchRiskResult ? (
-              /* 14-Day Historical Exposure Baseline (ERA5 Reanalysis Records) */
-              <div className="space-y-4">
-                <div className="py-3 px-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-1">
-                  <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">
-                    {t.status.fourteenDayHistoricalAssessment[language]}
-                  </span>
-                  <div
-                    className={`text-2xl font-black font-display ${
-                      researchRiskResult.riskLevel === 'HIGH'
-                        ? 'text-rose-700'
-                        : researchRiskResult.riskLevel === 'MODERATE'
-                        ? 'text-amber-700'
-                        : 'text-emerald-700'
+            {/* Historical Presets */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                {language === 'ta' ? 'வரலாற்று மாதிரி தரவுகள் (Historical Reanalysis Presets)' : 'Historical Reanalysis Presets (ERA5-Land)'}
+              </h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {Object.entries(HISTORICAL_REANALYSIS_PRESETS).map(([key, preset]) => (
+                  <button
+                    key={key}
+                    onClick={() => applyHistoricalPreset(key)}
+                    className={`p-3.5 rounded-2xl text-left border transition-all cursor-pointer ${
+                      activePresetMode === key
+                        ? 'bg-agri-800 text-white border-agri-900 shadow-sm'
+                        : 'bg-white hover:bg-slate-100 text-slate-800 border-slate-200'
                     }`}
                   >
-                    {researchRiskResult.riskLevel === 'HIGH'
-                      ? (language === 'ta' ? 'அதிக அபாய சாதக நிலை' : 'HIGH RISK CONDITIONS')
-                      : researchRiskResult.riskLevel === 'MODERATE'
-                      ? (language === 'ta' ? 'மிதமான அபாய சாதக நிலை' : 'MODERATE RISK CONDITIONS')
-                      : (language === 'ta' ? 'குறைந்த அபாய நிலை' : 'LOW RISK CONDITIONS')}
-                  </div>
-                  <p className="text-[10px] text-slate-400 font-medium">
-                    {t.status.scientificNotice[language]}
-                  </p>
-                </div>
-
-                {/* Why this risk? Section */}
-                <div className="space-y-2">
-                  <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
-                    {language === 'ta' ? 'இந்த அபாயத்திற்கான காரணங்கள்:' : 'Why this risk?'}
-                  </span>
-                  <div className="space-y-1.5">
-                    {researchRiskResult.explanation.contributingFactors.map((factor, idx) => (
-                      <div
-                        key={idx}
-                        className="p-2.5 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-200/80 flex items-start gap-2"
-                      >
-                        <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
-                        <span className="leading-snug">{factor}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Phenology Context Note */}
-                <div className="p-3 bg-emerald-50/60 rounded-xl border border-emerald-200/80 text-xs text-emerald-900">
-                  <span className="font-bold block mb-0.5">
-                    {language === 'ta' ? 'பயிர் பருவ நிலை குறிப்பு:' : 'Crop Stage Context:'}
-                  </span>
-                  <p className="text-[11px] text-emerald-800 leading-snug">
-                    {researchRiskResult.phenologyContext.susceptibilityNote}
-                  </p>
-                  <p className="text-[10px] text-emerald-600 mt-1 italic">
-                    * {language === 'ta' ? 'பயிர் வளர்ச்சி நிலை தற்போதைய ஆராய்ச்சி அடிப்படையிலான சூழல் தகவலாக மட்டுமே பயன்படுத்தப்படுகிறது.' : 'Crop stage is used as contextual information in the current research baseline.'}
-                  </p>
-                </div>
+                    <div className="font-bold text-xs">{preset.label}</div>
+                    <div className={`text-[10px] mt-1 ${activePresetMode === key ? 'text-agri-200' : 'text-slate-500'}`}>
+                      {preset.diseaseContext} • DAP {preset.dap} • 336h
+                    </div>
+                  </button>
+                ))}
               </div>
-            ) : (
-              /* Current Field Condition Heuristic (Manual Sliders) */
-              <div className="space-y-4">
-                <div className="py-3 px-4 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-1">
-                  <span className="text-[11px] text-slate-500 font-bold uppercase tracking-wider">
-                    {t.status.currentFieldConditions[language]}
-                  </span>
-                  <div
-                    className={`text-xl md:text-2xl font-black font-display ${
-                      envRiskResult.level === 'High'
-                        ? 'text-rose-700'
-                        : envRiskResult.level === 'Moderate'
-                        ? 'text-amber-700'
-                        : 'text-emerald-700'
-                    }`}
-                  >
-                    {envRiskResult.level === 'High'
-                      ? (language === 'ta' ? 'அதிக தற்போதைய சாதக நிலை' : 'HIGH CURRENT FAVORABILITY')
-                      : envRiskResult.level === 'Moderate'
-                      ? (language === 'ta' ? 'மிதமான தற்போதைய சாதக நிலை' : 'MODERATE CURRENT FAVORABILITY')
-                      : (language === 'ta' ? 'குறைந்த தற்போதைய சாதக நிலை' : 'LOW CURRENT FAVORABILITY')}
-                  </div>
-                  <p className="text-[10px] text-slate-500 font-semibold">
-                    {t.status.currentConditionHeuristic[language]}
-                  </p>
-                </div>
+            </div>
 
-                {/* Instant Contributing Factors */}
-                <div className="space-y-2">
-                  <span className="text-[11px] font-bold text-slate-700 uppercase tracking-wider block">
-                    {language === 'ta' ? 'தற்போதைய கள நிலை காரணிகள்:' : 'Current Observation Factors:'}
-                  </span>
-                  <div className="space-y-1.5">
-                    {envRiskResult.contributingFactors.map((factor, idx) => (
-                      <div
-                        key={idx}
-                        className="p-2.5 bg-slate-50 rounded-xl text-xs text-slate-700 border border-slate-200/80 flex items-start gap-2"
-                      >
-                        <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
-                        <span className="leading-snug">{factor}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            {/* Disease Selector & DAP */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-2">
+                <label className="text-[11px] font-bold text-slate-600 uppercase block">
+                  {language === 'ta' ? 'நோய் வகை (Research Disease Pathway)' : 'Research Disease Pathway'}
+                </label>
+                <select
+                  value={selectedResearchDisease}
+                  onChange={(e) => setSelectedResearchDisease(e.target.value as ResearchDiseaseType)}
+                  className="w-full p-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 cursor-pointer"
+                >
+                  <option value="Leaf Spot">Leaf Spot (Colletotrichum capsici)</option>
+                  <option value="Leaf Blotch">Leaf Blotch (Taphrina maculans)</option>
+                  <option value="Aphids">Aphids (Aphis gossypii)</option>
+                </select>
+              </div>
 
-                {/* 14-day unavailable disclosure */}
-                <div className="p-3 bg-amber-50/70 rounded-xl border border-amber-200 text-xs text-amber-900 space-y-1">
-                  <div className="flex items-center gap-1.5 font-bold">
-                    <Info className="w-3.5 h-3.5 text-amber-700 shrink-0" />
-                    <span>{t.status.temporalAssessmentUnavailable[language]}</span>
+              <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-2">
+                <div className="flex justify-between items-center">
+                  <label className="text-[11px] font-bold text-slate-600 uppercase block">
+                    {language === 'ta' ? 'பயிர் வயது (Days After Planting - DAP)' : 'Crop DAP (Days After Planting)'}
+                  </label>
+                  <span className="text-xs font-bold text-emerald-700 font-mono">{cropDap} DAP</span>
+                </div>
+                <input
+                  type="range"
+                  min={30}
+                  max={270}
+                  step={5}
+                  value={cropDap}
+                  onChange={(e) => setCropDap(parseInt(e.target.value))}
+                  className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-emerald-600"
+                />
+              </div>
+            </div>
+
+            {/* 336-hour Exposure Metrics Details */}
+            {researchRiskResult && researchRiskResult.exposureFeatures && (
+              <div className="bg-white p-4 rounded-2xl border border-slate-200 space-y-3">
+                <h5 className="text-xs font-bold text-slate-800 uppercase">
+                  336-Hour Antecedent Exposure Vector
+                </h5>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <div className="p-2.5 bg-slate-50 rounded-xl">
+                    <span className="text-[10px] text-slate-400 block">RH ≥ 80% Hours</span>
+                    <span className="font-bold text-slate-900">{researchRiskResult.exposureFeatures.hours_rh_ge_80pct} / 336 hrs</span>
                   </div>
-                  <p className="text-[11px] leading-relaxed text-amber-950/90">
-                    {t.status.manualTemporalWarning[language]}
-                  </p>
+                  <div className="p-2.5 bg-slate-50 rounded-xl">
+                    <span className="text-[10px] text-slate-400 block">Temp Optimal Hours</span>
+                    <span className="font-bold text-slate-900">{researchRiskResult.exposureFeatures.hours_temp_favorable_22_32C} / 336 hrs</span>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 rounded-xl">
+                    <span className="text-[10px] text-slate-400 block">Dew Proxy Hours</span>
+                    <span className="font-bold text-slate-900">{researchRiskResult.exposureFeatures.hours_dew_condensation_proxy} hrs</span>
+                  </div>
+                  <div className="p-2.5 bg-slate-50 rounded-xl">
+                    <span className="text-[10px] text-slate-400 block">Cumulative Rain</span>
+                    <span className="font-bold text-slate-900">{researchRiskResult.exposureFeatures.cumulative_rainfall_14d_mm} mm</span>
+                  </div>
                 </div>
               </div>
             )}
 
-            {/* Collapsible Advanced Technical Details */}
-            <div className="border border-slate-200 rounded-2xl overflow-hidden">
-              <button
-                onClick={() => setShowAdvanced(!showAdvanced)}
-                className="w-full p-3.5 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold transition-colors flex items-center justify-between cursor-pointer"
-              >
-                <span className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-agri-700" />
-                  <span>{showAdvanced ? (language === 'ta' ? 'விவரங்களை மறை' : 'Hide Advanced Details') : (language === 'ta' ? 'மேலும் தொழில்நுட்ப விவரங்கள்' : 'View Advanced Details')}</span>
-                </span>
-                {showAdvanced ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </button>
+            {/* Research & Diagnostics Debug Trace (Audit Verification Panel) */}
+            <div className="bg-slate-900 text-slate-100 p-4 rounded-2xl space-y-2.5 font-mono text-[11px] border border-slate-800">
+              <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                <span className="font-bold text-emerald-400">🔬 ENVIRONMENTAL RISK ENGINE — RESEARCH DEBUG TRACE</span>
+                <span className="text-[10px] text-slate-400 font-sans">Research Validation Only</span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-300">
+                <div>
+                  <div className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Location & Telemetry</div>
+                  <div>Location: {selectedLocation.name}, {selectedLocation.district}</div>
+                  <div>Coordinates: Lat {selectedLocation.latitude}, Lon {selectedLocation.longitude}</div>
+                  <div>Source: {researchRiskResult?.dataSource || envDataSource}</div>
+                  <div>Fetched At: {researchRiskResult?.timestamp || 'N/A'}</div>
+                </div>
+                
+                <div>
+                  <div className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Hourly Series Window</div>
+                  <div>Record Count: {liveHourlyRecords?.length || 336} hourly readings</div>
+                  <div>Oldest: {liveHourlyRecords && liveHourlyRecords.length > 0 ? liveHourlyRecords[0].timestamp : 'N/A'}</div>
+                  <div>Newest: {liveHourlyRecords && liveHourlyRecords.length > 0 ? liveHourlyRecords[liveHourlyRecords.length - 1].timestamp : 'N/A'}</div>
+                  <div>Target Disease: {selectedResearchDisease}</div>
+                </div>
+              </div>
 
-              {showAdvanced && (
-                <div className="p-4 bg-white space-y-3.5 border-t border-slate-200 text-xs">
-                  {envDataSource === 'manual' || !researchRiskResult ? (
-                    <div className="p-3 bg-amber-50/80 rounded-xl border border-amber-200 text-amber-950 space-y-1.5">
-                      <div className="flex items-center gap-2 font-bold text-amber-900">
-                        <AlertTriangle className="w-4 h-4 text-amber-700 shrink-0" />
-                        <span>{t.status.insufficientTemporal[language]}</span>
-                      </div>
-                      <p className="text-[11px] leading-relaxed text-amber-900/90">
-                        {t.status.manualTemporalNote[language]}
-                      </p>
-                    </div>
-                  ) : (
-                    <>
-                      <span className="font-bold text-slate-800 block text-[11px] uppercase tracking-wider">
-                        {language === 'ta' ? '14-நாள் வரலாற்று வெளிப்பாடு அளவீடுகள்:' : '14-Day Antecedent Exposure Metrics:'}
-                      </span>
-
-                      <div className="grid grid-cols-2 gap-2 text-[11px]">
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-slate-400 block">RH ≥ 80% Hours:</span>
-                          <span className="font-mono font-bold text-slate-800">
-                            {researchRiskResult.exposureFeatures.hours_rh_ge_80pct} hrs / 336h
-                          </span>
-                        </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-slate-400 block">Temp Opt (22-32°C):</span>
-                          <span className="font-mono font-bold text-slate-800">
-                            {researchRiskResult.exposureFeatures.hours_temp_favorable_22_32C} hrs / 336h
-                          </span>
-                        </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-slate-400 block">Dew Proxy Hours:</span>
-                          <span className="font-mono font-bold text-slate-800">
-                            {researchRiskResult.exposureFeatures.hours_dew_condensation_proxy} hrs
-                          </span>
-                        </div>
-                        <div className="p-2 bg-slate-50 rounded-lg">
-                          <span className="text-slate-400 block">14d Cumulative Rain:</span>
-                          <span className="font-mono font-bold text-slate-800">
-                            {researchRiskResult.exposureFeatures.cumulative_rainfall_14d_mm} mm ({researchRiskResult.exposureFeatures.rainfall_days_14d_count} rain days)
-                          </span>
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {/* Dew Proxy Technical Note */}
-                  <div className="p-2.5 bg-blue-50/60 rounded-lg border border-blue-200 text-[10px] text-blue-900 leading-snug">
-                    <span className="font-bold block">
-                      {language === 'ta' ? 'பனிப்பொழிவு / ஒடுக்க மதிப்பீடு விளக்கம்:' : 'Atmospheric Dew Proxy Definition:'}
-                    </span>
-                    {language === 'ta'
-                      ? 'பனிப்புள்ளி மற்றும் காற்று வெப்பநிலை இடைவெளி (T - T_dew) ≤ 1.5°C உள்ள மணிநேரங்கள் வளிமண்டல நீராவி ஒடுக்க அளவீடாக கணக்கிடப்படுகிறது; இது நேரடி இலை நனைவு சென்சார் அளவீடு அல்ல.'
-                      : 'Hours where dew point depression (T - T_dew) ≤ 1.5°C represent an atmospheric condensation proxy, not direct measured leaf wetness.'}
-                  </div>
-
-                  {/* Scientific Status & Limitations */}
-                  <div className="space-y-1 text-[10px] text-slate-500">
-                    <span className="font-bold text-slate-700 block">
-                      {language === 'ta' ? 'ஆராய்ச்சி நிலை & வரம்புகள் (RETROSPECTIVE CONSISTENCY ONLY):' : 'Methodological Status & Limitations (RETROSPECTIVE CONSISTENCY ONLY):'}
-                    </span>
-                    <p>• {t.status.scientificNotice[language]}</p>
-                    <p>• Meteorological associations reflect candidate biophysical permissiveness, not causal disease generation.</p>
-                    <p>• Reanalysis (ERA5-Land) data represent regional atmospheric estimates (~9km grid) and are not direct in-situ field sensor measurements.</p>
+              {researchRiskResult?.exposureFeatures && (
+                <div className="border-t border-slate-800 pt-2 text-slate-300">
+                  <div className="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Extracted 14-Day Features</div>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 mt-1 text-[10px]">
+                    <div>Rainfall: {researchRiskResult.exposureFeatures.cumulative_rainfall_14d_mm} mm</div>
+                    <div>Rain Days: {researchRiskResult.exposureFeatures.rainfall_days_14d_count} days</div>
+                    <div>RH ≥80%: {researchRiskResult.exposureFeatures.hours_rh_ge_80pct} hrs</div>
+                    <div>Temp 22-32°C: {researchRiskResult.exposureFeatures.hours_temp_favorable_22_32C} hrs</div>
+                    <div>Dew Proxy: {researchRiskResult.exposureFeatures.hours_dew_condensation_proxy} hrs</div>
+                    <div>Mean Temp: {researchRiskResult.exposureFeatures.mean_temperature}°C</div>
+                    <div>Mean RH: {researchRiskResult.exposureFeatures.mean_relative_humidity}%</div>
+                    <div>Window: {researchRiskResult.exposureFeatures.windowHours} hrs</div>
                   </div>
                 </div>
               )}
-            </div>
 
-            {/* Navigation Button */}
-            <button
-              onClick={() => navigate('/multimodal-analysis')}
-              className="w-full py-3 bg-agri-800 hover:bg-agri-900 text-white font-bold text-xs rounded-xl shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>{t.actions.proceedToCombined[language]}</span>
-              <ArrowRight className="w-4 h-4 text-emerald-400" />
-            </button>
+              <div className="border-t border-slate-800 pt-2 flex items-center justify-between text-xs">
+                <div>
+                  <span className="text-slate-400 text-[10px] uppercase font-bold mr-2">Evaluated Category:</span>
+                  <span className={`font-bold ${researchRiskResult?.riskLevel === 'HIGH' ? 'text-rose-400' : researchRiskResult?.riskLevel === 'MODERATE' ? 'text-amber-400' : 'text-emerald-400'}`}>
+                    {researchRiskResult?.riskLevel || envRiskResult.level.toUpperCase()}
+                  </span>
+                </div>
+                <div className="text-[10px] text-slate-400">
+                  Status: {researchRiskResult?.evidenceStatus || 'POINT_IN_TIME_CALCULATION'}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        )}
       </div>
+
+      {/* Location Modal */}
+      <LocationSelectorModal
+        isOpen={showLocationModal}
+        onClose={() => setShowLocationModal(false)}
+      />
     </div>
   );
 };

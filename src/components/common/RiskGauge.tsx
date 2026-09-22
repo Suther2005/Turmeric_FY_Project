@@ -9,20 +9,25 @@ interface RiskGaugeProps {
   showLabel?: boolean;
   animate?: boolean;
   subtitle?: string;
+  unit?: string;
+  displayValue?: string;
 }
 
 export const RiskGauge: React.FC<RiskGaugeProps> = ({
-  score,
+  score = 0,
   level,
   size = 180,
   strokeWidth = 14,
   showLabel = true,
   animate = true,
-  subtitle = 'RISK SCORE',
+  subtitle = 'INDEX SCORE',
+  unit = '',
+  displayValue,
 }) => {
+  const safeScore = typeof score === 'number' && !isNaN(score) ? score : 0;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (Math.min(100, Math.max(0, score)) / 100) * circumference;
+  const offset = circumference - (Math.min(100, Math.max(0, safeScore)) / 100) * circumference;
 
   const getRiskColor = (val: number) => {
     if (val >= 68) return '#ef4444';
@@ -36,11 +41,11 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
     return 'rgba(16, 185, 129, 0.12)';
   };
 
-  const color = getRiskColor(score);
-  const bgColor = getRiskBgColor(score);
+  const color = getRiskColor(safeScore);
+  const bgColor = getRiskBgColor(safeScore);
 
   const determinedLevel: RiskLevel =
-    level || (score >= 68 ? 'High' : score >= 36 ? 'Moderate' : 'Low');
+    level || (safeScore >= 68 ? 'High' : safeScore >= 36 ? 'Moderate' : 'Low');
 
   return (
     <div className="flex flex-col items-center justify-center relative select-none">
@@ -75,8 +80,8 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-2">
-          <span className="text-3xl font-extrabold tracking-tight text-slate-800 font-display">
-            {score}%
+          <span className="text-3xl font-black tracking-tight text-slate-800 font-display">
+            {displayValue ? displayValue : `${score}${unit}`}
           </span>
           <span
             className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full mt-1"
@@ -95,16 +100,17 @@ export const RiskGauge: React.FC<RiskGaugeProps> = ({
       {showLabel && (
         <div className="flex items-center gap-3 mt-3 text-xs text-slate-500 font-medium">
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Low (&lt;35%)
+            <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Low (&lt;35)
           </span>
           <span className="flex items-center gap-1">
             <span className="w-2 h-2 rounded-full bg-amber-500"></span> Moderate
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-full bg-rose-500"></span> High (&ge;68%)
+            <span className="w-2 h-2 rounded-full bg-rose-500"></span> High (&ge;68)
           </span>
         </div>
       )}
     </div>
   );
 };
+

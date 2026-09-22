@@ -8,18 +8,25 @@ export type Language = 'ta' | 'en';
 export const TRANSLATIONS = {
   // Navigation
   nav: {
+    home: { en: 'Home', ta: 'முகப்பு' },
+    checkLeaf: { en: 'Check Leaf', ta: 'இலையை சரிபார்' },
+    weatherAndRisk: { en: 'Weather & Risk', ta: 'வானிலை & அபாயம்' },
+    fieldConditions: { en: 'Field Conditions', ta: 'கள நிலைமைகள்' },
+    myField: { en: 'My Field', ta: 'என் வயல்' },
     dashboard: { en: 'Dashboard', ta: 'பயிர் முகப்பு' },
-    diseaseDetection: { en: 'Disease Detection', ta: 'நோய் கண்டறிதல்' },
-    fieldConditions: { en: 'Field Conditions', ta: 'சுற்றுச்சூழல் நிலை' },
+    diseaseDetection: { en: 'Check Leaf', ta: 'இலையை சரிபார்' },
     cropRisk: { en: 'Combined Crop Risk', ta: 'பயிர் அபாய நிலை' },
     recommendations: { en: 'Recommendations', ta: 'பரிந்துரைகள்' },
-    history: { en: 'Prediction History', ta: 'முந்தைய பதிவுகள்' },
-    analytics: { en: 'Farm Analytics', ta: 'புள்ளிவிவரங்கள்' },
-    modelPerformance: { en: 'Model Performance', ta: 'மாதிரி செயல்திறன்' },
+    history: { en: 'History', ta: 'முந்தைய பதிவுகள்' },
+    analytics: { en: 'Dataset Analysis', ta: 'தரவுத்தொகுப்பு பகுப்பாய்வு' },
+    modelPerformance: { en: 'Model Comparison', ta: 'மாதிரி ஒப்பீடு' },
+    historicalValidation: { en: 'Historical Validation', ta: 'வரலாற்று சரிபார்ப்பு' },
     farmerServices: { en: 'Farmer Services', ta: 'விவசாய சேவைகள்' },
-    advancedResearch: { en: 'Advanced & Research', ta: 'ஆராய்ச்சி & விவரங்கள்' },
+    researchAndAnalytics: { en: 'Research & Analytics', ta: 'ஆராய்ச்சி & பகுப்பாய்வு' },
+    advancedResearch: { en: 'Advanced / Research', ta: 'ஆராய்ச்சி & விவரங்கள்' },
+    support: { en: 'Support', ta: 'உதவி' },
     overview: { en: 'Project Overview', ta: 'திட்டக் கண்ணோட்டம்' },
-    tamilNaduAgri: { en: 'Tamil Nadu Agri Support', ta: 'தமிழ்நாடு வேளாண்மை' },
+    tamilNaduAgri: { en: 'TN Agri Support', ta: 'தமிழ்நாடு வேளாண்மை' },
     active: { en: 'Active', ta: 'செயலில் உள்ளது' },
     tagline: {
       en: 'Turmeric foliar pathology & environmental advisory decision support.',
@@ -97,6 +104,16 @@ export const TRANSLATIONS = {
     hideDetails: { en: 'Hide Technical Details', ta: 'விவரங்களை மறை' },
     sensorConnected: { en: 'IoT Sensor Interface', ta: 'சென்சார் கட்டமைப்பு' },
     manualMode: { en: 'Manual Entry Mode', ta: 'கையேடு உள்ளீட்டு முறை' },
+    liveWeatherSource: { en: '🌦️ Live Weather (Open-Meteo)', ta: '🌦️ நேரலை வானிலை (Open-Meteo)' },
+    liveWeather: { en: 'Live Weather', ta: 'நேரலை வானிலை' },
+    locationSelector: { en: 'Field Location / District', ta: 'கள அமைவிடம் / மாவட்டம்' },
+    fetchingWeather: { en: 'Fetching 14-day live weather data...', ta: '14 நாள் நேரலை வானிலை தரவு பெறப்படுகிறது...' },
+    weatherFetchError: { en: 'Weather data unavailable from Open-Meteo API', ta: 'Open-Meteo API-யிலிருந்து வானிலை தரவு கிடைக்கவில்லை' },
+    manualFieldObservations: { en: 'Manual-Only Field Observations', ta: 'கையேடு கள அளவீடுகள் (நேரடி ஆய்வு)' },
+    manualObservationsDesc: {
+      en: 'In-field measurements requiring direct scouting or soil probes (not supplied by atmospheric weather API).',
+      ta: 'நேரடி கள ஆய்வு அல்லது மண் கருவிகள் மூலம் அளவிடப்படும் அளவீடுகள் (வளிமண்டல வானிலை மாதிரியில் கிடைக்காது).',
+    },
     liveSensor: { en: '🟢 Live Sensor Data (Awaiting Hardware)', ta: '🟢 நேரலை சென்சார் தரவு (இணைப்பு நிலுவை)' },
     manualField: { en: '⚡ Manual Field Input', ta: '⚡ கையேடு கள உள்ளீடு' },
     reanalysisSource: { en: '🌐 Historical Reanalysis (ERA5)', ta: '🌐 வரலாற்று வானிலை தரவு (ERA5)' },
@@ -380,6 +397,12 @@ export const TRANSLATIONS = {
   actions: {
     analyzeImage: { en: 'Analyze Crop Image', ta: 'படத்தை ஆய்வு செய்' },
     chooseImage: { en: 'Choose Photo / Capture', ta: 'புகைப்படம் தேர்வு செய்' },
+    uploadImage: { en: 'Upload Photo', ta: 'படத்தைப் பதிவேற்று' },
+    useCamera: { en: 'Use Camera', ta: 'கேமராவைப் பயன்படுத்து' },
+    capturePhoto: { en: 'Capture Photo', ta: 'படம் எடு' },
+    retakePhoto: { en: 'Retake Photo', ta: 'மீண்டும் படம் எடு' },
+    closeCamera: { en: 'Close Camera', ta: 'கேமராவை மூடு' },
+    switchCamera: { en: 'Switch Camera', ta: 'கேமராவை மாற்று' },
     cycleSample: { en: 'Test Sample Photo', ta: 'மாதிரி படம் பார்க்க' },
     saveToHistory: { en: 'Save to Farm Records', ta: 'பதிவேட்டில் சேமி' },
     proceedToRisk: { en: 'Check Field Weather Risk', ta: 'சுற்றுச்சூழல் அபாயம் பார்க்க' },
@@ -394,6 +417,87 @@ export const TRANSLATIONS = {
     printPdf: { en: 'Print / Save PDF', ta: 'அச்சிடு / PDF சேமி' },
     copySummary: { en: 'Copy Summary', ta: 'நகலெடு' },
     scanNewLeaf: { en: 'Scan New Leaf', ta: 'புதிய படம் ஆய்வு செய்' },
+  },
+
+  // Camera Capture Section
+  camera: {
+    title: { en: 'Live Camera Capture', ta: 'நேரலை கேமரா படம் எடுத்தல்' },
+    instruction: {
+      en: 'Align a single turmeric leaf in the frame with clear focus and good natural lighting.',
+      ta: 'ஒரு மஞ்சள் இலையை நல்ல இயற்கை வெளிச்சத்தில் கேமரா சட்டகத்தின் நடுவில் வைத்து படம் எடுக்கவும்.',
+    },
+    permissionDenied: {
+      en: 'Camera permission was denied. Please enable camera access in your browser settings or choose a photo to upload.',
+      ta: 'கேமரா அனுமதி மறுக்கப்பட்டது. பிரவுசர் அமைப்புகளில் கேமரா அனுமதியை இயக்கவும் அல்லது இலைப்படத்தை பதிவேற்றவும்.',
+    },
+    notFound: {
+      en: 'No camera device was detected on your device. Please use the photo upload option instead.',
+      ta: 'உங்கள் சாதனத்தில் கேமரா எதுவும் கண்டறியப்படவில்லை. தயவுசெய்து பட பதிவேற்ற முறையைப் பயன்படுத்தவும்.',
+    },
+    notSupported: {
+      en: 'Camera access is not supported by your browser. Please upload a leaf photo.',
+      ta: 'உங்கள் பிரவுசரில் கேமரா வசதி ஆதரிக்கப்படவில்லை. தயவுசெய்து இலைப்படத்தை பதிவேற்றவும்.',
+    },
+    initError: {
+      en: 'Could not access the camera. Please check camera permissions and try again.',
+      ta: 'கேமராவை இயக்க முடியவில்லை. கேமரா அனுமதியை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.',
+    },
+    starting: {
+      en: 'Initializing camera stream...',
+      ta: 'கேமரா தயாராகிறது...',
+    },
+    facingEnvironment: {
+      en: 'Rear Camera',
+      ta: 'பின் கேமரா',
+    },
+    facingUser: {
+      en: 'Front Camera',
+      ta: 'முன் கேமரா',
+    },
+    alignLeafTip: {
+      en: 'Place one turmeric leaf inside the frame',
+      ta: 'ஒரு மஞ்சள் இலையை சட்டகத்திற்குள் வைக்கவும்',
+    },
+    captureGuidanceTitle: {
+      en: 'Capture one turmeric leaf',
+      ta: 'ஒரு மஞ்சள் இலை மட்டும் தெளிவாகப் படம் எடுக்கவும்',
+    },
+    captureGuidanceTip1: {
+      en: 'Move closer so one leaf is clearly visible.',
+      ta: 'ஒரு இலையை கேமராவிற்கு அருகில் கொண்டு வாருங்கள்.',
+    },
+    captureGuidanceTip2: {
+      en: 'Use good natural light.',
+      ta: 'நல்ல இயற்கை வெளிச்சத்தைப் பயன்படுத்தவும்.',
+    },
+    captureGuidanceTip3: {
+      en: 'Avoid whole-bush photos.',
+      ta: 'முழு செடியையும் படம் எடுப்பதைத் தவிர்க்கவும்.',
+    },
+    oodRejectionTitle: {
+      en: 'Image not suitable for diagnosis',
+      ta: 'இந்தப் படம் நோய் கண்டறிதலுக்கு ஏற்றதாக இல்லை',
+    },
+    oodRejectionPrompt: {
+      en: 'Please capture a clear, close-up photo of one turmeric leaf.',
+      ta: 'ஒரு மஞ்சள் இலையின் தெளிவான அருகிலுள்ள படத்தை எடுக்கவும்.',
+    },
+    oodGuidanceBullet1: {
+      en: 'Keep one leaf clearly inside the frame',
+      ta: 'ஒரு இலையை சட்டகத்திற்குள் தெளிவாக வைக்கவும்',
+    },
+    oodGuidanceBullet2: {
+      en: 'Move closer',
+      ta: 'கேமராவை அருகில் கொண்டு செல்லவும்',
+    },
+    oodGuidanceBullet3: {
+      en: 'Use natural light',
+      ta: 'நல்ல இயற்கை வெளிச்சத்தைப் பயன்படுத்தவும்',
+    },
+    oodGuidanceBullet4: {
+      en: 'Avoid whole-bush images',
+      ta: 'முழு செடியையும் படம் எடுப்பதைத் தவிர்க்கவும்',
+    },
   },
 
   // Model Comparison Page
@@ -548,6 +652,72 @@ export const TRANSLATIONS = {
       ta: 'இலை அறிகுறி மற்றும் கள வானிலை இரண்டையும் இணைத்து ஒட்டுமொத்த பயிர் அபாயத்தையும் தீர்வுகளையும் பெறுதல்.',
     },
     card3Btn: { en: 'View Multimodal Engine', ta: 'ஒருங்கிணைந்த முடிவைப் பார்க்க' },
+  },
+
+  // Weather & Risk Farmer-First UI
+  weatherRisk: {
+    pageTitle: { en: 'Weather & Field Risk', ta: 'வானிலை & வயல் அபாயம்' },
+    pageSubtitle: {
+      en: 'Current weather and recent conditions for your field.',
+      ta: 'உங்கள் வயலுக்கான தற்போதைய வானிலை மற்றும் சமீபத்திய களச்சூழல்.',
+    },
+    currentWeather: { en: 'Current Weather', ta: 'தற்போதைய வானிலை' },
+    updatedJustNow: { en: 'Updated just now', ta: 'இப்போது புதுப்பிக்கப்பட்டது' },
+    updatedMinutesAgo: { en: 'Updated {min}m ago', ta: '{min} நிமிடம் முன் புதுப்பிக்கப்பட்டது' },
+    recentConditionsTitle: { en: 'Recent Conditions (Last 14 days)', ta: 'சமீபத்திய சூழல் (கடந்த 14 நாட்கள்)' },
+    recentConditionsSub: {
+      en: 'Based on recent weather patterns in your area.',
+      ta: 'உங்கள் பகுதியில் நிலவிய சமீபத்திய வானிலை முறைகளின் அடிப்படையில்.',
+    },
+    fieldRisk: { en: 'Field Risk', ta: 'வயல் அபாயம்' },
+    cropWatch: { en: 'Crop Watch', ta: 'பயிர் கண்காணிப்பு' },
+    generalAdvice: { en: 'General Advice', ta: 'பொதுவான விவசாய ஆலோசனைகள்' },
+    healthyPlantsBetterYields: { en: 'Healthy Plants Better Yields', ta: 'ஆரோக்கியமான பயிர்கள் • சிறந்த மகசூல்' },
+    healthyTurmericFarmers: { en: 'Healthy Turmeric Stronger Farmers', ta: 'ஆரோக்கியமான மஞ்சள் • பலமான விவசாயிகள்' },
+    changeLocation: { en: 'Change Location', ta: 'அமைவிடம் மாற்று' },
+    favourable: { en: 'Favourable', ta: 'சாதகமானது' },
+    moderate: { en: 'Moderate', ta: 'மிதமானது' },
+    normal: { en: 'Normal', ta: 'இயல்பானது' },
+    frequent: { en: 'Frequent', ta: 'அடிக்கடி' },
+    low: { en: 'Low', ta: 'குறைவானது' },
+    suitable: { en: 'Suitable', ta: 'உகந்தது' },
+    lessSuitable: { en: 'Less Suitable', ta: 'குறைந்த சாதகம்' },
+    advancedDetails: { en: 'Advanced / Research Details', ta: 'மேம்பட்ட / ஆராய்ச்சி விவரங்கள்' },
+    validationScopeNote: {
+      en: 'Historical validation currently covers selected Tamil Nadu locations where verified disease/environment observations were available. Live weather assessment is available for other supported locations.',
+      ta: 'வரலாற்று சரிபார்ப்பு தற்போது சரிபார்க்கப்பட்ட நோய்/சுற்றுச்சூழல் பதிவுகள் உள்ள தேர்ந்தெடுக்கப்பட்ட தமிழ்நாடு இடங்களுக்கு மட்டுமே பொருந்தும். மற்ற ஆதரிக்கப்படும் இடங்களுக்கு நேரலை வானிலை மதிப்பீடு செயல்படுகிறது.',
+    },
+  },
+
+  // Recommendations Farmer-First UI
+  farmerRecs: {
+    pageTitle: { en: 'Recommendations', ta: 'பரிந்துரைகள்' },
+    pageSubtitle: {
+      en: 'Simple and practical advice for your turmeric crop.',
+      ta: 'உங்கள் மஞ்சள் பயிருக்கான எளிய மற்றும் நடைமுறை ஆலோசனைகள்.',
+    },
+    currentSituation: { en: 'Current Situation', ta: 'தற்போதைய நிலை' },
+    whyThisRiskHigh: { en: 'Why this risk is high?', ta: 'இந்த அபாயம் ஏன் அதிகமாக உள்ளது?' },
+    whyThisRiskModerate: { en: 'Why this risk is moderate?', ta: 'இந்த அபாயம் ஏன் மிதமாக உள்ளது?' },
+    whyThisRiskLow: { en: 'Why this risk is low?', ta: 'இந்த அபாயம் ஏன் குறைவாக உள்ளது?' },
+    whyThisSituation: { en: 'Why this situation?', ta: 'இந்த நிலைக்கான காரணங்கள்' },
+    whatShouldIDoNow: { en: 'What should I do now?', ta: 'இப்போது நான் என்ன செய்ய வேண்டும்?' },
+    priorityActions: { en: 'Priority Actions', ta: 'முக்கிய பணிகள்' },
+    importantNote: { en: 'Important Note', ta: 'முக்கிய குறிப்பு' },
+    importantNoteText: {
+      en: 'These recommendations are for guidance only. For chemical management, follow TNAU / ICAR-IISR / local agricultural extension guidance and product-label instructions.',
+      ta: 'இந்த பரிந்துரைகள் வழிகாட்டுதலுக்காக மட்டுமே. இரசாயன மேலாண்மைக்கு, தமிழ்நாடு வேளாண்மைப் பல்கலைக்கழகம் (TNAU) / ICAR-IISR / உள்ளூர் வேளாண்மை அலுவலர் வழிகாட்டுதல்கள் மற்றும் தயாரிப்பு லேபிள் வழிமுறைகளைப் பின்பற்றவும்.',
+    },
+    needMoreInfo: { en: 'Need more information?', ta: 'கூடுதல் தகவல் தேவையா?' },
+    talkToOfficer: {
+      en: 'Talk to your local agricultural extension officer for crop-specific management advice.',
+      ta: 'பயிர் மேலாண்மை குறித்த நேரடி ஆலோசனைக்கு உங்கள் பகுதி வேளாண்மை அலுவலரைத் தொடர்பு கொள்ளவும்.',
+    },
+    contactSupport: { en: 'Contact Support', ta: 'உதவிக்கு தொடர்பு கொள்க' },
+    footerRibbon: {
+      en: 'Healthy Plants • Better Yields • A Prosperous Tomorrow',
+      ta: 'ஆரோக்கியமான பயிர்கள் • சிறந்த மகசூல் • வளமான எதிர்காலம்',
+    },
   },
 
   // Footer

@@ -1,52 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
-import { RiskGauge } from '../components/common/RiskGauge';
+import { LocationSelectorModal } from '../components/common/LocationSelectorModal';
 import { TRANSLATIONS } from '../utils/translations';
+import { formatLocationDisplay } from '../services/weatherService';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-  Legend,
-} from 'recharts';
-import {
-  Activity,
-  CheckCircle2,
-  AlertTriangle,
-  Flame,
+  MapPin,
+  Sun,
+  Camera,
+  ArrowRight,
   Thermometer,
   Droplets,
-  Sprout,
-  Compass,
-  Layers,
-  ChevronRight,
-  Eye,
-  Lightbulb,
-  ArrowRight,
-  ShieldAlert,
   CloudRain,
+  Wind,
+  Lightbulb,
+  CheckCircle2,
   Calendar,
+  Sprout,
+  Navigation,
 } from 'lucide-react';
-import { ANALYTICS_DATA } from '../data/mockData';
-
-const PIE_COLORS = ['#ef4444', '#f59e0b', '#8b5cf6', '#10b981'];
 
 export const DashboardPage: React.FC = () => {
   const navigate = useNavigate();
   const {
     language,
-    predictionHistory,
-    multimodalResult,
-    imageResult,
-    envRiskResult,
+    selectedLocation,
+    fetchLiveWeatherData,
+    isWeatherLoading,
     envParameters,
-    openDetailedReport,
     hasAnalyzedImage,
+    multimodalResult,
+    envRiskResult,
+    researchRiskResult,
+    envDataSource,
   } = useApp();
 
-  const recentPredictions = predictionHistory.slice(0, 4);
+  const [showLocationModal, setShowLocationModal] = useState(false);
+
+  // Auto-fetch weather on mount if not already done
+  useEffect(() => {
+    if (envDataSource !== 'live_weather' && !researchRiskResult && !isWeatherLoading) {
+      fetchLiveWeatherData(selectedLocation);
+    }
+  }, []);
+
+
+
   const diseaseKey = multimodalResult.disease as keyof typeof TRANSLATIONS.diseases;
   const diseaseInfo = TRANSLATIONS.diseases[diseaseKey] || {
     en: multimodalResult.disease,
@@ -54,443 +53,266 @@ export const DashboardPage: React.FC = () => {
     desc: { en: '', ta: '' },
   };
 
-  // Immediate practical actions based on disease and overall risk
-  const getImmediateActions = () => {
-    if (!hasAnalyzedImage) {
-      return language === 'ta'
-        ? [
-            'மஞ்சள் இலையின் தெளிவான புகைப்படத்தைப் பதிவேற்றவும் அல்லது படம் எடுக்கவும்.',
-            '"படத்தை ஆய்வு செய்" பொத்தானை அழுத்தி AI நோய் கண்டறிதலைத் தொடங்கவும்.',
-            'கள வானிலை மற்றும் பயிர் பருவ நிலைக் காரணிகளை மதிப்பாய்வு செய்யவும்.',
-          ]
-        : [
-            'Upload or capture a clear turmeric leaf photo.',
-            'Click "Analyze Crop Image" on Disease Detection page to run AI inference.',
-            'Review field microclimate conditions and crop stage risk factors.',
-          ];
-    }
-
-    if (multimodalResult.disease === 'Blotch') {
-      return language === 'ta'
-        ? [
-            'பாதிக்கப்பட்ட இலைகளை உடனடியாக அகற்றி அழித்துவிடவும்.',
-            'காற்றோட்டம் கிடைக்க பாத்திகளைச் சுற்றிலும் உள்ள களைகளை நீக்கவும்.',
-            'மாலையில் தெளிப்பு நீர்ப்பாசனம் செய்வதைத் தவிர்க்கவும்.',
-          ]
-        : [
-            'Remove and safely dispose of severely infected leaves.',
-            'Clear perimeter weeds to improve field airflow.',
-            'Avoid evening overhead sprinkler irrigation.',
-          ];
-    } else if (multimodalResult.disease === 'Leaf Spot') {
-      return language === 'ta'
-        ? [
-            'இலைகளில் தண்ணீர் தேங்காமல் வடித்துவிடவும்.',
-            'வேப்பங்கொட்டை கரைசல் அல்லது பரிந்துரைக்கப்பட்ட அங்கக தெளிப்பு மேற்கொள்ளவும்.',
-            'அடுத்த 3 நாட்களுக்கு பயிரின் புதிய தளிர்களை கண்காணிக்கவும்.',
-          ]
-        : [
-            'Ensure proper field drainage to reduce foliar moisture.',
-            'Consider organic neem-based spray or recommended bio-control.',
-            'Inspect emerging shoots closely over the next 3 days.',
-          ];
-    } else if (multimodalResult.disease === 'Aphids') {
-      return language === 'ta'
-        ? [
-            'இலைகளின் அடியில் 5% வேப்பெண்ணெய் கரைசல் தெளிக்கவும்.',
-            'மஞ்சள் வண்ண ஒட்டும் பொறிகளை (Yellow Sticky Traps) ஏக்கருக்கு 6-8 வைக்கவும்.',
-            'அசுவினி அதிகம் உள்ள பயிர்களை தனிமைப்படுத்தி கவனிக்கவும்.',
-          ]
-        : [
-            'Spray 5% neem seed kernel extract under the leaf surface.',
-            'Install yellow sticky traps (6–8 traps per acre) in the field.',
-            'Isolate and monitor high-density aphid patches.',
-          ];
-    } else {
-      return language === 'ta'
-        ? [
-            'பயிர் ஆரோக்கியமாக உள்ளது; வழக்கமான பாசன முறையைத் தொடரவும்.',
-            'மண் ஈரப்பதத்தை சீராகப் பராமரிக்கவும்.',
-            'வாரமொருமுறை கள ஆய்வு மேற்கொள்ளவும்.',
-          ]
-        : [
-            'Crop foliage is healthy; maintain standard soil moisture routine.',
-            'Ensure steady trench drainage during heavy rains.',
-            'Conduct weekly visual foliage scouting.',
-          ];
-    }
-  };
-
-  const immediateActions = getImmediateActions();
+  const currentRiskLevel = researchRiskResult ? researchRiskResult.riskLevel : envRiskResult.level;
 
   return (
-    <div className="space-y-6 md:space-y-8">
-      {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">
-              {language === 'ta' ? 'தமிழ்நாடு மஞ்சள் பயிர் நலம்' : 'Tamil Nadu Turmeric Health System'}
-            </span>
-          </div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display mt-0.5">
-            {language === 'ta' ? 'பயிர் நல முகப்பு' : 'Crop Health Dashboard'}
+    <div className="space-y-6 max-w-6xl mx-auto font-sans pb-6">
+      {/* 1. Hero Morning Banner */}
+      <div className="relative rounded-3xl overflow-hidden shadow-xs h-44 md:h-52 bg-slate-900 flex items-center">
+        <img
+          src="/turmeric_field_banner.jpg"
+          alt="Turmeric Field Banner"
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+        <div className="relative z-10 px-8 md:px-10 py-6 text-white">
+          <h1 className="text-3xl md:text-4xl font-extrabold font-display tracking-tight text-white drop-shadow-sm">
+            {language === 'ta' ? 'வணக்கம்!' : 'Good Morning!'}
           </h1>
-          <p className="text-sm text-slate-500 mt-1">
-            {language === 'ta'
-              ? 'மஞ்சள் பயிரின் இலை நலம், சுற்றுச்சூழல் ஆபத்து மற்றும் பரிந்துரைக்கப்படும் நடவடிக்கைகளின் களச் சுருக்கம்.'
-              : 'Field overview of turmeric leaf health, environmental risk, and recommended actions.'}
+          <p className="text-sm md:text-base font-semibold text-emerald-100 mt-1 drop-shadow-xs tracking-wide">
+            {language === 'ta' ? 'ஆரோக்கியமான மஞ்சள் • சிறந்த விளைச்சல்' : 'Healthy Turmeric • Better Harvests'}
           </p>
         </div>
-        <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => navigate('/disease-detection')}
-            className="px-4 py-2.5 rounded-xl bg-agri-800 hover:bg-agri-900 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-sm flex items-center gap-2 cursor-pointer"
-          >
-            <span>{language === 'ta' ? 'புதிய படம் ஆய்வு செய்' : 'Scan New Leaf'}</span>
-            <ArrowRight className="w-4 h-4 text-emerald-400" />
-          </button>
-        </div>
       </div>
 
-      {/* PRIMARY SECTION: CROP HEALTH STATUS & WHAT SHOULD I DO NOW */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Current Crop Health Status Card */}
-        <div className="lg:col-span-6 bg-gradient-to-br from-white to-agri-50/60 rounded-3xl p-6 border-2 border-agri-300 shadow-card flex flex-col justify-between">
+      {/* 2. Primary 3-Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+        {/* Card 1: Crop Health */}
+        <div className="md:col-span-4 bg-[#f9fdfa] rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between space-y-4">
           <div>
-            <div className="flex items-center justify-between border-b border-agri-200 pb-3">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">🌿</span>
-                <h2 className="text-base md:text-lg font-extrabold text-slate-900 font-display">
-                  {language === 'ta' ? 'பயிர் நலம் மற்றும் நிலை' : 'Current Crop Health Status'}
-                </h2>
-              </div>
-              <span
-                className={`px-3 py-1 rounded-full text-xs font-extrabold uppercase tracking-wide ${
-                  !hasAnalyzedImage
-                    ? 'bg-slate-100 text-slate-700 border border-slate-300'
-                    : multimodalResult.disease === 'Healthy'
-                    ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                    : 'bg-rose-100 text-rose-800 border border-rose-300'
-                }`}
-              >
-                {!hasAnalyzedImage
-                  ? language === 'ta'
-                    ? 'ஆய்வுக்குத் தயார்'
-                    : 'Ready to Scan'
-                  : multimodalResult.disease === 'Healthy'
-                  ? language === 'ta'
-                    ? 'ஆரோக்கியமான பயிர்'
-                    : 'Healthy Foliage'
-                  : language === 'ta'
-                  ? 'நோய் கண்டறியப்பட்டது'
-                  : 'Disease Detected'}
-              </span>
+            <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+              <Sprout className="w-5 h-5 text-emerald-600 fill-emerald-600" />
+              <span>{language === 'ta' ? 'பயிர் நலம்' : 'Crop Health'}</span>
             </div>
 
-            {/* Disease & Confidence Grid */}
-            <div className="grid grid-cols-2 gap-3.5 my-4">
-              <div className="p-3.5 bg-white rounded-2xl border border-agri-200/80 shadow-xs">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  {language === 'ta' ? 'கண்டறியப்பட்ட நோய்' : 'Identified Disease'}
-                </span>
-                <div className="text-lg md:text-xl font-black text-slate-900 font-display mt-0.5">
-                  {hasAnalyzedImage
-                    ? (diseaseInfo[language] || multimodalResult.disease)
-                    : (language === 'ta' ? 'இலைப்படம் ஆய்வு தேவை' : 'Awaiting Leaf Scan')}
-                </div>
-                <div className="text-[11px] text-slate-500 mt-1 leading-snug">
-                  {hasAnalyzedImage
-                    ? diseaseInfo.desc[language]
-                    : (language === 'ta'
-                        ? 'நோய் அறிகுறிகளை ஆய்வு செய்ய புகைப்படத்தைப் பதிவேற்றவும்.'
-                        : 'Upload or capture a leaf photo to trigger AI pathology analysis.')}
-                </div>
-              </div>
-
-              <div className="p-3.5 bg-white rounded-2xl border border-agri-200/80 shadow-xs flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    {language === 'ta' ? 'மாடல் நம்பிக்கை மதிப்பு' : 'Model Confidence'}
-                  </span>
-                  <div className="text-2xl font-black text-emerald-700 font-mono mt-0.5">
-                    {hasAnalyzedImage ? `${multimodalResult.imageConfidence}%` : '—'}
-                  </div>
-                </div>
-                <div className="text-[11px] text-slate-500">
-                  {hasAnalyzedImage
-                    ? (language === 'ta' ? 'இலைப்பட பரிசோதனை' : 'Visual leaf analysis')
-                    : (language === 'ta' ? 'பரிசோதனைக்கு காத்திருக்கிறது' : 'Awaiting inference')}
-                </div>
-              </div>
-            </div>
-
-            {/* Environmental & Overall Risk Breakdown */}
-            <div className="grid grid-cols-2 gap-3 bg-white/90 p-3.5 rounded-2xl border border-agri-200 text-xs">
-              <div>
-                <span className="text-[10px] text-slate-400 font-bold uppercase">
-                  {language === 'ta' ? 'சுற்றுச்சூழல் அபாயம்' : 'Field Weather Risk'}
-                </span>
-                <div className="text-base font-extrabold text-amber-700 font-mono mt-0.5">
-                  {multimodalResult.environmentalRisk}% ({envRiskResult.level})
-                </div>
-              </div>
-              <div>
-                <span className="text-[10px] text-slate-400 font-bold uppercase">
-                  {language === 'ta' ? 'மொத்த பயிர் அபாயம்' : 'Overall Crop Risk'}
-                </span>
-                <div className="text-base font-extrabold text-rose-700 font-mono mt-0.5">
-                  {multimodalResult.overallRisk}% ({multimodalResult.riskLevel})
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-4 flex items-center justify-between gap-3">
-            <button
-              onClick={() => navigate('/disease-detection')}
-              className="py-2.5 px-4 bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs rounded-xl border border-slate-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
-            >
-              <span>{language === 'ta' ? 'இலைப்பகுதி பார்க்க' : 'View Leaf Scan'}</span>
-            </button>
-            <button
-              onClick={() => navigate('/multimodal-analysis')}
-              className="py-2.5 px-4 bg-agri-800 hover:bg-agri-900 text-white font-bold text-xs rounded-xl transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
-            >
-              <span>{language === 'ta' ? 'முழு அபாய விபரம்' : 'Detailed Risk Flow'}</span>
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-
-        {/* Immediate Practical Actions: WHAT SHOULD I DO NOW */}
-        <div className="lg:col-span-6 bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between">
-          <div>
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <div className="flex items-center gap-2">
-                <Lightbulb className="w-5 h-5 text-amber-600" />
-                <h2 className="text-base md:text-lg font-extrabold text-slate-900 font-display">
-                  {TRANSLATIONS.status.whatToDoNow[language]}
-                </h2>
-              </div>
-              <span className="text-[10px] font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-                {language === 'ta' ? 'உடனடி பணிகள்' : 'Immediate Actions'}
-              </span>
-            </div>
-
-            <div className="my-4 space-y-2.5">
-              {immediateActions.map((action, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 bg-slate-50 hover:bg-agri-50/60 rounded-2xl border border-slate-200/80 transition-colors flex items-start gap-2.5"
-                >
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </div>
-                  <p className="text-xs md:text-sm font-semibold text-slate-800 leading-snug">
-                    {action}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-            <span className="text-[11px] text-slate-400">
-              {language === 'ta' ? 'TNAU வழிகாட்டுதல்படி' : 'Agronomic decision-support'}
-            </span>
-            <button
-              onClick={() => navigate('/recommendations')}
-              className="py-2.5 px-4 bg-agri-50 hover:bg-agri-100 text-agri-950 font-bold text-xs rounded-xl border border-agri-200 transition-colors flex items-center gap-1.5 cursor-pointer"
-            >
-              <span>{language === 'ta' ? 'அனைத்துப் பரிந்துரைகளும்' : 'All Recommendations'}</span>
-              <ArrowRight className="w-4 h-4 text-agri-700" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* SEASONAL INTELLIGENCE CONTEXT BANNER */}
-      <div className="bg-gradient-to-r from-emerald-900 via-agri-900 to-slate-900 text-white rounded-3xl p-5 md:p-6 shadow-md">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3.5">
-            <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center shrink-0 text-xl">
-              🌦️
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                  {TRANSLATIONS.season.title[language]}
-                </span>
-                <span className="text-xs font-semibold text-slate-300">
-                  {TRANSLATIONS.season.currentSeason[language]}
-                </span>
-              </div>
-              <h3 className="text-sm md:text-base font-bold text-white mt-1">
-                {TRANSLATIONS.season.cropPhase[language]}
-              </h3>
-              <p className="text-xs text-emerald-100/80 mt-1 max-w-3xl leading-relaxed">
-                {TRANSLATIONS.season.riskNote[language]} {TRANSLATIONS.season.advisory[language]}
+            <div className="my-4 space-y-1.5">
+              <h2 className="text-2xl font-black text-slate-900 font-display">
+                {hasAnalyzedImage
+                  ? (diseaseInfo[language] || multimodalResult.disease)
+                  : (language === 'ta' ? 'ஆய்வுக்குத் தயார்' : 'Ready to check')}
+              </h2>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                {hasAnalyzedImage
+                  ? diseaseInfo.desc[language]
+                  : (language === 'ta'
+                      ? 'உங்கள் மஞ்சள் இலையின் நலம் அறிய ஒரு புகைப்படத்தை எடுக்கவும்.'
+                      : 'Take a photo of your turmeric leaf to know its health status.')}
               </p>
             </div>
           </div>
+
+          <button
+            onClick={() => navigate('/disease-detection')}
+            className="w-full py-3.5 px-5 bg-[#14532d] hover:bg-[#0f3d21] text-white font-bold text-sm rounded-2xl transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Camera className="w-4 h-4 text-emerald-200" />
+            <span>{language === 'ta' ? 'இலையை சரிபார்' : 'Check My Leaf'}</span>
+            <ArrowRight className="w-4 h-4 text-emerald-200 ml-1" />
+          </button>
+        </div>
+
+        {/* Card 2: Today's Weather */}
+        <div className="md:col-span-4 bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between space-y-4">
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+                <Sun className="w-5 h-5 text-amber-500 fill-amber-500" />
+                <span>{language === 'ta' ? 'இன்றைய வானிலை' : "Today's Weather"}</span>
+              </div>
+              <span className="text-[11px] font-medium text-slate-400">
+                {language === 'ta' ? '1 மணி நேரத்திற்கு முன்' : 'Updated 1 hour ago'}
+              </span>
+            </div>
+
+            {/* 4 Metrics Grid */}
+            <div className="grid grid-cols-4 gap-1.5 my-4 text-center">
+              {/* Temperature */}
+              <div className="flex flex-col items-center">
+                <Thermometer className="w-5 h-5 text-rose-500 mb-1" />
+                <span className="text-base font-black text-slate-900 font-mono">{envParameters.temperature}°C</span>
+                <span className="text-[10px] text-slate-500 font-medium">{language === 'ta' ? 'வெப்பம்' : 'Temperature'}</span>
+              </div>
+
+              {/* Humidity */}
+              <div className="flex flex-col items-center">
+                <Droplets className="w-5 h-5 text-blue-500 fill-blue-500 mb-1" />
+                <span className="text-base font-black text-slate-900 font-mono">{envParameters.humidity}%</span>
+                <span className="text-[10px] text-slate-500 font-medium">{language === 'ta' ? 'ஈரப்பதம்' : 'Humidity'}</span>
+              </div>
+
+              {/* Rainfall */}
+              <div className="flex flex-col items-center">
+                <CloudRain className="w-5 h-5 text-cyan-500 mb-1" />
+                <span className="text-base font-black text-slate-900 font-mono">{envParameters.rainfall} mm</span>
+                <span className="text-[10px] text-slate-500 font-medium">{language === 'ta' ? 'மழை' : 'Rainfall'}</span>
+              </div>
+
+              {/* Wind */}
+              <div className="flex flex-col items-center">
+                <Wind className="w-5 h-5 text-sky-500 mb-1" />
+                <span className="text-base font-black text-slate-900 font-mono">{envParameters.windSpeed} km/h</span>
+                <span className="text-[10px] text-slate-500 font-medium">{language === 'ta' ? 'காற்று' : 'Wind'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Location Footer inside Weather Card */}
+          <button
+            onClick={() => setShowLocationModal(true)}
+            className="w-full py-2.5 px-4 bg-[#f8fafc] hover:bg-slate-100 rounded-2xl border border-slate-200/80 flex items-center justify-between text-xs transition-colors cursor-pointer"
+          >
+            <div className="flex items-center gap-1.5 text-slate-700 font-medium truncate">
+              {selectedLocation.isCurrentLocation ? (
+                <Navigation className="w-3.5 h-3.5 text-emerald-600 fill-emerald-600 shrink-0" />
+              ) : (
+                <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+              )}
+              <span className="truncate font-semibold">{formatLocationDisplay(selectedLocation, language)}</span>
+              {selectedLocation.isCurrentLocation && (
+                <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded-md shrink-0">
+                  {language === 'ta' ? 'தற்போதைய இடம்' : 'Current'}
+                </span>
+              )}
+            </div>
+            <span className="text-emerald-800 font-semibold shrink-0 text-[11px]">
+              {language === 'ta' ? 'இடத்தை மாற்று' : 'Change Location'}
+            </span>
+          </button>
+        </div>
+
+        {/* Card 3: Field Risk */}
+        <div className="md:col-span-4 bg-[#fcfdfd] rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between space-y-4">
+          <div>
+            <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+              <Sprout className="w-5 h-5 text-emerald-600 fill-emerald-600" />
+              <span>{language === 'ta' ? 'கள அபாயம்' : 'Field Risk'}</span>
+            </div>
+
+            <div className="my-3">
+              <div
+                className={`w-full py-2 px-4 rounded-2xl text-center text-lg font-extrabold ${
+                  currentRiskLevel === 'High'
+                    ? 'bg-[#ffebee] text-[#c62828] border border-[#ffcdd2]'
+                    : currentRiskLevel === 'Moderate'
+                    ? 'bg-[#fff8e1] text-[#e65100] border border-[#ffe082]'
+                    : 'bg-[#e8f5e9] text-[#1b5e20] border border-[#c8e6c9]'
+                }`}
+              >
+                {currentRiskLevel === 'High'
+                  ? (language === 'ta' ? 'அதிக அபாயம்' : 'High')
+                  : currentRiskLevel === 'Moderate'
+                  ? (language === 'ta' ? 'மிதமானது' : 'Moderate')
+                  : (language === 'ta' ? 'குறைவானது' : 'Low')}
+              </div>
+              <p className="text-xs text-slate-500 mt-2.5 leading-relaxed font-medium">
+                {language === 'ta'
+                  ? 'தற்போதைய வானிலை நிலைமைகள் நோய் பரவலுக்கு சாதகமாக இருக்கலாம்.'
+                  : 'Current weather conditions may be favourable for disease development.'}
+              </p>
+            </div>
+          </div>
+
           <button
             onClick={() => navigate('/environmental-risk')}
-            className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition-all flex items-center gap-1.5 self-start md:self-auto shrink-0 cursor-pointer"
+            className="w-full py-2.5 px-4 bg-white hover:bg-slate-50 rounded-2xl border border-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
           >
-            <span>{language === 'ta' ? 'சுற்றுச்சூழல் நிலை' : 'View Field Conditions'}</span>
-            <ChevronRight className="w-3.5 h-3.5" />
+            <span>{language === 'ta' ? 'விவரங்களை பார்க்க' : 'View Details'}</span>
+            <ArrowRight className="w-3.5 h-3.5 text-slate-600" />
           </button>
         </div>
       </div>
 
-      {/* SECONDARY SECTION: FARM STATISTICS & ANALYTICS */}
-      <div>
-        <div className="mb-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-            {language === 'ta' ? 'களப் புள்ளிவிவரங்கள்' : 'Farm Statistics & Analytics'}
-          </span>
-          <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200 self-start sm:self-auto">
-            {language === 'ta' ? 'மதிப்பீட்டு மாதிரி தரவுத்தொகுப்பு (128 மாதிரிகள்)' : 'Reference Evaluation Cohort (128 Samples)'}
-          </span>
-        </div>
-
-        {/* 4 Summary Stats */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white p-4.5 rounded-2xl border border-[#e2ece6] shadow-card">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                {language === 'ta' ? 'மொத்த சோதனைகள்' : 'Total Field Scans'}
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
-                <Activity className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="text-2xl font-extrabold text-slate-900 font-display mt-2">128</div>
-            <div className="text-[10px] text-slate-500 mt-1">
-              {language === 'ta' ? 'மாதிரித் தொகுப்பில் உள்ள சோதனைகள்' : 'Reference cohort evaluation scans'}
-            </div>
+      {/* 3. Middle 2-Column Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
+        {/* Card 4: Crop Watch */}
+        <div className="md:col-span-6 bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between">
+          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+            <Calendar className="w-4 h-4 text-blue-600" />
+            <span>{language === 'ta' ? 'பயிர் கண்காணிப்பு' : 'Crop Watch'}</span>
           </div>
 
-          <div className="bg-white p-4.5 rounded-2xl border border-[#e2ece6] shadow-card">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                {language === 'ta' ? 'ஆரோக்கியமான இலைகள்' : 'Healthy Crops'}
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center">
-                <CheckCircle2 className="w-4 h-4" />
-              </div>
+          <div className="flex items-end justify-between gap-4 mt-3">
+            <div className="space-y-1.5 max-w-xs">
+              <h3 className="text-base font-extrabold text-slate-900 leading-snug font-display">
+                {language === 'ta'
+                  ? 'உங்கள் பயிர் நோய் கண்காணிப்புப் பருவத்தில் உள்ளது.'
+                  : 'Your crop is in a disease-watch period.'}
+              </h3>
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                {language === 'ta'
+                  ? 'சமீபத்திய வானிலை நிலைமைகள் தொடர் கண்காணிப்பை பரிந்துரைக்கின்றன.'
+                  : 'Recent weather conditions suggest closer monitoring.'}
+              </p>
             </div>
-            <div className="text-2xl font-extrabold text-emerald-700 font-display mt-2">54</div>
-            <div className="text-[10px] text-slate-500 mt-1">42.2% {language === 'ta' ? 'ஆரோக்கியமானது' : 'healthy foliage'}</div>
-          </div>
-
-          <div className="bg-white p-4.5 rounded-2xl border border-[#e2ece6] shadow-card">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                {language === 'ta' ? 'நோய் அறிகுறிகள்' : 'Disease Symptoms'}
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center">
-                <AlertTriangle className="w-4 h-4" />
-              </div>
+            <div className="w-24 h-24 shrink-0 rounded-2xl overflow-hidden flex items-center justify-center">
+              <img
+                src="/turmeric_sprout.jpg"
+                alt="Turmeric Sprout"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <div className="text-2xl font-extrabold text-amber-600 font-display mt-2">74</div>
-            <div className="text-[10px] text-slate-500 mt-1">57.8% {language === 'ta' ? 'கண்காணிப்பில்' : 'positive symptoms'}</div>
-          </div>
-
-          <div className="bg-white p-4.5 rounded-2xl border border-[#e2ece6] shadow-card">
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                {language === 'ta' ? 'அதிக அபாய நிலை' : 'Action Required'}
-              </span>
-              <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center">
-                <Flame className="w-4 h-4" />
-              </div>
-            </div>
-            <div className="text-2xl font-extrabold text-rose-600 font-display mt-2">21</div>
-            <div className="text-[10px] text-slate-500 mt-1">{language === 'ta' ? 'உடனடி பணி தேவை' : 'High priority plots'}</div>
           </div>
         </div>
 
-        {/* Charts & History */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Gauge */}
-          <div className="lg:col-span-5 bg-white p-6 rounded-3xl border border-[#e2ece6] shadow-card flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-slate-900 font-display">
-                  {language === 'ta' ? 'பயிர் அபாய அளவீடு' : 'Current Crop Risk Index'}
-                </h3>
-                <span className="text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded-full border border-rose-200">
-                  {multimodalResult.riskLevel}
-                </span>
-              </div>
-              <div className="py-4 flex justify-center">
-                <RiskGauge
-                  score={multimodalResult.overallRisk}
-                  size={170}
-                  strokeWidth={14}
-                  showLabel={true}
-                  subtitle={language === 'ta' ? 'மொத்த அபாயம்' : 'OVERALL RISK'}
-                />
-              </div>
-            </div>
-            <p className="text-xs text-slate-500 text-center">
-              {language === 'ta'
-                ? 'இலை அறிகுறி மற்றும் தற்போதைய கள சூழல் அளவீடுகள் அடிப்படையில் கணக்கிடப்பட்டது.'
-                : 'Decision-support index based on visual leaf symptoms and environmental parameters.'}
-            </p>
+        {/* Card 5: What should I do now? */}
+        <div className="md:col-span-6 bg-[#f9fdfa] rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between">
+          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+            <Lightbulb className="w-4 h-4 text-emerald-600 fill-emerald-600" />
+            <span>{language === 'ta' ? 'இப்போது என்ன செய்ய வேண்டும்?' : 'What should I do now?'}</span>
           </div>
 
-          {/* Donut Chart */}
-          <div className="lg:col-span-7 bg-white p-6 rounded-3xl border border-[#e2ece6] shadow-card flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <h3 className="text-sm font-bold text-slate-900 font-display">
-                  {language === 'ta' ? 'நோய்களின் விகிதம்' : 'Pathology Composition'}
-                </h3>
-                <span className="text-xs text-slate-400">128 {language === 'ta' ? 'மாதிரிகள்' : 'Samples'}</span>
-              </div>
-              <div className="h-52 w-full pt-2">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={ANALYTICS_DATA.diseaseDistribution}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={55}
-                      outerRadius={80}
-                      paddingAngle={4}
-                      dataKey="count"
-                      nameKey="name"
-                    >
-                      {ANALYTICS_DATA.diseaseDistribution.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip
-                      formatter={(value: any, name: any) => [`${value} samples`, name]}
-                      contentStyle={{
-                        backgroundColor: '#ffffff',
-                        borderRadius: '12px',
-                        border: '1px solid #e2ece6',
-                        fontSize: '12px',
-                      }}
-                    />
-                    <Legend
-                      verticalAlign="bottom"
-                      iconType="circle"
-                      formatter={(value) => (
-                        <span className="text-xs font-semibold text-slate-700 mr-2">{value}</span>
-                      )}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
+          <div className="space-y-2.5 my-3">
+            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+              <span>{language === 'ta' ? 'உங்கள் பயிரைத் தொடர்ந்து கண்காணிக்கவும்.' : 'Keep monitoring your crop.'}</span>
+            </div>
+            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+              <span>{language === 'ta' ? 'ஆரம்ப அறிகுறிகளுக்கு இலைகளை தவறாமல் சரிபார்க்கவும்.' : 'Check leaves regularly for early symptoms.'}</span>
+            </div>
+            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+              <span>{language === 'ta' ? 'நல்ல வடிகால் மற்றும் வயல் காற்றோட்டத்தை பராமரிக்கவும்.' : 'Maintain good drainage and field aeration.'}</span>
             </div>
           </div>
         </div>
       </div>
+
+      {/* 4. Bottom Full Width Banner: Decision-Support Tool Notice */}
+      <div className="bg-[#f0f7ff] rounded-3xl p-5 md:p-6 border border-[#dbeafe] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex items-start gap-3.5 max-w-3xl">
+          <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+            i
+          </div>
+          <div>
+            <h4 className="text-xs font-bold text-slate-900">
+              {language === 'ta' ? 'இது ஒரு முடிவு ஆதரவு கருவி' : 'This is a decision-support tool'}
+            </h4>
+            <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed font-medium">
+              {language === 'ta'
+                ? 'Curuma இலைப்படங்கள் மற்றும் வானிலை நிலைமைகளின் அடிப்படையில் தகவல்களை வழங்குகிறது. இரசாயன மேலாண்மைக்கு, TNAU / ICAR-IISR / உள்ளூர் வேளாண் விரிவாக்கம் மற்றும் தயாரிப்பு-லேபிள் வழிகாட்டுதலைப் பின்பற்றவும்.'
+                : 'Curuma provides information based on leaf images and weather conditions. For chemical management, follow TNAU / ICAR-IISR / local agricultural extension and product-label guidance.'}
+            </p>
+          </div>
+        </div>
+        <div className="text-right hidden sm:flex items-center gap-2.5 shrink-0">
+          <div className="text-right">
+            <span className="text-xs italic text-slate-700 font-serif font-bold block">Healthy Fields</span>
+            <span className="text-xs italic text-slate-700 font-serif font-bold block">Brighter Futures</span>
+          </div>
+          <div className="w-10 h-10 flex items-center justify-center text-2xl">
+            🌿
+          </div>
+        </div>
+      </div>
+
+      {/* Location Modal */}
+      <LocationSelectorModal
+        isOpen={showLocationModal}
+        onClose={() => setShowLocationModal(false)}
+      />
     </div>
   );
 };
+
+export default DashboardPage;

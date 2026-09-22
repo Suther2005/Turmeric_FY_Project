@@ -20,6 +20,7 @@
 
 export type TelemetryDataSource = 
   | 'HISTORICAL_REANALYSIS_ERA5' 
+  | 'LIVE_WEATHER_OPEN_METEO'
   | 'MANUAL_FIELD_INPUT' 
   | 'LIVE_SENSOR_GRID' 
   | 'STANDARDIZED_BUFFER';
@@ -278,8 +279,27 @@ export function transform14dExposureFeatures(records: HourlyEnvironmentalRecord[
     throw new Error(`Feature Transformation Failed: ${validation.errors.join(' | ')}`);
   }
 
-  // Take the most recent 336 hours (14 consecutive days)
-  const window = records.slice(-PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS);
+  // Extract the standardized 336-hour antecedent window:
+  // If the record series contains future forecast hours (e.g. 360-hour live series ending at 23:00 tonight),
+  // slice the 336 hours ending at the current local time so future hours do not contaminate antecedent risk.
+  let window: HourlyEnvironmentalRecord[];
+  if (records.length > PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS) {
+    const nowLocalStr = new Date().toLocaleDateString('en-CA') + 'T' + String(new Date().getHours()).padStart(2, '0') + ':00';
+    let currentIdx = -1;
+    for (let i = records.length - 1; i >= 0; i--) {
+      if (records[i].timestamp <= nowLocalStr) {
+        currentIdx = i;
+        break;
+      }
+    }
+    if (currentIdx >= PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS - 1) {
+      window = records.slice(currentIdx - PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS + 1, currentIdx + 1);
+    } else {
+      window = records.slice(-PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS);
+    }
+  } else {
+    window = records.slice(-PROVISIONAL_BASELINE_THRESHOLDS.REQUIRED_WINDOW_HOURS);
+  }
   const n = window.length;
 
   let rhGe80Hours = 0;

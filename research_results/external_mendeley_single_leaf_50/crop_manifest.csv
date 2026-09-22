@@ -1,0 +1,51 @@
+original_filename,crop_filename,source_class,mapped_class,crop_x1,crop_y1,crop_x2,crop_y2,crop_quality,notes
+Healthy Leaf00007.JPG,crop_Healthy Leaf00007.JPG,Healthy Leaf,Healthy,160,205,840,885,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00008.JPG,crop_Healthy Leaf00008.JPG,Healthy Leaf,Healthy,121,185,801,865,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00009.JPG,crop_Healthy Leaf00009.JPG,Healthy Leaf,Healthy,147,115,827,795,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00023.JPG,crop_Healthy Leaf00023.JPG,Healthy Leaf,Healthy,160,165,840,845,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00024.JPG,crop_Healthy Leaf00024.JPG,Healthy Leaf,Healthy,160,123,840,803,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00027.JPG,crop_Healthy Leaf00027.JPG,Healthy Leaf,Healthy,175,194,855,874,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00029.JPG,crop_Healthy Leaf00029.JPG,Healthy Leaf,Healthy,155,186,835,866,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00036.JPG,crop_Healthy Leaf00036.JPG,Healthy Leaf,Healthy,0,160,680,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00051.JPG,crop_Healthy Leaf00051.JPG,Healthy Leaf,Healthy,160,239,840,919,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00056.JPG,crop_Healthy Leaf00056.JPG,Healthy Leaf,Healthy,127,160,807,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00058.JPG,crop_Healthy Leaf00058.JPG,Healthy Leaf,Healthy,160,172,840,852,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00060.JPG,crop_Healthy Leaf00060.JPG,Healthy Leaf,Healthy,160,117,840,797,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00063.JPG,crop_Healthy Leaf00063.JPG,Healthy Leaf,Healthy,160,160,840,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00071.JPG,crop_Healthy Leaf00071.JPG,Healthy Leaf,Healthy,95,190,775,870,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00109.JPG,crop_Healthy Leaf00109.JPG,Healthy Leaf,Healthy,82,160,762,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00130.JPG,crop_Healthy Leaf00130.JPG,Healthy Leaf,Healthy,152,168,832,848,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00140.JPG,crop_Healthy Leaf00140.JPG,Healthy Leaf,Healthy,42,160,722,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00144.JPG,crop_Healthy Leaf00144.JPG,Healthy Leaf,Healthy,95,160,775,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00152.JPG,crop_Healthy Leaf00152.JPG,Healthy Leaf,Healthy,97,160,777,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00155.JPG,crop_Healthy Leaf00155.JPG,Healthy Leaf,Healthy,256,160,936,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00164.JPG,crop_Healthy Leaf00164.JPG,Healthy Leaf,Healthy,156,193,836,873,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00174.JPG,crop_Healthy Leaf00174.JPG,Healthy Leaf,Healthy,138,160,818,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00189.JPG,crop_Healthy Leaf00189.JPG,Healthy Leaf,Healthy,95,160,775,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00190.JPG,crop_Healthy Leaf00190.JPG,Healthy Leaf,Healthy,239,160,919,840,high,Targeted single-leaf crop on primary healthy lamina
+Healthy Leaf00195.JPG,crop_Healthy Leaf00195.JPG,Healthy Leaf,Healthy,169,170,849,850,high,Targeted single-leaf crop on primary healthy lamina
+Leaf Blotch00002.JPG,crop_Leaf Blotch00002.JPG,Leaf Blotch,Blotch,175,120,825,770,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00024.JPG,crop_Leaf Blotch00024.JPG,Leaf Blotch,Blotch,298,220,948,870,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00025.JPG,crop_Leaf Blotch00025.JPG,Leaf Blotch,Blotch,0,380,620,1000,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00027.JPG,crop_Leaf Blotch00027.JPG,Leaf Blotch,Blotch,199,130,849,780,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00040.JPG,crop_Leaf Blotch00040.JPG,Leaf Blotch,Blotch,175,175,825,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00041.JPG,crop_Leaf Blotch00041.JPG,Leaf Blotch,Blotch,212,175,862,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00056.JPG,crop_Leaf Blotch00056.JPG,Leaf Blotch,Blotch,169,175,819,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00057.JPG,crop_Leaf Blotch00057.JPG,Leaf Blotch,Blotch,35,187,685,837,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00072.JPG,crop_Leaf Blotch00072.JPG,Leaf Blotch,Blotch,163,175,813,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00087.JPG,crop_Leaf Blotch00087.JPG,Leaf Blotch,Blotch,175,175,825,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00088.JPG,crop_Leaf Blotch00088.JPG,Leaf Blotch,Blotch,175,175,825,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00089.JPG,crop_Leaf Blotch00089.JPG,Leaf Blotch,Blotch,15,175,665,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00092.JPG,crop_Leaf Blotch00092.JPG,Leaf Blotch,Blotch,0,263,650,913,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00098.JPG,crop_Leaf Blotch00098.JPG,Leaf Blotch,Blotch,350,229,1000,879,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00108.JPG,crop_Leaf Blotch00108.JPG,Leaf Blotch,Blotch,74,175,724,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00109.JPG,crop_Leaf Blotch00109.JPG,Leaf Blotch,Blotch,175,331,825,981,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00115.JPG,crop_Leaf Blotch00115.JPG,Leaf Blotch,Blotch,96,175,746,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00140.JPG,crop_Leaf Blotch00140.JPG,Leaf Blotch,Blotch,100,175,750,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00151.JPG,crop_Leaf Blotch00151.JPG,Leaf Blotch,Blotch,108,175,758,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00155.JPG,crop_Leaf Blotch00155.JPG,Leaf Blotch,Blotch,0,175,650,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00167.JPG,crop_Leaf Blotch00167.JPG,Leaf Blotch,Blotch,350,187,1000,837,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00179.JPG,crop_Leaf Blotch00179.JPG,Leaf Blotch,Blotch,111,125,761,775,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00180.JPG,crop_Leaf Blotch00180.JPG,Leaf Blotch,Blotch,157,175,807,825,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00184.JPG,crop_Leaf Blotch00184.JPG,Leaf Blotch,Blotch,190,0,840,650,high,Targeted single-leaf crop centered on necrotic blotch lesion
+Leaf Blotch00191.JPG,crop_Leaf Blotch00191.JPG,Leaf Blotch,Blotch,350,18,1000,668,high,Targeted single-leaf crop centered on necrotic blotch lesion
