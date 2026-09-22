@@ -125,6 +125,10 @@ class DiseaseInferenceEngine:
             self.load_ood_stats(self.ood_stats_path)
 
         torch.set_num_threads(1)
+        try:
+            torch.set_num_interop_threads(1)
+        except Exception:
+            pass
 
     @property
     def is_loaded(self) -> bool:
@@ -254,6 +258,7 @@ class DiseaseInferenceEngine:
         """
         Runs server-side inference on raw image bytes.
         Performs Mahalanobis Out-of-Distribution (OOD) Domain Safeguard BEFORE disease classification.
+        Memory-optimized for single-core / 512MB RAM Linux containers.
         """
         if not self.is_loaded:
             raise RuntimeError(
@@ -263,31 +268,59 @@ class DiseaseInferenceEngine:
 
         t0 = time.perf_counter()
 
-        # Safe memory-conscious PIL decoding: downscale oversized photos (e.g. 4000x3000) to max 1024px before tensor conversion
+        # Safe memory-conscious PIL decoding: downscale oversized photos to max 1024px before tensor conversion
         with Image.open(io.BytesIO(image_bytes)) as pil_img:
             if pil_img.width > 1024 or pil_img.height > 1024:
                 pil_img.thumbnail((1024, 1024), Image.Resampling.BILINEAR)
             image = pil_img.convert("RGB")
 
         tensor = INFERENCE_TRANSFORMS(image).unsqueeze(0).to(self.device)
+        del image
         t_prep = (time.perf_counter() - t0) * 1000
 
         # -------------------------------------------------------------
-        # 1. Mahalanobis OOD Domain Safeguard Check (Pre-classification)
+        # 1. EfficientNet Forward Pass (Staged: features -> pool -> flat)
         # -------------------------------------------------------------
         t_ood_start = time.perf_counter()
         mahal_dist = 0.0
         is_ood_rejected = False
+        probs_eff = None
 
-        if self.ood_enabled:
-            mahal_dist = self.compute_mahalanobis_distance(tensor)
-            if mahal_dist > self.ood_threshold:
-                is_ood_rejected = True
+        with torch.inference_mode():
+            if self.efficientnet_model is not None:
+                feat = self.efficientnet_model.features(tensor)
+                feat_pool = self.efficientnet_model.avgpool(feat)
+                del feat
+                flat = torch.flatten(feat_pool, 1)
+                del feat_pool
+
+                if self.ood_enabled and self.ood_class_means is not None and self.ood_precision_matrix is not None:
+                    emb = flat.squeeze(0).cpu().numpy().astype(np.float32)
+                    min_dist = float("inf")
+                    for c in range(len(self.class_names)):
+                        diff = emb - self.ood_class_means[c]
+                        d2 = np.dot(diff, np.dot(self.ood_precision_matrix, diff))
+                        dist = math.sqrt(max(0.0, float(d2)))
+                        if dist < min_dist:
+                            min_dist = dist
+                    mahal_dist = min_dist
+                    del emb
+                    if mahal_dist > self.ood_threshold:
+                        is_ood_rejected = True
+
+                # Compute EfficientNet logits from flat embedding directly (eliminating duplicate forward pass)
+                if not is_ood_rejected:
+                    logits_eff = self.efficientnet_model.classifier(flat)
+                    probs_eff = torch.softmax(logits_eff, dim=1).squeeze(0).cpu().numpy()
+                    del logits_eff
+
+                del flat
 
         t_ood = (time.perf_counter() - t_ood_start) * 1000
 
         if is_ood_rejected:
-            # OOD Rejected: Clearly refuse disease classification
+            del tensor
+            gc.collect()
             print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | OOD={t_ood:.1f}ms (Dist={mahal_dist:.2f} > {self.ood_threshold}) -> OOD_REJECTED")
             return {
                 "disease": "Non-Turmeric / Out-of-Domain",
@@ -315,21 +348,19 @@ class DiseaseInferenceEngine:
             }
 
         # -------------------------------------------------------------
-        # 2. In-Domain Classification (Hybrid Ensemble)
+        # 2. In-Domain Classification (Sequential MobileNetV2)
         # -------------------------------------------------------------
         t_inf_start = time.perf_counter()
-        probs_eff = None
         probs_mob = None
 
         with torch.inference_mode():
-            if self.efficientnet_model is not None:
-                logits_eff = self.efficientnet_model(tensor)
-                probs_eff = torch.softmax(logits_eff, dim=1).squeeze(0).cpu().numpy()
-
             if self.mobilenet_model is not None:
                 logits_mob = self.mobilenet_model(tensor)
                 probs_mob = torch.softmax(logits_mob, dim=1).squeeze(0).cpu().numpy()
+                del logits_mob
 
+        del tensor
+        gc.collect()
         t_inf = (time.perf_counter() - t_inf_start) * 1000
 
         # Hybrid Soft-Voting late fusion: P_hybrid = alpha * P_eff + (1 - alpha) * P_mob
