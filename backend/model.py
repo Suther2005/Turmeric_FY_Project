@@ -20,6 +20,7 @@ import os
 import io
 import time
 import math
+import gc
 import numpy as np
 import torch
 import torch.nn as nn
@@ -160,6 +161,9 @@ class DiseaseInferenceEngine:
             else:
                 model.load_state_dict(checkpoint)
 
+            del checkpoint
+            gc.collect()
+
             model.to(self.device)
             model.eval()
             self.mobilenet_model = model
@@ -182,6 +186,9 @@ class DiseaseInferenceEngine:
             else:
                 model.load_state_dict(checkpoint)
 
+            del checkpoint
+            gc.collect()
+
             model.to(self.device)
             model.eval()
             self.efficientnet_model = model
@@ -195,12 +202,16 @@ class DiseaseInferenceEngine:
         """Loads TRAIN-set-only fitted Mahalanobis centroids and Ledoit-Wolf precision matrix."""
         try:
             data = torch.load(path, map_location="cpu", weights_only=False)
-            self.ood_class_means = data["class_means"]
-            self.ood_precision_matrix = data["precision_matrix"]
+            self.ood_class_means = {
+                int(k): v.astype(np.float32) for k, v in data["class_means"].items()
+            }
+            self.ood_precision_matrix = data["precision_matrix"].astype(np.float32)
             if "threshold" in data:
                 self.ood_threshold = float(data["threshold"])
             self.ood_enabled = True
             self.ood_stats_path = path
+            del data
+            gc.collect()
             print(f"[InferenceEngine] OOD Safeguard loaded from {path} (tau_98={self.ood_threshold:.2f})")
         except Exception as e:
             print(f"[InferenceEngine] Failed to load OOD statistics: {e}")
@@ -229,7 +240,7 @@ class DiseaseInferenceEngine:
             return 0.0
 
         with torch.inference_mode():
-            emb = self.extract_penultimate_embedding(tensor)
+            emb = self.extract_penultimate_embedding(tensor).astype(np.float32)
             min_dist = float("inf")
             for c in range(len(self.class_names)):
                 diff = emb - self.ood_class_means[c]
