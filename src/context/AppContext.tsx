@@ -641,23 +641,71 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const formData = new FormData();
       formData.append('file', uploadedFile);
 
+      // Backend endpoint configuration (Production Render + Localhost dev support)
+      const RENDER_PROD_URL = 'https://curuma-backend.onrender.com/api/predict';
+      const envCustomUrl = import.meta.env.VITE_API_URL
+        ? `${import.meta.env.VITE_API_URL.replace(/\/$/, '')}/api/predict`
+        : null;
+
+      const primaryUrl = envCustomUrl || RENDER_PROD_URL;
+      const candidateUrls = Array.from(
+        new Set([
+          primaryUrl,
+          RENDER_PROD_URL,
+          '/api/predict',
+          'http://127.0.0.1:8000/api/predict',
+        ])
+      );
+
       try {
-        let response: Response;
-        try {
-          response = await fetch('/api/predict', {
-            method: 'POST',
-            body: formData,
-          });
-        } catch {
-          response = await fetch('http://127.0.0.1:8000/api/predict', {
-            method: 'POST',
-            body: formData,
-          });
+        let response: Response | null = null;
+        let lastError: any = null;
+
+        for (const url of candidateUrls) {
+          try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s timeout for Render cold-start
+
+            const res = await fetch(url, {
+              method: 'POST',
+              body: formData,
+              signal: controller.signal,
+            });
+            clearTimeout(timeoutId);
+
+            if (res && (res.ok || res.status < 500)) {
+              response = res;
+              break;
+            } else if (res && res.status >= 500) {
+              response = res; // Keep 5xx response to inspect error details if all fail
+            }
+          } catch (fetchErr: any) {
+            lastError = fetchErr;
+            console.warn(`Fetch to ${url} failed:`, fetchErr);
+          }
+        }
+
+        if (!response) {
+          throw new Error(
+            lastError?.name === 'AbortError'
+              ? (language === 'ta'
+                  ? 'சர்வர் பதிலளிக்க அதிக நேரம் எடுத்தது (Render தொடங்குகிறது). சிறிது நேரத்தில் மீண்டும் முயற்சிக்கவும்.'
+                  : 'Server took too long to respond (Render cold-start). Please retry in a few moments.')
+              : (language === 'ta'
+                  ? 'AI சர்வரைத் தொடர்பு கொள்ள முடியவில்லை. இணைய இணைப்பைச் சரிபார்க்கவும்.'
+                  : 'Could not connect to TurmeriCare AI inference backend. Please verify your internet connection.')
+          );
         }
 
         if (!response.ok) {
           const errData = await response.json().catch(() => ({}));
-          const message = errData.detail || `Server error (${response.status})`;
+          const message =
+            errData.detail ||
+            (response.status === 502 || response.status === 503
+              ? (language === 'ta'
+                  ? 'சர்வர் தற்போது தொடங்குகிறது (Render Free Cold Start). தயவுசெய்து 15 வினாடிகள் கழித்து மீண்டும் முயற்சிக்கவும்.'
+                  : 'Server is currently waking up (Render Free Cold Start). Please retry in ~15 seconds.')
+              : `Server error (${response.status})`);
           throw new Error(message);
         }
 
