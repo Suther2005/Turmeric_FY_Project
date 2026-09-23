@@ -10,17 +10,24 @@ Tests:
 """
 
 import io
+import sys
 import json
-import requests
 from pathlib import Path
+from fastapi.testclient import TestClient
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-API_URL = "http://127.0.0.1:8000"
+BACKEND_DIR = BASE_DIR / "backend"
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
+
+from main import app
+
+client = TestClient(app)
 
 
 def test_health_and_info():
     print("--- 1. Health & Model Info Endpoints ---")
-    h_res = requests.get(f"{API_URL}/api/health")
+    h_res = client.get("/api/health")
     assert h_res.status_code == 200
     h_data = h_res.json()
     print("Health:", json.dumps(h_data, indent=2))
@@ -28,7 +35,7 @@ def test_health_and_info():
     assert h_data["ood_safeguard_enabled"] is True
     assert h_data["ood_threshold"] == 63.10
 
-    m_res = requests.get(f"{API_URL}/api/model-info")
+    m_res = client.get("/api/model-info")
     assert m_res.status_code == 200
     m_data = m_res.json()
     print("\nModel Info:", json.dumps(m_data, indent=2))
@@ -40,7 +47,7 @@ def test_valid_turmeric_image():
     print("\n--- 2. Valid Turmeric Image (Leaf Spot) ---")
     img_p = BASE_DIR / "turmeric_datasets" / "dataset_01" / "original" / "Leaf_Spot" / "leaf_spot_(1).jpg"
     with open(img_p, "rb") as f:
-        res = requests.post(f"{API_URL}/api/predict", files={"file": (img_p.name, f, "image/jpeg")})
+        res = client.post("/api/predict", files={"file": (img_p.name, f, "image/jpeg")})
     assert res.status_code == 200, f"Error: {res.text}"
     data = res.json()
     print(json.dumps(data, indent=2))
@@ -56,7 +63,7 @@ def test_anime_image():
     print("\n--- 3. Anime / Cartoon Image ---")
     img_p = BASE_DIR / "research_results" / "ood_benchmark" / "anime_cartoon" / "anime_01.png"
     with open(img_p, "rb") as f:
-        res = requests.post(f"{API_URL}/api/predict", files={"file": (img_p.name, f, "image/png")})
+        res = client.post("/api/predict", files={"file": (img_p.name, f, "image/png")})
     assert res.status_code == 200, f"Error: {res.text}"
     data = res.json()
     print(json.dumps(data, indent=2))
@@ -74,7 +81,7 @@ def test_unrelated_object_image():
     print("\n--- 4. Unrelated Object Image ---")
     img_p = BASE_DIR / "research_results" / "ood_benchmark" / "unrelated_objects" / "object_01.png"
     with open(img_p, "rb") as f:
-        res = requests.post(f"{API_URL}/api/predict", files={"file": (img_p.name, f, "image/png")})
+        res = client.post("/api/predict", files={"file": (img_p.name, f, "image/png")})
     assert res.status_code == 200, f"Error: {res.text}"
     data = res.json()
     print(json.dumps(data, indent=2))

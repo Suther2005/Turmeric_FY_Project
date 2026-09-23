@@ -67,6 +67,14 @@ def build_efficientnet_b0(num_classes: int = 4, pretrained: bool = False) -> nn.
     return model
 
 
+DEFAULT_NUM_THREADS = int(os.environ.get("TORCH_NUM_THREADS", str(min(4, os.cpu_count() or 1))))
+torch.set_num_threads(DEFAULT_NUM_THREADS)
+try:
+    torch.set_num_interop_threads(1)
+except Exception:
+    pass
+
+
 class DiseaseInferenceEngine:
     def __init__(
         self,
@@ -102,6 +110,8 @@ class DiseaseInferenceEngine:
 
         self.ood_class_means: Optional[Dict[int, np.ndarray]] = None
         self.ood_precision_matrix: Optional[np.ndarray] = None
+        self.ood_class_means_tensor: Optional[torch.Tensor] = None
+        self.ood_precision_matrix_tensor: Optional[torch.Tensor] = None
         self.ood_enabled: bool = False
 
         self.mobilenet_checkpoint_path = mobilenet_checkpoint_path
@@ -123,12 +133,6 @@ class DiseaseInferenceEngine:
 
         if self.ood_stats_path and os.path.isfile(self.ood_stats_path):
             self.load_ood_stats(self.ood_stats_path)
-
-        torch.set_num_threads(1)
-        try:
-            torch.set_num_interop_threads(1)
-        except Exception:
-            pass
 
     @property
     def is_loaded(self) -> bool:
@@ -166,8 +170,6 @@ class DiseaseInferenceEngine:
                 model.load_state_dict(checkpoint)
 
             del checkpoint
-            gc.collect()
-
             model.to(self.device)
             model.eval()
             self.mobilenet_model = model
@@ -191,8 +193,6 @@ class DiseaseInferenceEngine:
                 model.load_state_dict(checkpoint)
 
             del checkpoint
-            gc.collect()
-
             model.to(self.device)
             model.eval()
             self.efficientnet_model = model
@@ -212,10 +212,15 @@ class DiseaseInferenceEngine:
             self.ood_precision_matrix = data["precision_matrix"].astype(np.float32)
             if "threshold" in data:
                 self.ood_threshold = float(data["threshold"])
+            
+            # Vectorized PyTorch tensors for fast C++ BLAS evaluation
+            means_array = np.stack([self.ood_class_means[c] for c in range(len(self.class_names))])
+            self.ood_class_means_tensor = torch.tensor(means_array, dtype=torch.float32, device=self.device)
+            self.ood_precision_matrix_tensor = torch.tensor(self.ood_precision_matrix, dtype=torch.float32, device=self.device)
+
             self.ood_enabled = True
             self.ood_stats_path = path
             del data
-            gc.collect()
             print(f"[InferenceEngine] OOD Safeguard loaded from {path} (tau_98={self.ood_threshold:.2f})")
         except Exception as e:
             print(f"[InferenceEngine] Failed to load OOD statistics: {e}")
@@ -240,10 +245,19 @@ class DiseaseInferenceEngine:
 
     def compute_mahalanobis_distance(self, tensor: torch.Tensor) -> float:
         """Computes minimum Mahalanobis distance to TRAIN class centroids using regularized covariance."""
-        if not self.ood_enabled or self.ood_class_means is None or self.ood_precision_matrix is None:
+        if not self.ood_enabled:
             return 0.0
 
         with torch.inference_mode():
+            if self.ood_class_means_tensor is not None and self.ood_precision_matrix_tensor is not None:
+                feat = self.efficientnet_model.features(tensor)
+                feat = self.efficientnet_model.avgpool(feat)
+                flat = torch.flatten(feat, 1)
+                diff = self.ood_class_means_tensor - flat
+                temp = torch.matmul(diff, self.ood_precision_matrix_tensor)
+                d2 = (temp * diff).sum(dim=1)
+                return float(torch.sqrt(torch.clamp(d2, min=0.0)).min().item())
+
             emb = self.extract_penultimate_embedding(tensor).astype(np.float32)
             min_dist = float("inf")
             for c in range(len(self.class_names)):
@@ -258,7 +272,7 @@ class DiseaseInferenceEngine:
         """
         Runs server-side inference on raw image bytes.
         Performs Mahalanobis Out-of-Distribution (OOD) Domain Safeguard BEFORE disease classification.
-        Memory-optimized for single-core / 512MB RAM Linux containers.
+        High-performance vectorized inference with minimal memory allocations.
         """
         if not self.is_loaded:
             raise RuntimeError(
@@ -268,14 +282,11 @@ class DiseaseInferenceEngine:
 
         t0 = time.perf_counter()
 
-        # Safe memory-conscious PIL decoding: downscale oversized photos to max 1024px before tensor conversion
+        # Direct in-memory PIL open and conversion to RGB
         with Image.open(io.BytesIO(image_bytes)) as pil_img:
-            if pil_img.width > 1024 or pil_img.height > 1024:
-                pil_img.thumbnail((1024, 1024), Image.Resampling.BILINEAR)
             image = pil_img.convert("RGB")
+            tensor = INFERENCE_TRANSFORMS(image).unsqueeze(0).to(self.device)
 
-        tensor = INFERENCE_TRANSFORMS(image).unsqueeze(0).to(self.device)
-        del image
         t_prep = (time.perf_counter() - t0) * 1000
 
         # -------------------------------------------------------------
@@ -290,11 +301,16 @@ class DiseaseInferenceEngine:
             if self.efficientnet_model is not None:
                 feat = self.efficientnet_model.features(tensor)
                 feat_pool = self.efficientnet_model.avgpool(feat)
-                del feat
                 flat = torch.flatten(feat_pool, 1)
-                del feat_pool
 
-                if self.ood_enabled and self.ood_class_means is not None and self.ood_precision_matrix is not None:
+                if self.ood_enabled and self.ood_class_means_tensor is not None and self.ood_precision_matrix_tensor is not None:
+                    diff = self.ood_class_means_tensor - flat
+                    temp = torch.matmul(diff, self.ood_precision_matrix_tensor)
+                    d2 = (temp * diff).sum(dim=1)
+                    mahal_dist = float(torch.sqrt(torch.clamp(d2, min=0.0)).min().item())
+                    if mahal_dist > self.ood_threshold:
+                        is_ood_rejected = True
+                elif self.ood_enabled and self.ood_class_means is not None and self.ood_precision_matrix is not None:
                     emb = flat.squeeze(0).cpu().numpy().astype(np.float32)
                     min_dist = float("inf")
                     for c in range(len(self.class_names)):
@@ -304,23 +320,17 @@ class DiseaseInferenceEngine:
                         if dist < min_dist:
                             min_dist = dist
                     mahal_dist = min_dist
-                    del emb
                     if mahal_dist > self.ood_threshold:
                         is_ood_rejected = True
 
-                # Compute EfficientNet logits from flat embedding directly (eliminating duplicate forward pass)
+                # Compute EfficientNet logits from flat embedding directly (reusing features)
                 if not is_ood_rejected:
                     logits_eff = self.efficientnet_model.classifier(flat)
                     probs_eff = torch.softmax(logits_eff, dim=1).squeeze(0).cpu().numpy()
-                    del logits_eff
-
-                del flat
 
         t_ood = (time.perf_counter() - t_ood_start) * 1000
 
         if is_ood_rejected:
-            del tensor
-            gc.collect()
             print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | OOD={t_ood:.1f}ms (Dist={mahal_dist:.2f} > {self.ood_threshold}) -> OOD_REJECTED")
             return {
                 "disease": "Non-Turmeric / Out-of-Domain",
@@ -357,10 +367,7 @@ class DiseaseInferenceEngine:
             if self.mobilenet_model is not None:
                 logits_mob = self.mobilenet_model(tensor)
                 probs_mob = torch.softmax(logits_mob, dim=1).squeeze(0).cpu().numpy()
-                del logits_mob
 
-        del tensor
-        gc.collect()
         t_inf = (time.perf_counter() - t_inf_start) * 1000
 
         # Hybrid Soft-Voting late fusion: P_hybrid = alpha * P_eff + (1 - alpha) * P_mob

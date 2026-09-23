@@ -23,14 +23,7 @@ from fastapi.responses import JSONResponse
 from starlette.concurrency import run_in_threadpool
 from PIL import Image, UnidentifiedImageError
 
-import gc
 import torch
-
-torch.set_num_threads(1)
-try:
-    torch.set_num_interop_threads(1)
-except Exception:
-    pass
 
 try:
     from backend.model import DiseaseInferenceEngine, CLASS_NAMES
@@ -156,27 +149,20 @@ async def predict_disease(file: UploadFile = File(...)) -> Dict[str, Any]:
             detail=f"Image size ({len(image_bytes) / (1024*1024):.1f} MB) exceeds maximum allowed limit of 20 MB."
         )
 
-    # Corrupt / non-image validation with PIL
-    try:
-        with Image.open(io.BytesIO(image_bytes)) as pil_img:
-            pil_img.verify()
-    except (UnidentifiedImageError, Exception):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Uploaded file is corrupted or not a valid decodeable image."
-        )
-
-    # Perform inference off the main asyncio loop to prevent event-loop blocking on limited vCPU containers
+    # Perform inference off the main asyncio loop to prevent event-loop blocking
     try:
         t_req_start = time.perf_counter()
-        print(f"[API /api/predict] Processing '{file.filename}' ({len(image_bytes) / 1024:.1f} KB)...")
         result = await run_in_threadpool(engine.predict_image_bytes, image_bytes)
-        del image_bytes
-        gc.collect()
         result["filename"] = file.filename
         t_total = (time.perf_counter() - t_req_start) * 1000
         print(f"[API /api/predict] Successfully completed '{file.filename}' in {t_total:.1f} ms -> {result['disease']} ({result['confidence']}%)")
         return result
+    except (UnidentifiedImageError, ValueError) as e:
+        print(f"[Image Decode Error] {str(e)}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Uploaded file is corrupted or not a valid decodeable image."
+        )
     except Exception as e:
         # Avoid exposing raw server tracebacks to the client
         print(f"[Inference Error] {str(e)}")
