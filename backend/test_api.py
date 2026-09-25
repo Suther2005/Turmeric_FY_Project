@@ -82,10 +82,10 @@ def test_predict_ood_rejection():
     )
     assert response.status_code == 200
     data = response.json()
-    assert data["ood_status"] == "OOD_REJECTED"
-    assert data["disease"] == "Non-Turmeric / Out-of-Domain"
+    assert data["ood_status"] in ["OOD_REJECTED", "VERIFIER_REJECTED"]
+    assert data["disease"] in ["Non-Turmeric / Out-of-Domain", "Unverified / Low Foliar Confidence"]
     assert data["confidence"] == 0.0
-    assert "outside the supported turmeric leaf domain" in data["ood_message"]
+    assert "turmeric leaf" in data["ood_message"].lower()
 
 
 def test_predict_invalid_extension():

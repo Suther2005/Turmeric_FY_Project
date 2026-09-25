@@ -30,28 +30,39 @@ try:
 except ImportError:
     from model import DiseaseInferenceEngine, CLASS_NAMES
 
+try:
+    from backend.chatbot import chat_router
+except ImportError:
+    from chatbot import chat_router
+
 # Locate checkpoints
 BASE_DIR = Path(__file__).resolve().parent
 CHECKPOINTS_DIR = BASE_DIR / "checkpoints"
+VERIFIER_CHECKPOINT = CHECKPOINTS_DIR / "turmeric_leaf_verifier_mobilenetv3.pth"
 MOBILENET_CHECKPOINT = CHECKPOINTS_DIR / "best_model.pth"
 EFFICIENTNET_CHECKPOINT = CHECKPOINTS_DIR / "efficientnet_b0_best.pth"
 OOD_STATS_CHECKPOINT = CHECKPOINTS_DIR / "ood_stats.pt"
 CHECKPOINT_PATH = MOBILENET_CHECKPOINT  # Backward compatibility reference
 
-# Initialize inference engine with verified checkpoints for Clean Hybrid Ensemble (alpha=0.50) + OOD Safeguard (tau_98=63.10)
+# Initialize inference engine with verified checkpoints:
+# Stage 1: MobileNetV3-Small Verifier (tau=0.50)
+# Stage 2: Mahalanobis OOD Safeguard (tau_98=63.10)
+# Stage 3: Clean Hybrid Ensemble (alpha=0.50, EfficientNet-B0 + MobileNetV2)
 engine = DiseaseInferenceEngine(
+    verifier_checkpoint_path=str(VERIFIER_CHECKPOINT) if VERIFIER_CHECKPOINT.exists() else None,
     mobilenet_checkpoint_path=str(MOBILENET_CHECKPOINT) if MOBILENET_CHECKPOINT.exists() else None,
     efficientnet_checkpoint_path=str(EFFICIENTNET_CHECKPOINT) if EFFICIENTNET_CHECKPOINT.exists() else None,
     ood_stats_path=str(OOD_STATS_CHECKPOINT) if OOD_STATS_CHECKPOINT.exists() else None,
     mode="hybrid",
     alpha=0.50,
-    ood_threshold=63.10
+    ood_threshold=63.10,
+    verifier_threshold=0.50
 )
 
 app = FastAPI(
     title="TurmeriCare AI - Pathology Inference Service",
-    description="Backend API for deep learning-based turmeric leaf disease classification with Mahalanobis OOD safeguard.",
-    version="1.0.0"
+    description="Backend API for deep learning-based turmeric leaf disease classification with Stage-1 Verifier and Mahalanobis OOD safeguard.",
+    version="1.1.0"
 )
 
 # CORS configuration for frontend clients
@@ -62,6 +73,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Mount Ask Curcuma Generative AI Chatbot Router
+app.include_router(chat_router, prefix="/api")
 
 MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024  # 20 MB limit
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp"}
@@ -75,6 +89,8 @@ async def health_check() -> Dict[str, Any]:
         "status": "online",
         "service": "TurmeriCare AI Inference Service",
         "model_loaded": engine.is_loaded,
+        "verifier_enabled": engine.verifier_enabled,
+        "verifier_threshold": engine.verifier_threshold,
         "model_architecture": engine.model_name,
         "ood_safeguard_enabled": engine.ood_enabled,
         "ood_threshold": engine.ood_threshold,
@@ -91,6 +107,9 @@ async def model_info() -> Dict[str, Any]:
         "classes": CLASS_NAMES,
         "checkpoint_exists": MOBILENET_CHECKPOINT.exists() or EFFICIENTNET_CHECKPOINT.exists(),
         "checkpoint_path": str(EFFICIENTNET_CHECKPOINT) if EFFICIENTNET_CHECKPOINT.exists() else str(MOBILENET_CHECKPOINT),
+        "verifier_loaded": engine.verifier_enabled,
+        "verifier_threshold": engine.verifier_threshold,
+        "verifier_method": "MobileNetV3-Small Binary Foliar Verifier (Stage-1 Gate, tau=0.50)",
         "mobilenet_loaded": engine.mobilenet_model is not None,
         "efficientnet_loaded": engine.efficientnet_model is not None,
         "ood_safeguard_loaded": engine.ood_enabled,
@@ -105,6 +124,7 @@ async def model_info() -> Dict[str, Any]:
             "std": [0.229, 0.224, 0.225]
         }
     }
+
 
 
 @app.post("/api/predict")

@@ -22,6 +22,8 @@ import {
   Info,
   Bug,
   ShieldCheck,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 const ALLOWED_EXTS = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
@@ -156,7 +158,7 @@ const DISEASE_DYNAMIC_CONTENT: Record<string, DiseaseContentItem> = {
   Blotch: {
     defaultRiskLevel: 'High',
     symptomSummary: (envRiskLevel) => ({
-      en: `Symptoms on the leaf are consistent with Leaf Blotch (Taphrina maculans). Current environmental risk is ${envRiskLevel}, which may support disease development.`,
+      en: `Symptoms on the leaf are consistent with Blotch (Taphrina maculans). Current environmental risk is ${envRiskLevel}, which may support disease development.`,
       ta: `இலையின் அறிகுறிகள் இலைக்கருகல் நோய் (Taphrina maculans) உடன் ஒத்துப்போகின்றன. தற்போதைய சுற்றுச்சூழல் அபாயம் ${envRiskLevel === 'High' ? 'அதிகமாக' : envRiskLevel === 'Moderate' ? 'மிதமாக' : 'குறைவாக'} உள்ளது.`,
     }),
     whyPresent: (envRiskLevel) => [
@@ -205,7 +207,7 @@ const DISEASE_DYNAMIC_CONTENT: Record<string, DiseaseContentItem> = {
   'Leaf Blotch': {
     defaultRiskLevel: 'High',
     symptomSummary: (envRiskLevel) => ({
-      en: `Symptoms on the leaf are consistent with Leaf Blotch (Taphrina maculans). Current environmental risk is ${envRiskLevel}, which may support disease development.`,
+      en: `Symptoms on the leaf are consistent with Blotch (Taphrina maculans). Current environmental risk is ${envRiskLevel}, which may support disease development.`,
       ta: `இலையின் அறிகுறிகள் இலைக்கருகல் நோய் (Taphrina maculans) உடன் ஒத்துப்போகின்றன. தற்போதைய சுற்றுச்சூழல் அபாயம் ${envRiskLevel === 'High' ? 'அதிகமாக' : envRiskLevel === 'Moderate' ? 'மிதமாக' : 'குறைவாக'} உள்ளது.`,
     }),
     whyPresent: (envRiskLevel) => [
@@ -277,8 +279,8 @@ const DISEASE_DYNAMIC_CONTENT: Record<string, DiseaseContentItem> = {
         ta: 'இலைகளின் அடியிலும் இளம் குருத்துகளிலும் அசுவினி பூச்சிகள் உள்ளதா என அடிக்கடி பார்க்கவும்.',
       },
       {
-        en: 'Wash off early localized colonies with a jet water spray or 3% neem oil formulation.',
-        ta: 'ஆரம்ப நிலை பூச்சிகளை அழுத்தமான நீர் தெளிப்பு அல்லது 3% வேப்பெண்ணெய் கரைசல் மூலம் கட்டுப்படுத்தவும்.',
+        en: 'Wash off early localized colonies with a jet water spray or approved botanical neem formulation.',
+        ta: 'ஆரம்ப நிலை பூச்சிகளை அழுத்தமான நீர் தெளிப்பு அல்லது பரிந்துரைக்கப்பட்ட வேப்பெண்ணெய் கரைசல் மூலம் கட்டுப்படுத்தவும்.',
       },
       {
         en: 'Encourage and protect natural predators like ladybird beetles and hoverflies in the field.',
@@ -334,6 +336,7 @@ export const DiseaseDetectionPage: React.FC = () => {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [showFullImageModal, setShowFullImageModal] = useState(false);
+  const [showWhyResult, setShowWhyResult] = useState(false);
   const [analysisTimestamp, setAnalysisTimestamp] = useState<string>('');
 
   // Camera Integration State
@@ -347,11 +350,9 @@ export const DiseaseDetectionPage: React.FC = () => {
   const t = TRANSLATIONS;
 
   const processingSteps = [
-    language === 'ta' ? 'இலைப்படத்தின் தரத்தை சரிபார்க்கிறது...' : 'Validating foliar image integrity & format...',
-    language === 'ta' ? 'படத்தின் வண்ண நுணுக்கங்களை மாற்றியமைக்கிறது...' : 'Normalizing input image...',
-    language === 'ta' ? 'பூஞ்சை மற்றும் பூச்சி அறிகுறிகளை பகுப்பாய்வு செய்கிறது...' : 'Analyzing foliar patterns...',
-    language === 'ta' ? 'பயிர் நோய்களுடன் ஒப்பிடுகிறது...' : 'Evaluating disease characteristics...',
-    language === 'ta' ? 'இறுதி முடிவுகளை உருவாக்குகிறது...' : 'Generating diagnosis result...',
+    language === 'ta' ? 'உங்கள் இலை சரிபார்க்கப்படுகிறது...' : 'Checking your leaf...',
+    language === 'ta' ? 'மஞ்சள் இலை கண்டறியப்பட்டது. நோயை பகுப்பாய்வு செய்கிறது...' : 'Turmeric leaf detected. Analyzing disease...',
+    language === 'ta' ? 'நோய் பகுப்பாய்வு செய்யப்படுகிறது...' : 'Analyzing disease...',
   ];
 
   const diseaseKey = imageResult.disease as keyof typeof TRANSLATIONS.diseases;
@@ -367,6 +368,36 @@ export const DiseaseDetectionPage: React.FC = () => {
   const diseaseContent =
     DISEASE_DYNAMIC_CONTENT[imageResult.disease] ||
     DISEASE_DYNAMIC_CONTENT['Healthy'];
+
+  const getWhyResultExplanation = (): string => {
+    if (
+      isRejected ||
+      imageResult.disease === 'Non-Turmeric / Out-of-Domain' ||
+      imageResult.disease === 'Clear Turmeric Leaf Required'
+    ) {
+      return TRANSLATIONS.whyResult.ood[language];
+    }
+
+    if (imageResult.disease === 'Healthy') {
+      return TRANSLATIONS.whyResult.healthy(imageResult.confidence)[language];
+    }
+
+    if (imageResult.disease === 'Aphids') {
+      return TRANSLATIONS.whyResult.aphids(imageResult.confidence)[language];
+    }
+
+    if (imageResult.disease === 'Blotch' || imageResult.disease === 'Leaf Blotch') {
+      return TRANSLATIONS.whyResult.blotch(imageResult.confidence)[language];
+    }
+
+    if (imageResult.disease === 'Leaf Spot') {
+      return TRANSLATIONS.whyResult.leafSpot(imageResult.confidence)[language];
+    }
+
+    return language === 'ta'
+      ? `பதிவேற்றப்பட்ட இலையில் கண்டறியப்பட்ட காட்சி வடிவத்தின் அடிப்படையில் ${imageResult.confidence}% நம்பிக்கையுடன் ${imageResult.disease} அடையாளம் காணப்பட்டுள்ளது.`
+      : `The model identified ${imageResult.disease} with ${imageResult.confidence}% confidence based on the visual pattern detected in the uploaded leaf.`;
+  };
 
   // Camera stream cleanup helper
   const stopCameraStream = () => {
@@ -642,45 +673,42 @@ export const DiseaseDetectionPage: React.FC = () => {
   const aphidsProb = imageResult.probabilities.Aphids ?? 0;
   const healthyProb = imageResult.probabilities.Healthy ?? 0;
 
+  const isRejected =
+    imageResult.oodStatus === 'OOD_REJECTED' ||
+    imageResult.oodStatus === 'VERIFIER_REJECTED' ||
+    imageResult.disease === 'Clear Turmeric Leaf Required' ||
+    imageResult.disease === 'Non-Turmeric / Out-of-Domain';
+
   // =========================================================================
-  // VIEW 2: ANALYSIS RESULT VIEW (MATCHING THE REFERENCE SCREENSHOT)
+  // VIEW 2: ANALYSIS RESULT VIEW
   // =========================================================================
   if (hasAnalyzedImage && !isImageAnalyzing) {
     return (
-      <div className="space-y-6 max-w-6xl mx-auto font-sans pb-10">
+      <div className="space-y-6 max-w-4xl mx-auto font-sans pb-10">
         {/* Breadcrumb Navigation */}
         <div className="text-xs text-slate-400 flex items-center gap-1.5 font-medium">
-          <span>Curuma</span>
+          <span>Curcuma</span>
           <span>&gt;</span>
           <span>{language === 'ta' ? 'விவசாய சேவைகள்' : 'Farmer Services'}</span>
           <span>&gt;</span>
-          <span>{language === 'ta' ? 'இலையை சரிபார்' : 'Check Leaf'}</span>
+          <span>{language === 'ta' ? 'இலையை ஸ்கேன் செய்' : 'Scan Leaf'}</span>
           <span>&gt;</span>
           <span className="text-emerald-800 font-bold">{language === 'ta' ? 'முடிவு' : 'Result'}</span>
         </div>
 
-        {/* Header with Title & Badge */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display flex items-center gap-2.5">
-              <Sprout className="w-7 h-7 text-emerald-600 fill-emerald-600" />
-              <span>{language === 'ta' ? 'ஆய்வு முடிவு' : 'Analysis Result'}</span>
-            </h1>
-            <p className="text-sm text-slate-500 mt-1 font-medium">
-              {language === 'ta'
-                ? 'உங்கள் மஞ்சள் இலைக்கான நோய் கணிப்பு மற்றும் விரிவான ஆய்வு முடிவுகள்.'
-                : 'Here is the predicted disease and detailed analysis for your turmeric leaf.'}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-2 text-xs font-bold text-emerald-900 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 shrink-0 self-start sm:self-auto shadow-2xs">
-            <span>🌿</span>
-            <span>Early Detection • Healthier Harvests</span>
-          </div>
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display flex items-center gap-2.5">
+            <Sprout className="w-7 h-7 text-emerald-600 fill-emerald-600" />
+            <span>{language === 'ta' ? 'இலை ஆய்வு முடிவு' : 'Leaf Result'}</span>
+          </h1>
+          <span className="text-xs text-slate-400 font-mono">
+            {analysisTimestamp || 'Just now'}
+          </span>
         </div>
 
-        {/* OOD Rejection Notice if rejected */}
-        {imageResult.oodStatus === 'OOD_REJECTED' ? (
+        {/* OOD / Verifier Rejection Notice if rejected */}
+        {isRejected ? (
           <div className="p-6 bg-amber-50 rounded-3xl border-2 border-amber-300 space-y-4">
             <div className="flex items-center gap-3">
               <div className="p-3 rounded-2xl bg-amber-100 text-amber-800 shrink-0">
@@ -688,12 +716,14 @@ export const DiseaseDetectionPage: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-base font-black text-slate-900">
-                  {language === 'ta' ? 'தெளிவான மஞ்சள் இலை தேவை' : 'Clear Turmeric Leaf Required'}
+                  {language === 'ta'
+                    ? 'இது மஞ்சள் இலை அல்ல'
+                    : 'Not a turmeric leaf'}
                 </h3>
                 <p className="text-xs text-slate-700 font-medium mt-0.5 leading-relaxed">
                   {language === 'ta'
-                    ? 'பதிவேற்றிய படம் தெளிவான மஞ்சள் இலையாக அடையாளம் காணப்படவில்லை. சரியான முடிவிற்கு ஒரு தனி மஞ்சள் இலையை அருகில் வைத்து நல்ல வெளிச்சத்தில் படம் எடுக்கவும்.'
-                    : 'The uploaded image could not be recognized as a single clear turmeric leaf. For accurate diagnosis, please capture one close-up turmeric leaf under good lighting.'}
+                    ? 'தெளிவான மஞ்சள் இலை படத்துடன் மீண்டும் முயற்சி செய்யவும்.'
+                    : 'Please try again with a clear turmeric leaf photo.'}
                 </p>
               </div>
             </div>
@@ -704,10 +734,10 @@ export const DiseaseDetectionPage: React.FC = () => {
                   setHasAnalyzedImage(false);
                   startCameraStream('environment');
                 }}
-                className="py-3 px-5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-xs"
+                className="py-3 px-5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-2xl transition-all flex items-center gap-2 cursor-pointer shadow-xs"
               >
                 <Camera className="w-4 h-4 text-emerald-200" />
-                <span>{language === 'ta' ? 'கேமராவில் மீண்டும் எடு' : 'Retake with Camera'}</span>
+                <span>{language === 'ta' ? 'மீண்டும் ஸ்கேன் செய்' : 'Scan Again'}</span>
               </button>
 
               <button
@@ -715,288 +745,195 @@ export const DiseaseDetectionPage: React.FC = () => {
                   setHasAnalyzedImage(false);
                   fileInputRef.current?.click();
                 }}
-                className="py-3 px-5 bg-white hover:bg-slate-50 text-slate-800 border-2 border-slate-200 font-bold text-xs rounded-xl transition-all flex items-center gap-2 cursor-pointer"
+                className="py-3 px-5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 font-bold text-xs rounded-2xl transition-all flex items-center gap-2 cursor-pointer"
               >
                 <UploadCloud className="w-4 h-4 text-slate-600" />
-                <span>{language === 'ta' ? 'வேறு படம் பதிவேற்று' : 'Upload Another Photo'}</span>
+                <span>{language === 'ta' ? 'புகைப்படம் பதிவேற்று' : 'Upload Photo'}</span>
               </button>
             </div>
           </div>
         ) : (
           <>
-            {/* TOP ROW: 3 CARDS */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-              {/* Card 1: Uploaded Leaf Image (5 cols) */}
-              <div className="md:col-span-5 bg-white rounded-3xl p-5 border border-[#e2ece6] shadow-xs space-y-3 flex flex-col justify-between">
-                <div className="flex items-center justify-between text-xs text-slate-600 font-bold border-b border-slate-100 pb-2">
-                  <div className="flex items-center gap-2 text-slate-800">
-                    <Camera className="w-4 h-4 text-emerald-600" />
-                    <span>{language === 'ta' ? 'பதிவேற்றிய இலைப்படம்' : 'Uploaded Leaf Image'}</span>
-                  </div>
-                  <span className="text-[11px] font-medium text-slate-400 font-mono">
-                    {analysisTimestamp || 'Just now'}
-                  </span>
-                </div>
-
-                <div className="relative w-full h-48 sm:h-52 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 group flex items-center justify-center">
-                  <img
-                    src={currentImageSrc || '/turmeric_leaf_sample.jpg'}
-                    alt="Uploaded Turmeric Leaf"
-                    className="w-full h-full object-contain bg-slate-50"
-                  />
-                  <button
-                    onClick={() => setShowFullImageModal(true)}
-                    className="absolute bottom-2.5 right-2.5 bg-white/90 hover:bg-white text-slate-800 px-3 py-1.5 rounded-xl text-xs font-bold shadow-sm transition-all flex items-center gap-1.5 cursor-pointer border border-slate-200"
-                  >
-                    <Maximize2 className="w-3.5 h-3.5 text-slate-600" />
-                    <span>{language === 'ta' ? 'முழு படம் காண்க' : 'View Full Image'}</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Card 2: Detected Disease (4 cols) */}
-              <div
-                className={`md:col-span-4 rounded-3xl p-5 border shadow-xs space-y-3 flex flex-col justify-between ${
-                  imageResult.disease === 'Healthy'
-                    ? 'bg-[#f9fdfa] border-emerald-200'
-                    : 'bg-[#fff9f9] border-[#fed7d7]'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-slate-800 font-bold text-xs">
-                    {imageResult.disease === 'Healthy' ? (
-                      <Sprout className="w-4 h-4 text-emerald-600" />
-                    ) : (
-                      <Bug className="w-4 h-4 text-rose-600" />
-                    )}
-                    <span>{language === 'ta' ? 'கண்டறியப்பட்ட நிலை' : 'Detected Disease'}</span>
-                  </div>
-                  <span
-                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
-                      imageResult.disease === 'Healthy'
-                        ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
-                        : currentCombinedRiskLevel === 'High'
-                        ? 'bg-rose-100 text-rose-800 border-rose-200'
-                        : 'bg-amber-100 text-amber-800 border-amber-200'
-                    }`}
-                  >
-                    {imageResult.disease === 'Healthy'
-                      ? (language === 'ta' ? 'குறைந்த அபாயம்' : 'Low Risk')
-                      : currentCombinedRiskLevel === 'High'
-                      ? (language === 'ta' ? 'அதிக அபாயம்' : 'High Risk')
-                      : (language === 'ta' ? 'மிதமான அபாயம்' : 'Moderate Risk')}
-                  </span>
-                </div>
-
-                <div>
-                  <h2
-                    className={`text-2xl font-black font-display ${
-                      imageResult.disease === 'Healthy' ? 'text-emerald-700' : 'text-rose-600'
-                    }`}
-                  >
-                    {diseaseInfo[language] || imageResult.disease}
-                  </h2>
-                  <div className="mt-1">
-                    <span className="text-xs text-slate-500 font-medium block">Confidence</span>
-                    <span className="text-2xl font-black text-slate-900 font-mono">{imageResult.confidence}%</span>
-                  </div>
-                  <p className="text-xs text-slate-600 mt-2 leading-relaxed font-medium">
-                    {diseaseContent.symptomSummary(currentEnvRiskLevel)[language]}
-                  </p>
-                </div>
-              </div>
-
-              {/* Card 3: Quick Info (3 cols) */}
-              <div className="md:col-span-3 bg-white rounded-3xl p-5 border border-[#e2ece6] shadow-xs space-y-4 flex flex-col justify-between">
-                <div className="flex items-center gap-2 text-slate-800 font-bold text-xs border-b border-slate-100 pb-2">
-                  <Info className="w-4 h-4 text-blue-600" />
-                  <span>{language === 'ta' ? 'சுருக்க விபரம்' : 'Quick Info'}</span>
-                </div>
-
-                <div className="space-y-3 text-xs">
-                  <div className="flex items-start gap-2.5">
-                    <Sprout className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase block">{language === 'ta' ? 'பயிர்' : 'Crop'}</span>
-                      <span className="font-extrabold text-slate-900">{language === 'ta' ? 'மஞ்சள் (Curcuma longa)' : 'Turmeric (Curcuma longa)'}</span>
-                    </div>
+            {/* PRIMARY FOCUS: Disease Result Card */}
+            <div
+              className={`rounded-3xl p-6 border shadow-xs transition-all ${
+                imageResult.disease === 'Healthy'
+                  ? 'bg-[#f9fdfa] border-emerald-200'
+                  : 'bg-[#fff9f9] border-[#fed7d7]'
+              }`}
+            >
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
+                <div className="flex items-center gap-4">
+                  {/* Leaf Specimen Image */}
+                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shrink-0 flex items-center justify-center">
+                    <img
+                      src={currentImageSrc || '/turmeric_leaf_sample.jpg'}
+                      alt="Turmeric Leaf"
+                      className="w-full h-full object-cover"
+                    />
+                    <button
+                      onClick={() => setShowFullImageModal(true)}
+                      className="absolute bottom-1.5 right-1.5 bg-black/60 hover:bg-black/80 text-white p-1 rounded-lg text-xs transition-all cursor-pointer"
+                      title={language === 'ta' ? 'முழு படம்' : 'Full Image'}
+                    >
+                      <Maximize2 className="w-3.5 h-3.5" />
+                    </button>
                   </div>
 
-                  <div className="flex items-start gap-2.5">
-                    <Calendar className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase block">{language === 'ta' ? 'தேதி & நேரம்' : 'Date & Time'}</span>
-                      <span className="font-extrabold text-slate-900 font-mono">{analysisTimestamp || 'Just now'}</span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5">
-                    <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase block">{language === 'ta' ? 'அமைவிடம்' : 'Location'}</span>
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="font-extrabold text-slate-900">{formatLocationDisplay(selectedLocation, language)}</span>
-                        {selectedLocation.isCurrentLocation && (
-                          <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-1.5 py-0.5 rounded-md">
-                            {language === 'ta' ? 'தற்போதைய இடம்' : 'Current'}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-2.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-[10px] text-slate-400 font-bold uppercase block">{language === 'ta' ? 'சுற்றுச்சூழல் / கூட்டு அபாயம்' : 'Current / Combined Risk'}</span>
-                      <span className="font-extrabold text-slate-900">
-                        {currentCombinedRiskLevel === 'High'
-                          ? (language === 'ta' ? 'அதிக அபாயம் (High)' : 'High Risk')
-                          : currentCombinedRiskLevel === 'Moderate'
-                          ? (language === 'ta' ? 'மிதமான அபாயம் (Moderate)' : 'Moderate Risk')
-                          : (language === 'ta' ? 'குறைந்த அபாயம் (Low)' : 'Low Risk')}
+                  {/* Disease Name & Confidence */}
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border ${
+                          imageResult.disease === 'Healthy'
+                            ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                            : currentCombinedRiskLevel === 'High'
+                            ? 'bg-rose-100 text-rose-800 border-rose-200'
+                            : 'bg-amber-100 text-amber-800 border-amber-200'
+                        }`}
+                      >
+                        {imageResult.disease === 'Healthy'
+                          ? (language === 'ta' ? 'ஆரோக்கியமானது' : 'Healthy')
+                          : currentCombinedRiskLevel === 'High'
+                          ? (language === 'ta' ? 'அதிக அபாயம்' : 'High Risk')
+                          : (language === 'ta' ? 'மிதமான அபாயம்' : 'Moderate Risk')}
                       </span>
                     </div>
+
+                    <h2
+                      className={`text-2xl sm:text-3xl font-black font-display tracking-tight ${
+                        imageResult.disease === 'Healthy' ? 'text-emerald-700' : 'text-rose-600'
+                      }`}
+                    >
+                      {diseaseInfo[language] || imageResult.disease}
+                    </h2>
+
+                    <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                      <span>{language === 'ta' ? 'நம்பிக்கை மதிப்பு:' : 'Confidence:'}</span>
+                      <span className="font-bold text-slate-900 font-mono text-sm">{imageResult.confidence}%</span>
+                    </div>
                   </div>
+                </div>
+
+                <div className="text-right text-xs text-slate-500 font-medium hidden sm:block">
+                  <div>{formatLocationDisplay(selectedLocation, language)}</div>
                 </div>
               </div>
             </div>
 
-            {/* SECOND ROW: 2 MAIN COLUMNS */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-              {/* LEFT COLUMN: Probabilities & Why Present (6 cols) */}
-              <div className="md:col-span-6 space-y-5">
-                {/* Card 4: Prediction Probabilities */}
-                <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs space-y-4">
-                  <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
-                    <span className="text-emerald-700">📊</span>
-                    <span>{language === 'ta' ? 'கணிப்பு நிகழ்தகவுகள் (அனைத்து வகைகள்)' : 'Prediction Probabilities (All Classes)'}</span>
-                  </div>
-
-                  <div className="space-y-3 pt-1">
-                    {/* Leaf Spot */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-800">
-                        <span>Leaf Spot</span>
-                        <span className="font-mono">{leafSpotProb.toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                        <div className="bg-rose-500 h-2.5 rounded-full" style={{ width: `${Math.min(100, leafSpotProb)}%` }}></div>
-                      </div>
-                    </div>
-
-                    {/* Leaf Blotch */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-800">
-                        <span>Leaf Blotch</span>
-                        <span className="font-mono">{blotchProb.toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                        <div className="bg-amber-400 h-2.5 rounded-full" style={{ width: `${Math.min(100, blotchProb)}%` }}></div>
-                      </div>
-                    </div>
-
-                    {/* Aphids */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-800">
-                        <span>Aphids</span>
-                        <span className="font-mono">{aphidsProb.toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                        <div className="bg-emerald-500 h-2.5 rounded-full" style={{ width: `${Math.min(100, aphidsProb)}%` }}></div>
-                      </div>
-                    </div>
-
-                    {/* Healthy */}
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-xs font-bold text-slate-800">
-                        <span>Healthy</span>
-                        <span className="font-mono">{healthyProb.toFixed(1)}%</span>
-                      </div>
-                      <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-                        <div className="bg-emerald-600 h-2.5 rounded-full" style={{ width: `${Math.min(100, healthyProb)}%` }}></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card 5: Why this diagnosis / disease status? */}
-                <div className="bg-[#f0f7ff] rounded-3xl p-6 border border-[#dbeafe] shadow-xs space-y-3">
-                  <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
-                    <span className="text-blue-600">☁️</span>
-                    <span>
-                      {imageResult.disease === 'Healthy'
-                        ? (language === 'ta' ? 'ஆய்வுப் பின்னணி & சூழல்' : 'Analysis Background & Context')
-                        : (language === 'ta' ? 'இந்த நோய் ஏன் வரக்கூடும்?' : 'Why this disease might be present?')}
-                    </span>
-                  </div>
-
-                  <ul className="space-y-2 text-xs text-slate-700 font-medium pt-1">
-                    {diseaseContent.whyPresent(currentEnvRiskLevel).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-                        <span>{item[language]}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            {/* WHAT TO DO (Immediately After Result) */}
+            <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs space-y-3.5">
+              <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                <span className="text-emerald-700">💡</span>
+                <span>{language === 'ta' ? 'இப்போது என்ன செய்ய வேண்டும்?' : 'What to do'}</span>
               </div>
 
-              {/* RIGHT COLUMN: What should I do now? & Important Note (6 cols) */}
-              <div className="md:col-span-6 space-y-5">
-                {/* Card 6: What should I do now? (DYNAMIC PER DISEASE) */}
-                <div className="bg-[#f9fdfa] rounded-3xl p-6 border border-[#e2ece6] shadow-xs space-y-3.5">
-                  <div className="flex items-center gap-2 text-slate-900 font-bold text-sm">
-                    <span className="text-emerald-700">💡</span>
-                    <span>{language === 'ta' ? 'இப்போது என்ன செய்ய வேண்டும்?' : 'What should I do now?'}</span>
-                  </div>
-
-                  <ul className="space-y-2.5 text-xs text-slate-700 font-semibold pt-1">
-                    {diseaseContent.recommendations(currentEnvRiskLevel).map((item, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5" />
-                        <span>{item[language]}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Card 7: Important Note */}
-                <div className="bg-[#fffdf0] rounded-3xl p-5 border border-[#fef08a] shadow-xs space-y-2">
-                  <div className="flex items-center gap-2 text-amber-900 font-bold text-xs">
-                    <AlertTriangle className="w-4 h-4 text-amber-600" />
-                    <span>{language === 'ta' ? 'முக்கிய குறிப்பு' : 'Important Note'}</span>
-                  </div>
-                  <p className="text-xs text-amber-950 font-medium leading-relaxed">
-                    {language === 'ta'
-                      ? 'இது வழிகாட்டலுக்கான AI-அடிப்படையிலான கணிப்பு மட்டுமே. இரசாயன மேலாண்மைக்கு, TNAU / ICAR-IISR / உள்ளூர் வேளாண் விரிவாக்க அலுவலர் ஆலோசனை மற்றும் தயாரிப்பு-லேபிள் வழிமுறைகளைப் பின்பற்றவும்.'
-                      : 'This is an AI-based prediction for guidance only. For chemical management, follow TNAU / ICAR-IISR / local agricultural extension officer advice and product-label instructions.'}
-                  </p>
-                </div>
-              </div>
+              <ul className="space-y-2.5 text-xs text-slate-700 font-semibold pt-1">
+                {diseaseContent.recommendations(currentEnvRiskLevel).slice(0, 4).map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5" />
+                    <span>{item[language]}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </>
         )}
 
-        {/* BOTTOM ACTION ROW */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
-          <div>
-            <button
-              onClick={handleCheckAnotherLeaf}
-              className="py-3.5 px-6 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm border-2 border-emerald-600 shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
-            >
-              <RotateCcw className="w-4 h-4 text-emerald-700" />
-              <span>{language === 'ta' ? 'மற்றொரு இலையை சரிபார்' : 'Check Another Leaf'}</span>
-            </button>
-          </div>
-
-          <div className="flex items-center gap-2 text-right shrink-0">
-            <span className="text-2xl">🌱</span>
-            <div className="text-left">
-              <span className="text-xs font-serif italic text-emerald-950 font-bold block">Healthy Plants</span>
-              <span className="text-xs font-serif italic text-emerald-950 font-bold block">Better Yields</span>
+        {/* WHY THIS RESULT? (One Compact Expandable Section) */}
+        <div className="bg-white rounded-3xl border border-slate-200 shadow-xs overflow-hidden">
+          <button
+            onClick={() => setShowWhyResult(!showWhyResult)}
+            className="w-full p-5 flex items-center justify-between hover:bg-slate-50/80 transition-colors cursor-pointer text-left"
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="text-base">🔍</span>
+              <span className="text-sm font-extrabold text-slate-900 font-display">
+                {language === 'ta' ? 'இந்த முடிவுக்கான காரணம் என்ன?' : 'Why this result?'}
+              </span>
             </div>
-          </div>
+            {showWhyResult ? (
+              <ChevronUp className="w-4 h-4 text-slate-500" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-slate-500" />
+            )}
+          </button>
+
+          {showWhyResult && (
+            <div className="p-6 border-t border-slate-100 bg-[#f8faf9] space-y-4 text-xs">
+              <p className="text-slate-700 leading-relaxed text-sm font-medium">
+                {getWhyResultExplanation()}
+              </p>
+
+              {!isRejected && (
+                <div className="space-y-2 pt-2 border-t border-slate-200/60">
+                  <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px] block">
+                    {language === 'ta' ? 'கணிப்பு ஒப்பீடு' : 'Prediction Breakdown'}
+                  </span>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
+                    <div className="p-2.5 bg-white rounded-xl border border-slate-200">
+                      <div className="flex justify-between text-[11px] font-bold text-slate-700 mb-1">
+                        <span>Leaf Spot</span>
+                        <span className="font-mono">{leafSpotProb.toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                        <div className="bg-rose-500 h-1.5 rounded-full" style={{ width: `${Math.min(100, leafSpotProb)}%` }}></div>
+                      </div>
+                    </div>
+
+                    <div className="p-2.5 bg-white rounded-xl border border-slate-200">
+                      <div className="flex justify-between text-[11px] font-bold text-slate-700 mb-1">
+                        <span>Blotch</span>
+                        <span className="font-mono">{blotchProb.toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                        <div className="bg-amber-400 h-1.5 rounded-full" style={{ width: `${Math.min(100, blotchProb)}%` }}></div>
+                      </div>
+                    </div>
+
+                    <div className="p-2.5 bg-white rounded-xl border border-slate-200">
+                      <div className="flex justify-between text-[11px] font-bold text-slate-700 mb-1">
+                        <span>Aphids</span>
+                        <span className="font-mono">{aphidsProb.toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                        <div className="bg-emerald-500 h-1.5 rounded-full" style={{ width: `${Math.min(100, aphidsProb)}%` }}></div>
+                      </div>
+                    </div>
+
+                    <div className="p-2.5 bg-white rounded-xl border border-slate-200">
+                      <div className="flex justify-between text-[11px] font-bold text-slate-700 mb-1">
+                        <span>Healthy</span>
+                        <span className="font-mono">{healthyProb.toFixed(0)}%</span>
+                      </div>
+                      <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden">
+                        <div className="bg-emerald-600 h-1.5 rounded-full" style={{ width: `${Math.min(100, healthyProb)}%` }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* BOTTOM ACTION BUTTONS */}
+        <div className="flex flex-wrap items-center gap-3 pt-2">
+          <button
+            onClick={handleCheckAnotherLeaf}
+            className="py-3 px-5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs border border-slate-200 shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
+          >
+            <RotateCcw className="w-4 h-4 text-emerald-700" />
+            <span>{language === 'ta' ? 'மற்றொரு இலையை ஸ்கேன் செய்' : 'Scan Another Leaf'}</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/recommendations')}
+            className="py-3 px-5 rounded-2xl bg-[#14532d] hover:bg-[#0f3d21] text-white font-bold text-xs shadow-xs transition-colors flex items-center gap-2 cursor-pointer"
+          >
+            <span>{language === 'ta' ? 'விரிவான ஆலோசனை' : 'Advice & Recommendations'}</span>
+            <ArrowRight className="w-4 h-4 text-emerald-200" />
+          </button>
         </div>
 
         {/* Full Image Modal */}
@@ -1005,7 +942,7 @@ export const DiseaseDetectionPage: React.FC = () => {
             <div className="bg-white rounded-3xl p-6 max-w-2xl w-full space-y-4 max-h-[90vh] flex flex-col">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <h3 className="text-base font-bold text-slate-900">
-                  {language === 'ta' ? 'முழு இலைப்படம்' : 'Full Leaf Specimen Image'}
+                  {language === 'ta' ? 'முழு இலைப்படம்' : 'Full Leaf Image'}
                 </h3>
                 <button
                   onClick={() => setShowFullImageModal(false)}
@@ -1029,284 +966,232 @@ export const DiseaseDetectionPage: React.FC = () => {
   }
 
   // =========================================================================
-  // VIEW 1: INITIAL LEAF CHECK INPUT VIEW (WITH "BEFORE YOU CHECK" CARD)
+  // VIEW 1: SCAN LEAF PAGE
   // =========================================================================
   return (
-    <div className="space-y-6 max-w-6xl mx-auto font-sans pb-10">
+    <div className="space-y-6 max-w-3xl mx-auto font-sans pb-10">
       {/* Header */}
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display flex items-center gap-2.5">
           <Sprout className="w-7 h-7 text-emerald-600 fill-emerald-600" />
-          <span>{language === 'ta' ? 'மஞ்சள் இலையை சரிபார்க்கவும்' : 'Check Your Turmeric Leaf'}</span>
+          <span>{language === 'ta' ? 'மஞ்சள் இலையை ஸ்கேன் செய்யவும்' : 'Scan Your Leaf'}</span>
         </h1>
         <p className="text-sm text-slate-500 mt-1 font-medium">
           {language === 'ta'
-            ? 'நோய் பாதிப்பை அறிய ஒரு தெளிவான மஞ்சள் இலையின் புகைப்படத்தை எடுக்கவும் அல்லது பதிவேற்றவும்.'
-            : 'Take or upload a clear photo of a turmeric leaf to check for diseases.'}
+            ? 'ஒரு தெளிவான மஞ்சள் இலையின் புகைப்படத்தை எடுக்கவும் அல்லது பதிவேற்றவும்.'
+            : 'Take or upload a clear turmeric leaf photo.'}
         </p>
       </div>
 
-      {/* Main Grid: Left Leaf Photo Input / Preview & Right 'Before you check' Card */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column - Main Photo Input & CTA (8 cols) */}
-        <div className="lg:col-span-8 bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs space-y-5">
-          {/* LIVE CAMERA VIEWFINDER */}
-          {isCameraActive ? (
-            <div className="relative w-full rounded-2xl overflow-hidden bg-slate-950 border-2 border-emerald-500 shadow-md">
-              <div className="relative w-full aspect-[4/3] sm:aspect-video flex items-center justify-center bg-black overflow-hidden">
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  playsInline
-                  muted
-                  aria-label={t.camera.title[language]}
-                  className={`w-full h-full object-cover transition-transform ${
-                    facingMode === 'user' ? 'scale-x-[-1]' : ''
-                  }`}
-                />
-
-                {isCameraLoading && (
-                  <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-xs flex flex-col items-center justify-center text-white space-y-3 z-20">
-                    <RefreshCw className="w-8 h-8 animate-spin text-emerald-400" />
-                    <p className="text-xs font-semibold text-slate-200">{t.camera.starting[language]}</p>
-                  </div>
-                )}
-
-                {cameraError && (
-                  <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center text-white space-y-4 z-20">
-                    <div className="w-12 h-12 rounded-full bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400">
-                      <VideoOff className="w-6 h-6" />
-                    </div>
-                    <div className="space-y-1 max-w-sm">
-                      <h4 className="text-sm font-bold text-rose-300">
-                        {language === 'ta' ? 'கேமரா அணுகல் தோல்வி' : 'Camera Unavailable'}
-                      </h4>
-                      <p className="text-xs text-slate-300 leading-relaxed">{cameraError}</p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 pt-2">
-                      <button
-                        onClick={() => startCameraStream(facingMode)}
-                        className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
-                      >
-                        <RefreshCw className="w-3.5 h-3.5" />
-                        <span>{language === 'ta' ? 'மீண்டும் முயற்சி' : 'Retry'}</span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          stopCameraStream();
-                          fileInputRef.current?.click();
-                        }}
-                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
-                      >
-                        <UploadCloud className="w-3.5 h-3.5" />
-                        <span>{t.actions.uploadImage[language]}</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Viewfinder Controls */}
-              <div className="p-4 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-3">
-                <button
-                  onClick={stopCameraStream}
-                  className="px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
-                >
-                  {t.actions.closeCamera[language]}
-                </button>
-
-                {/* Shutter Button */}
-                <button
-                  onClick={capturePhoto}
-                  disabled={isCameraLoading || !!cameraError}
-                  aria-label={t.actions.capturePhoto[language]}
-                  className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 text-white font-black text-sm tracking-wide shadow-lg shadow-emerald-900/50 transition-all flex items-center gap-2.5 cursor-pointer transform active:scale-95"
-                >
-                  <div className="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
-                  </div>
-                  <span>{t.actions.capturePhoto[language]}</span>
-                </button>
-
-                {hasMultipleCameras ? (
-                  <button
-                    onClick={toggleFacingMode}
-                    className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
-                    title={t.actions.switchCamera[language]}
-                  >
-                    <SwitchCamera className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <div className="w-9"></div>
-                )}
-              </div>
-            </div>
-          ) : hasImage ? (
-            /* Large Prominent Specimen Preview */
-            <div className="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center">
-              <img
-                src={currentImageSrc}
-                alt="Turmeric Leaf Specimen"
-                className={`w-full h-full object-contain bg-slate-50 transition-transform duration-300 ${
-                  isImageAnalyzing ? 'scale-105 filter blur-[1px]' : ''
+      {/* Main Container */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-[#e2ece6] shadow-xs space-y-5">
+        {/* LIVE CAMERA VIEWFINDER */}
+        {isCameraActive ? (
+          <div className="relative w-full rounded-2xl overflow-hidden bg-slate-950 border-2 border-emerald-500 shadow-md">
+            <div className="relative w-full aspect-[4/3] sm:aspect-video flex items-center justify-center bg-black overflow-hidden">
+              <video
+                ref={videoRef}
+                autoPlay
+                playsInline
+                muted
+                aria-label={t.camera.title[language]}
+                className={`w-full h-full object-cover transition-transform ${
+                  facingMode === 'user' ? 'scale-x-[-1]' : ''
                 }`}
               />
 
-              {isImageAnalyzing && <div className="scan-line"></div>}
+              {isCameraLoading && (
+                <div className="absolute inset-0 bg-slate-950/85 backdrop-blur-xs flex flex-col items-center justify-center text-white space-y-3 z-20">
+                  <RefreshCw className="w-8 h-8 animate-spin text-emerald-400" />
+                  <p className="text-xs font-semibold text-slate-200">{t.camera.starting[language]}</p>
+                </div>
+              )}
 
-              {/* Close / Remove Image Button */}
+              {cameraError && (
+                <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center text-white space-y-4 z-20">
+                  <div className="w-12 h-12 rounded-full bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400">
+                    <VideoOff className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1 max-w-sm">
+                    <h4 className="text-sm font-bold text-rose-300">
+                      {language === 'ta' ? 'கேமரா அணுகல் தோல்வி' : 'Camera Unavailable'}
+                    </h4>
+                    <p className="text-xs text-slate-300 leading-relaxed">{cameraError}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <button
+                      onClick={() => startCameraStream(facingMode)}
+                      className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+                    >
+                      <RefreshCw className="w-3.5 h-3.5" />
+                      <span>{language === 'ta' ? 'மீண்டும் முயற்சி' : 'Retry'}</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        stopCameraStream();
+                        fileInputRef.current?.click();
+                      }}
+                      className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5"
+                    >
+                      <UploadCloud className="w-3.5 h-3.5" />
+                      <span>{t.actions.uploadImage[language]}</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Viewfinder Controls */}
+            <div className="p-4 bg-slate-900 border-t border-slate-800 flex items-center justify-between gap-3">
               <button
-                onClick={handleClearImage}
-                className="absolute top-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white p-2 rounded-full text-xs transition-colors cursor-pointer shadow-md"
-                title={language === 'ta' ? 'படத்தை நீக்கு' : 'Remove Image'}
+                onClick={stopCameraStream}
+                className="px-3 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
               >
-                <X className="w-4 h-4 text-white" />
+                {t.actions.closeCamera[language]}
               </button>
+
+              {/* Shutter Button */}
+              <button
+                onClick={capturePhoto}
+                disabled={isCameraLoading || !!cameraError}
+                aria-label={t.actions.capturePhoto[language]}
+                className="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 disabled:bg-slate-700 text-white font-black text-sm tracking-wide shadow-lg shadow-emerald-900/50 transition-all flex items-center gap-2.5 cursor-pointer transform active:scale-95"
+              >
+                <div className="w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
+                  <div className="w-2.5 h-2.5 rounded-full bg-white"></div>
+                </div>
+                <span>{t.actions.capturePhoto[language]}</span>
+              </button>
+
+              {hasMultipleCameras ? (
+                <button
+                  onClick={toggleFacingMode}
+                  className="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
+                  title={t.actions.switchCamera[language]}
+                >
+                  <SwitchCamera className="w-4 h-4" />
+                </button>
+              ) : (
+                <div className="w-9"></div>
+              )}
             </div>
-          ) : (
-            /* Empty Dropzone State */
-            <div
-              onDragOver={(e) => {
-                e.preventDefault();
-                setIsDragging(true);
-              }}
-              onDragLeave={() => setIsDragging(false)}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-              className={`relative border-2 border-dashed rounded-2xl p-8 sm:p-12 transition-all flex flex-col items-center justify-center text-center cursor-pointer min-h-[260px] ${
-                isDragging
-                  ? 'border-emerald-600 bg-emerald-50/50'
-                  : 'border-slate-300 bg-slate-50/50 hover:bg-emerald-50/30 hover:border-emerald-400'
+          </div>
+        ) : hasImage ? (
+          /* Specimen Preview */
+          <div className="relative w-full h-72 sm:h-80 rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 flex items-center justify-center">
+            <img
+              src={currentImageSrc}
+              alt="Turmeric Leaf Specimen"
+              className={`w-full h-full object-contain bg-slate-50 transition-transform duration-300 ${
+                isImageAnalyzing ? 'scale-105 filter blur-[1px]' : ''
               }`}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-emerald-100/80 text-emerald-800 flex items-center justify-center mb-3">
-                <UploadCloud className="w-7 h-7" />
-              </div>
-              <p className="text-sm font-bold text-slate-800 max-w-sm leading-snug">
-                {language === 'ta'
-                  ? 'மஞ்சள் இலை புகைப்படத்தை பதிவேற்ற இங்கு கிளிக் செய்யவும் அல்லது இழுத்துப் போடவும்'
-                  : 'Click or drag a turmeric leaf photo here'}
-              </p>
-              <p className="text-xs text-slate-400 mt-1.5 font-medium">
-                JPG, JPEG, PNG, WEBP
-              </p>
-            </div>
-          )}
+            />
 
-          {/* Hidden File Input */}
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/jpeg,image/png,image/jpg,image/webp"
-            onChange={handleFileUpload}
-            className="hidden"
-          />
+            {isImageAnalyzing && <div className="scan-line"></div>}
 
-          {/* Action Buttons Row: [ Use Camera ] & [ Upload Photo ] */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {/* Remove Image Button */}
             <button
-              onClick={() => startCameraStream('environment')}
-              className="py-3.5 px-5 rounded-2xl bg-[#14532d] hover:bg-[#0f3d21] text-white font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+              onClick={handleClearImage}
+              className="absolute top-3 right-3 bg-slate-900/80 hover:bg-slate-900 text-white p-2 rounded-full text-xs transition-colors cursor-pointer shadow-md"
+              title={language === 'ta' ? 'படத்தை நீக்கு' : 'Remove Image'}
             >
-              <Camera className="w-4 h-4 text-emerald-200" />
-              <span>{language === 'ta' ? 'கேமரா பயன்படுத்து' : 'Use Camera'}</span>
-            </button>
-
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              className="py-3.5 px-5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm border-2 border-slate-200 hover:border-emerald-300 shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <UploadCloud className="w-4 h-4 text-emerald-700" />
-              <span>{language === 'ta' ? 'புகைப்படம் பதிவேற்று' : 'Upload Photo'}</span>
+              <X className="w-4 h-4 text-white" />
             </button>
           </div>
-
-          {/* Error Message */}
-          {analysisError && (
-            <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-2 text-xs text-rose-800">
-              <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-              <div>{analysisError}</div>
-            </div>
-          )}
-
-          {/* Primary Main CTA: [ Analyze Leaf ] */}
-          <button
-            onClick={handleStartAnalysis}
-            disabled={isImageAnalyzing || isCameraActive}
-            className="w-full py-4 rounded-2xl bg-[#14532d] hover:bg-[#0f3d21] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black text-base tracking-wide shadow-md transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+        ) : (
+          /* Empty Dropzone State */
+          <div
+            onDragOver={(e) => {
+              e.preventDefault();
+              setIsDragging(true);
+            }}
+            onDragLeave={() => setIsDragging(false)}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+            className={`relative border-2 border-dashed rounded-2xl p-8 sm:p-10 transition-all flex flex-col items-center justify-center text-center cursor-pointer min-h-[220px] ${
+              isDragging
+                ? 'border-emerald-600 bg-emerald-50/50'
+                : 'border-slate-300 bg-slate-50/50 hover:bg-emerald-50/30 hover:border-emerald-400'
+            }`}
           >
-            {isImageAnalyzing ? (
-              <>
-                <RefreshCw className="w-5 h-5 animate-spin text-emerald-300" />
-                <span>{language === 'ta' ? 'ஆய்வு நடைபெறுகிறது...' : 'Analyzing Leaf...'}</span>
-              </>
-            ) : (
-              <>
-                <ScanEye className="w-5 h-5 text-emerald-300" />
-                <span>{language === 'ta' ? 'இலையை ஆய்வு செய்' : 'Analyze Leaf'}</span>
-              </>
-            )}
+            <div className="w-12 h-12 rounded-2xl bg-emerald-100/80 text-emerald-800 flex items-center justify-center mb-3">
+              <UploadCloud className="w-6 h-6" />
+            </div>
+            <p className="text-sm font-bold text-slate-800 max-w-sm leading-snug">
+              {language === 'ta'
+                ? 'மஞ்சள் இலை புகைப்படத்தை பதிவேற்ற இங்கு கிளிக் செய்யவும் அல்லது இழுத்துப் போடவும்'
+                : 'Click or drag a turmeric leaf photo here'}
+            </p>
+            <p className="text-xs text-slate-400 mt-1 font-medium">
+              JPG, JPEG, PNG, WEBP
+            </p>
+          </div>
+        )}
+
+        {/* Hidden File Input */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/jpg,image/webp"
+          onChange={handleFileUpload}
+          className="hidden"
+        />
+
+        {/* Main Action Buttons: [ 📷 Scan with Camera ] & [ ↑ Upload Photo ] */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <button
+            onClick={() => startCameraStream('environment')}
+            className="py-3.5 px-5 rounded-2xl bg-[#14532d] hover:bg-[#0f3d21] text-white font-bold text-sm shadow-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Camera className="w-4 h-4 text-emerald-200" />
+            <span>{language === 'ta' ? 'கேமரா மூலம் ஸ்கேன் செய்' : 'Scan with Camera'}</span>
+          </button>
+
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="py-3.5 px-5 rounded-2xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm border-2 border-slate-200 hover:border-emerald-300 shadow-xs transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <UploadCloud className="w-4 h-4 text-emerald-700" />
+            <span>{language === 'ta' ? 'புகைப்படம் பதிவேற்று' : 'Upload Photo'}</span>
           </button>
         </div>
 
-        {/* Right Column - Compact 'Before you check' Card (4 cols) */}
-        <div className="lg:col-span-4 bg-[#f9fdfa] rounded-3xl p-6 border border-[#e2ece6] shadow-xs space-y-4">
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-base">
-            <Sprout className="w-5 h-5 text-emerald-600 fill-emerald-600" />
-            <span>{language === 'ta' ? 'சரிபார்க்கும் முன்' : 'Before you check'}</span>
-          </div>
-
-          <div className="space-y-3.5 pt-1">
-            <div className="flex items-start gap-2.5 text-xs text-slate-700 font-semibold leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5" />
-              <span>
-                {language === 'ta'
-                  ? 'ஒரு தெளிவான மஞ்சள் இலையை மட்டும் தேர்வு செய்யவும்'
-                  : 'Take one clear turmeric leaf'}
-              </span>
-            </div>
-
-            <div className="flex items-start gap-2.5 text-xs text-slate-700 font-semibold leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5" />
-              <span>
-                {language === 'ta'
-                  ? 'அருகில் சென்று நல்ல வெளிச்சத்தில் படம் எடுக்கவும்'
-                  : 'Move closer and use good light'}
-              </span>
-            </div>
-
-            <div className="flex items-start gap-2.5 text-xs text-slate-700 font-semibold leading-relaxed">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0 mt-0.5" />
-              <span>
-                {language === 'ta'
-                  ? 'முழு செடியையோ அல்லது தொலைவிலிருந்தோ படம் எடுப்பதைத் தவிர்க்கவும்'
-                  : 'Avoid whole-plant or distant photos'}
-              </span>
-            </div>
-          </div>
-
-          {/* Clean Illustration / Note at Bottom of Card */}
-          <div className="pt-4 flex flex-col items-center text-center border-t border-emerald-100/80">
-            <div className="w-16 h-16 flex items-center justify-center text-4xl my-1">
-              🍃
-            </div>
-            <span className="text-xs font-bold text-emerald-900 font-serif italic">
-              {language === 'ta' ? 'தெளிவான இலை நல்ல முடிவைத் தரும்!' : 'A clear leaf gets better results!'}
-            </span>
-          </div>
+        {/* Short Image-Quality Hint */}
+        <div className="text-center text-xs font-semibold text-slate-500 py-1">
+          <span>🌿 </span>
+          <span>{language === 'ta' ? 'தெளிவான படம் • ஒற்றை இலை • நல்ல வெளிச்சம்' : 'Clear • Single leaf • Good light'}</span>
         </div>
-      </div>
 
-      {/* Bottom Full-Width Information Banner */}
-      <div className="bg-[#f0f7ff] rounded-3xl p-4 sm:p-5 border border-[#dbeafe] shadow-xs flex items-center gap-3">
-        <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 text-xs font-bold">
-          i
-        </div>
-        <p className="text-xs text-slate-600 font-medium leading-relaxed">
-          {language === 'ta'
-            ? 'இலை தெளிவாக இருப்பதை உறுதிப்படுத்தவும். பிற தாவரங்களின் படங்கள் துல்லியமான முடிவுகளைத் தராது.'
-            : 'Make sure the leaf is clearly visible. Other plant images may not give accurate results.'}
-        </p>
+        {/* Error Message */}
+        {analysisError && (
+          <div className="p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-2 text-xs text-rose-800">
+            <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+            <div>{analysisError}</div>
+          </div>
+        )}
+
+        {/* Primary Main CTA: [ Analyze Leaf ] */}
+        <button
+          onClick={handleStartAnalysis}
+          disabled={isImageAnalyzing || isCameraActive}
+          className="w-full py-4 rounded-2xl bg-[#14532d] hover:bg-[#0f3d21] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black text-base tracking-wide shadow-md transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+        >
+          {isImageAnalyzing ? (
+            <>
+              <RefreshCw className="w-5 h-5 animate-spin text-emerald-300" />
+              <span>
+                {activeStepIndex === 0
+                  ? (language === 'ta' ? 'உங்கள் இலை சரிபார்க்கப்படுகிறது...' : 'Checking your leaf...')
+                  : (language === 'ta' ? 'மஞ்சள் இலை கண்டறியப்பட்டது. நோயை பகுப்பாய்வு செய்கிறது...' : 'Turmeric leaf detected. Analyzing disease...')}
+              </span>
+            </>
+          ) : (
+            <>
+              <ScanEye className="w-5 h-5 text-emerald-300" />
+              <span>{language === 'ta' ? 'இலையை ஆய்வு செய்' : 'Analyze Leaf'}</span>
+            </>
+          )}
+        </button>
       </div>
     </div>
   );

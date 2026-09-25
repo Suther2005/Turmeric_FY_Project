@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { LocationSelectorModal } from '../components/common/LocationSelectorModal';
@@ -15,9 +15,9 @@ import {
   Wind,
   Lightbulb,
   CheckCircle2,
-  Calendar,
   Sprout,
   Navigation,
+  TestTubes,
 } from 'lucide-react';
 
 export const DashboardPage: React.FC = () => {
@@ -44,7 +44,39 @@ export const DashboardPage: React.FC = () => {
     }
   }, []);
 
+  const greeting = useMemo(() => {
+    if (language === 'ta') return 'வணக்கம்!';
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good Morning!';
+    if (hour < 17) return 'Good Afternoon!';
+    return 'Good Evening!';
+  }, [language]);
 
+  const relativeUpdateTime = useMemo(() => {
+    const fetchIso = researchRiskResult?.timestamp;
+    if (!fetchIso) {
+      return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+    }
+    try {
+      const fetchedTime = new Date(fetchIso).getTime();
+      const diffMs = Math.max(0, Date.now() - fetchedTime);
+      const diffMinutes = Math.floor(diffMs / 60000);
+      if (diffMinutes < 1) {
+        return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+      }
+      if (diffMinutes < 60) {
+        return language === 'ta'
+          ? `${diffMinutes} நிமிடம் முன்`
+          : `Updated ${diffMinutes}m ago`;
+      }
+      const diffHours = Math.floor(diffMinutes / 60);
+      return language === 'ta'
+        ? `${diffHours} மணி நேரம் முன்`
+        : `Updated ${diffHours}h ago`;
+    } catch {
+      return language === 'ta' ? 'இப்போது புதுப்பிக்கப்பட்டது' : 'Updated just now';
+    }
+  }, [researchRiskResult?.timestamp, language]);
 
   const diseaseKey = multimodalResult.disease as keyof typeof TRANSLATIONS.diseases;
   const diseaseInfo = TRANSLATIONS.diseases[diseaseKey] || {
@@ -67,7 +99,7 @@ export const DashboardPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
         <div className="relative z-10 px-8 md:px-10 py-6 text-white">
           <h1 className="text-3xl md:text-4xl font-extrabold font-display tracking-tight text-white drop-shadow-sm">
-            {language === 'ta' ? 'வணக்கம்!' : 'Good Morning!'}
+            {greeting}
           </h1>
           <p className="text-sm md:text-base font-semibold text-emerald-100 mt-1 drop-shadow-xs tracking-wide">
             {language === 'ta' ? 'ஆரோக்கியமான மஞ்சள் • சிறந்த விளைச்சல்' : 'Healthy Turmeric • Better Harvests'}
@@ -82,7 +114,7 @@ export const DashboardPage: React.FC = () => {
           <div>
             <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
               <Sprout className="w-5 h-5 text-emerald-600 fill-emerald-600" />
-              <span>{language === 'ta' ? 'பயிர் நலம்' : 'Crop Health'}</span>
+              <span>{language === 'ta' ? 'சமீபத்திய இலை ஆய்வு' : 'Latest Leaf Check'}</span>
             </div>
 
             <div className="my-4 space-y-1.5">
@@ -106,7 +138,7 @@ export const DashboardPage: React.FC = () => {
             className="w-full py-3.5 px-5 bg-[#14532d] hover:bg-[#0f3d21] text-white font-bold text-sm rounded-2xl transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer"
           >
             <Camera className="w-4 h-4 text-emerald-200" />
-            <span>{language === 'ta' ? 'இலையை சரிபார்' : 'Check My Leaf'}</span>
+            <span>{language === 'ta' ? 'இலையை ஸ்கேன் செய்' : 'Scan Leaf'}</span>
             <ArrowRight className="w-4 h-4 text-emerald-200 ml-1" />
           </button>
         </div>
@@ -120,7 +152,7 @@ export const DashboardPage: React.FC = () => {
                 <span>{language === 'ta' ? 'இன்றைய வானிலை' : "Today's Weather"}</span>
               </div>
               <span className="text-[11px] font-medium text-slate-400">
-                {language === 'ta' ? '1 மணி நேரத்திற்கு முன்' : 'Updated 1 hour ago'}
+                {relativeUpdateTime}
               </span>
             </div>
 
@@ -205,9 +237,17 @@ export const DashboardPage: React.FC = () => {
                   : (language === 'ta' ? 'குறைவானது' : 'Low')}
               </div>
               <p className="text-xs text-slate-500 mt-2.5 leading-relaxed font-medium">
-                {language === 'ta'
-                  ? 'தற்போதைய வானிலை நிலைமைகள் நோய் பரவலுக்கு சாதகமாக இருக்கலாம்.'
-                  : 'Current weather conditions may be favourable for disease development.'}
+                {currentRiskLevel === 'High'
+                  ? (language === 'ta'
+                      ? 'தற்போதைய வானிலை நிலைமைகள் நோய் பரவலுக்கு சாதகமாக இருக்கலாம். இலைகளை தவறாமல் கண்காணிக்கவும்.'
+                      : 'Current weather conditions may be favourable for disease development. Inspect leaves regularly.')
+                  : currentRiskLevel === 'Moderate'
+                  ? (language === 'ta'
+                      ? 'மிதமான வானிலை சூழல். கள கண்காணிப்பைத் தொடரவும்.'
+                      : 'Moderate weather conditions. Monitor leaves regularly.')
+                  : (language === 'ta'
+                      ? 'தற்போதைய வானிலை நிலைமைகள் நோய் பரவலுக்கு குறைந்த அபாயத்தைக் கொண்டுள்ளன.'
+                      : 'Current weather conditions are low risk for fungal development.')}
               </p>
             </div>
           </div>
@@ -224,85 +264,91 @@ export const DashboardPage: React.FC = () => {
 
       {/* 3. Middle 2-Column Grid */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-        {/* Card 4: Crop Watch */}
+        {/* Card 4: Field Check */}
         <div className="md:col-span-6 bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between">
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
-            <Calendar className="w-4 h-4 text-blue-600" />
-            <span>{language === 'ta' ? 'பயிர் கண்காணிப்பு' : 'Crop Watch'}</span>
+          <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+            <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+              <TestTubes className="w-4 h-4 text-emerald-600" />
+              <span>{language === 'ta' ? 'கள ஆய்வு' : 'Field Check'}</span>
+            </div>
+            <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+              {language === 'ta' ? 'சுற்றுச்சூழல் ஆய்வு' : 'Soil & Climate'}
+            </span>
           </div>
 
-          <div className="flex items-end justify-between gap-4 mt-3">
-            <div className="space-y-1.5 max-w-xs">
-              <h3 className="text-base font-extrabold text-slate-900 leading-snug font-display">
-                {language === 'ta'
-                  ? 'உங்கள் பயிர் நோய் கண்காணிப்புப் பருவத்தில் உள்ளது.'
-                  : 'Your crop is in a disease-watch period.'}
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                {language === 'ta'
-                  ? 'சமீபத்திய வானிலை நிலைமைகள் தொடர் கண்காணிப்பை பரிந்துரைக்கின்றன.'
-                  : 'Recent weather conditions suggest closer monitoring.'}
-              </p>
-            </div>
-            <div className="w-24 h-24 shrink-0 rounded-2xl overflow-hidden flex items-center justify-center">
-              <img
-                src="/turmeric_sprout.jpg"
-                alt="Turmeric Sprout"
-                className="w-full h-full object-contain"
-              />
-            </div>
+          <div className="my-3 space-y-1.5">
+            <h3 className="text-base font-extrabold text-slate-900 leading-snug font-display">
+              {language === 'ta' ? 'கள நிலைமைகளைச் சரிபார்க்கவும்' : 'Check Field Conditions'}
+            </h3>
+            <p className="text-xs text-slate-500 leading-relaxed font-medium">
+              {language === 'ta'
+                ? 'உங்கள் வயலின் மண் ஈரப்பதம், வெப்பநிலை, மற்றும் ஈரப்பத அளவீடுகளை உள்ளிட்டு விரிவான அபாய மதிப்பீட்டைப் பெறுங்கள்.'
+                : 'Enter your field soil moisture, temperature, and relative humidity to evaluate disease risk.'}
+            </p>
           </div>
+
+          <button
+            onClick={() => navigate('/field-conditions')}
+            className="w-full py-2.5 px-4 bg-slate-50 hover:bg-slate-100 text-emerald-900 font-bold text-xs rounded-xl border border-slate-200/80 transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+          >
+            <span>{language === 'ta' ? 'கள ஆய்வு செய்க' : 'Open Field Check'}</span>
+            <ArrowRight className="w-3.5 h-3.5 text-emerald-700" />
+          </button>
         </div>
 
-        {/* Card 5: What should I do now? */}
+        {/* Card 5: Advice & Recommendations */}
         <div className="md:col-span-6 bg-[#f9fdfa] rounded-3xl p-6 border border-[#e2ece6] shadow-xs flex flex-col justify-between">
-          <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
-            <Lightbulb className="w-4 h-4 text-emerald-600 fill-emerald-600" />
-            <span>{language === 'ta' ? 'இப்போது என்ன செய்ய வேண்டும்?' : 'What should I do now?'}</span>
+          <div>
+            <div className="flex items-center justify-between border-b border-slate-100 pb-2.5">
+              <div className="flex items-center gap-2 text-slate-800 font-bold text-sm">
+                <Lightbulb className="w-4 h-4 text-emerald-600 fill-emerald-600" />
+                <span>{language === 'ta' ? 'பரிந்துரைகள் & ஆலோசனை' : 'Advice & Recommendations'}</span>
+              </div>
+              <span className="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                {language === 'ta' ? 'பயிர் பாதுகாப்பு' : 'Crop Care'}
+              </span>
+            </div>
+
+            <div className="space-y-2.5 my-3">
+              <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+                <span>{language === 'ta' ? 'உங்கள் பயிரைத் தொடர்ந்து கண்காணிக்கவும்.' : 'Keep monitoring your crop regularly.'}</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+                <span>{language === 'ta' ? 'ஆரம்ப அறிகுறிகளுக்கு இலைகளை தவறாமல் சரிபார்க்கவும்.' : 'Check leaves regularly for early symptoms.'}</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
+                <span>{language === 'ta' ? 'நல்ல வடிகால் மற்றும் வயல் காற்றோட்டத்தை பராமரிக்கவும்.' : 'Maintain good drainage and field aeration.'}</span>
+              </div>
+            </div>
           </div>
 
-          <div className="space-y-2.5 my-3">
-            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
-              <span>{language === 'ta' ? 'உங்கள் பயிரைத் தொடர்ந்து கண்காணிக்கவும்.' : 'Keep monitoring your crop.'}</span>
-            </div>
-            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
-              <span>{language === 'ta' ? 'ஆரம்ப அறிகுறிகளுக்கு இலைகளை தவறாமல் சரிபார்க்கவும்.' : 'Check leaves regularly for early symptoms.'}</span>
-            </div>
-            <div className="flex items-center gap-2.5 text-xs text-slate-700 font-semibold">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 fill-emerald-600 text-white shrink-0" />
-              <span>{language === 'ta' ? 'நல்ல வடிகால் மற்றும் வயல் காற்றோட்டத்தை பராமரிக்கவும்.' : 'Maintain good drainage and field aeration.'}</span>
-            </div>
-          </div>
+          <button
+            onClick={() => navigate('/recommendations')}
+            className="w-full py-2.5 px-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-900 font-bold text-xs rounded-xl border border-emerald-200/80 transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+          >
+            <span>{language === 'ta' ? 'ஆலோசனை காண்க' : 'View Advice'}</span>
+            <ArrowRight className="w-3.5 h-3.5 text-emerald-700" />
+          </button>
         </div>
       </div>
 
       {/* 4. Bottom Full Width Banner: Decision-Support Tool Notice */}
-      <div className="bg-[#f0f7ff] rounded-3xl p-5 md:p-6 border border-[#dbeafe] shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-start gap-3.5 max-w-3xl">
-          <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
-            i
-          </div>
-          <div>
-            <h4 className="text-xs font-bold text-slate-900">
-              {language === 'ta' ? 'இது ஒரு முடிவு ஆதரவு கருவி' : 'This is a decision-support tool'}
-            </h4>
-            <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed font-medium">
-              {language === 'ta'
-                ? 'Curuma இலைப்படங்கள் மற்றும் வானிலை நிலைமைகளின் அடிப்படையில் தகவல்களை வழங்குகிறது. இரசாயன மேலாண்மைக்கு, TNAU / ICAR-IISR / உள்ளூர் வேளாண் விரிவாக்கம் மற்றும் தயாரிப்பு-லேபிள் வழிகாட்டுதலைப் பின்பற்றவும்.'
-                : 'Curuma provides information based on leaf images and weather conditions. For chemical management, follow TNAU / ICAR-IISR / local agricultural extension and product-label guidance.'}
-            </p>
-          </div>
+      <div className="bg-[#f0f7ff] rounded-3xl p-5 md:p-6 border border-[#dbeafe] shadow-xs flex items-start gap-3.5">
+        <div className="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+          i
         </div>
-        <div className="text-right hidden sm:flex items-center gap-2.5 shrink-0">
-          <div className="text-right">
-            <span className="text-xs italic text-slate-700 font-serif font-bold block">Healthy Fields</span>
-            <span className="text-xs italic text-slate-700 font-serif font-bold block">Brighter Futures</span>
-          </div>
-          <div className="w-10 h-10 flex items-center justify-center text-2xl">
-            🌿
-          </div>
+        <div>
+          <h4 className="text-xs font-bold text-slate-900">
+            {language === 'ta' ? 'இது ஒரு முடிவு ஆதரவு கருவி' : 'This is a decision-support tool'}
+          </h4>
+          <p className="text-[11px] text-slate-600 mt-0.5 leading-relaxed font-medium">
+            {language === 'ta'
+              ? 'Curcuma இலைப்படங்கள் மற்றும் வானிலை நிலைமைகளின் அடிப்படையில் தகவல்களை வழங்குகிறது. இரசாயன மேலாண்மைக்கு, TNAU / ICAR-IISR / உள்ளூர் வேளாண் விரிவாக்கம் மற்றும் தயாரிப்பு-லேபிள் வழிகாட்டுதலைப் பின்பற்றவும்.'
+              : 'Curcuma provides information based on leaf images and weather conditions. For chemical management, follow TNAU / ICAR-IISR / local agricultural extension and product-label guidance.'}
+          </p>
         </div>
       </div>
 

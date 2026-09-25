@@ -1,4 +1,4 @@
-export type DiseaseType = 'Blotch' | 'Leaf Spot' | 'Aphids' | 'Healthy' | 'Non-Turmeric / Out-of-Domain';
+export type DiseaseType = 'Blotch' | 'Leaf Spot' | 'Aphids' | 'Healthy' | 'Non-Turmeric / Out-of-Domain' | 'Clear Turmeric Leaf Required';
 
 export type RiskLevel = 'Low' | 'Moderate' | 'High';
 
@@ -8,12 +8,13 @@ export interface ProbabilityDistribution {
   Aphids: number;
   Healthy: number;
   'Leaf Spot'?: number;
+  [key: string]: number | undefined;
 }
 
 export interface ImageAnalysisResult {
   disease: DiseaseType;
   confidence: number;
-  status: 'Disease Detected' | 'Healthy Crop' | 'Unsupported Specimen';
+  status: 'Disease Detected' | 'Healthy Crop' | 'Unsupported Specimen' | 'Clear Leaf Required';
   probabilities: ProbabilityDistribution;
   extractedFeatures: {
     lesionDensity: string;
@@ -23,7 +24,11 @@ export interface ImageAnalysisResult {
   };
   modelMode?: 'REAL_MODEL' | 'DEMO_MODE';
   modelArchitecture?: string;
-  oodStatus?: 'IN_DOMAIN' | 'OOD_REJECTED';
+  verificationStatus?: 'VERIFIED_TURMERIC_LEAF' | 'VERIFICATION_FAILED';
+  verifierScore?: number;
+  verifierConfidence?: number;
+  verifierThreshold?: number;
+  oodStatus?: 'IN_DOMAIN' | 'OOD_REJECTED' | 'VERIFIER_REJECTED';
   oodMessage?: string;
   mahalanobisDistance?: number;
   oodThreshold?: number;
@@ -41,6 +46,7 @@ export interface ImageAnalysisResult {
     };
   };
 }
+
 
 export interface EnvironmentalParameters {
   temperature: number; // °C (range 15-45)

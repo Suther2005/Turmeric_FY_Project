@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           <div className="w-7 h-7 rounded-xl bg-[#1b4332] text-amber-300 flex items-center justify-center shadow-2xs">
             <Sprout className="w-4 h-4 text-emerald-300 fill-emerald-300" />
           </div>
-          <span>Curuma</span>
+          <span>Curcuma</span>
         </div>
       </div>
 

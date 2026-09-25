@@ -67,6 +67,29 @@ def build_efficientnet_b0(num_classes: int = 4, pretrained: bool = False) -> nn.
     return model
 
 
+class TurmericLeafVerifier(nn.Module):
+    def __init__(self, pretrained: bool = False):
+        super().__init__()
+        weights = models.MobileNet_V3_Small_Weights.DEFAULT if pretrained else None
+        self.backbone = models.mobilenet_v3_small(weights=weights)
+        in_features = self.backbone.classifier[0].in_features
+        self.backbone.classifier = nn.Sequential(
+            nn.Linear(in_features, 256),
+            nn.Hardswish(),
+            nn.Dropout(p=0.2),
+            nn.Linear(256, 1)
+        )
+
+    def forward(self, x):
+        return self.backbone(x).squeeze(-1)
+
+
+def build_mobilenet_v3_small_verifier(pretrained: bool = False) -> nn.Module:
+    """Builds MobileNetV3-Small binary verifier architecture."""
+    return TurmericLeafVerifier(pretrained=pretrained)
+
+
+
 DEFAULT_NUM_THREADS = int(os.environ.get("TORCH_NUM_THREADS", str(min(4, os.cpu_count() or 1))))
 torch.set_num_threads(DEFAULT_NUM_THREADS)
 try:
@@ -81,29 +104,38 @@ class DiseaseInferenceEngine:
         mobilenet_checkpoint_path: Optional[str] = None,
         efficientnet_checkpoint_path: Optional[str] = None,
         ood_stats_path: Optional[str] = None,
+        verifier_checkpoint_path: Optional[str] = None,
         checkpoint_path: Optional[str] = None,
         mode: str = "hybrid",
         alpha: float = 0.50,
-        ood_threshold: float = 63.10
+        ood_threshold: float = 63.10,
+        verifier_threshold: float = 0.50
     ):
         """
-        Inference engine supporting MobileNetV2, Clean EfficientNet-B0, Hybrid Ensemble,
+        Inference engine supporting MobileNetV3-Small Stage-1 Verifier,
+        MobileNetV2, Clean EfficientNet-B0, Hybrid Ensemble,
         and Mahalanobis-based Out-of-Distribution (OOD) Domain Safeguard.
         
         Args:
             mobilenet_checkpoint_path: Path to MobileNetV2 .pth checkpoint
             efficientnet_checkpoint_path: Path to Clean EfficientNet-B0 .pth checkpoint
             ood_stats_path: Path to precalculated OOD class means & precision matrix (.pt)
+            verifier_checkpoint_path: Path to MobileNetV3-Small verifier .pth checkpoint
             checkpoint_path: Fallback path for backward compatibility
             mode: 'hybrid' | 'efficientnet' | 'mobilenet'
             alpha: Soft-voting weight for EfficientNet in hybrid mode (default: 0.50)
             ood_threshold: Calibrated Mahalanobis distance threshold (default: 63.10, tau_98)
+            verifier_threshold: Calibrated foliar verification threshold (default: 0.50, tau_50)
         """
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.class_names = CLASS_NAMES
         self.mode = mode
         self.alpha = alpha
         self.ood_threshold = ood_threshold
+        self.verifier_threshold = verifier_threshold
+
+        self.verifier_model: Optional[nn.Module] = None
+        self.verifier_enabled: bool = False
 
         self.mobilenet_model: Optional[nn.Module] = None
         self.efficientnet_model: Optional[nn.Module] = None
@@ -114,6 +146,7 @@ class DiseaseInferenceEngine:
         self.ood_precision_matrix_tensor: Optional[torch.Tensor] = None
         self.ood_enabled: bool = False
 
+        self.verifier_checkpoint_path = verifier_checkpoint_path
         self.mobilenet_checkpoint_path = mobilenet_checkpoint_path
         self.efficientnet_checkpoint_path = efficientnet_checkpoint_path
         self.ood_stats_path = ood_stats_path
@@ -125,6 +158,9 @@ class DiseaseInferenceEngine:
             else:
                 self.mobilenet_checkpoint_path = checkpoint_path
 
+        if self.verifier_checkpoint_path and os.path.isfile(self.verifier_checkpoint_path):
+            self.load_verifier(self.verifier_checkpoint_path)
+
         if self.mobilenet_checkpoint_path and os.path.isfile(self.mobilenet_checkpoint_path):
             self.load_mobilenet(self.mobilenet_checkpoint_path)
 
@@ -133,6 +169,7 @@ class DiseaseInferenceEngine:
 
         if self.ood_stats_path and os.path.isfile(self.ood_stats_path):
             self.load_ood_stats(self.ood_stats_path)
+
 
     @property
     def is_loaded(self) -> bool:
@@ -155,6 +192,31 @@ class DiseaseInferenceEngine:
         elif self.mobilenet_model is not None:
             return "MobileNetV2 (PyTorch)"
         return "Unloaded"
+
+    def load_verifier(self, path: str):
+        """Loads weights for MobileNetV3-Small Stage-1 Turmeric Leaf Verifier."""
+        try:
+            model = build_mobilenet_v3_small_verifier(pretrained=False)
+            checkpoint = torch.load(path, map_location=self.device, weights_only=False)
+            
+            if isinstance(checkpoint, dict) and "model_state_dict" in checkpoint:
+                model.load_state_dict(checkpoint["model_state_dict"])
+            elif isinstance(checkpoint, dict) and "state_dict" in checkpoint:
+                model.load_state_dict(checkpoint["state_dict"])
+            else:
+                model.load_state_dict(checkpoint)
+
+            del checkpoint
+            model.to(self.device)
+            model.eval()
+            self.verifier_model = model
+            self.verifier_enabled = True
+            self.verifier_checkpoint_path = path
+            print(f"[InferenceEngine] Stage-1 Verifier loaded from {path} on {self.device} (tau={self.verifier_threshold:.2f})")
+        except Exception as e:
+            print(f"[InferenceEngine] Failed to load Verifier checkpoint: {e}")
+            self.verifier_model = None
+            self.verifier_enabled = False
 
     def load_mobilenet(self, path: str):
         """Loads weights for MobileNetV2."""
@@ -271,8 +333,10 @@ class DiseaseInferenceEngine:
     def predict_image_bytes(self, image_bytes: bytes) -> Dict[str, Any]:
         """
         Runs server-side inference on raw image bytes.
-        Performs Mahalanobis Out-of-Distribution (OOD) Domain Safeguard BEFORE disease classification.
-        High-performance vectorized inference with minimal memory allocations.
+        Hierarchical 3-Stage Inference Pipeline:
+          Stage 1: MobileNetV3-Small Botanical Foliar Verification Gate (tau = 0.50)
+          Stage 2: Mahalanobis Out-of-Distribution (OOD) Domain Safeguard (tau = 63.10)
+          Stage 3: Clean Hybrid Ensemble (alpha = 0.50, EfficientNet-B0 + MobileNetV2) Disease Classification
         """
         if not self.is_loaded:
             raise RuntimeError(
@@ -282,7 +346,7 @@ class DiseaseInferenceEngine:
 
         t0 = time.perf_counter()
 
-        # Direct in-memory PIL open and conversion to RGB
+        # Direct in-memory PIL open and conversion to RGB (Reused across all model stages)
         with Image.open(io.BytesIO(image_bytes)) as pil_img:
             image = pil_img.convert("RGB")
             tensor = INFERENCE_TRANSFORMS(image).unsqueeze(0).to(self.device)
@@ -290,7 +354,54 @@ class DiseaseInferenceEngine:
         t_prep = (time.perf_counter() - t0) * 1000
 
         # -------------------------------------------------------------
-        # 1. EfficientNet Forward Pass (Staged: features -> pool -> flat)
+        # Stage 1: MobileNetV3-Small Botanical Foliar Verification Gate
+        # -------------------------------------------------------------
+        t_ver_start = time.perf_counter()
+        verifier_prob = 1.0
+        is_verifier_rejected = False
+
+        if self.verifier_enabled and self.verifier_model is not None:
+            with torch.inference_mode():
+                verifier_logits = self.verifier_model(tensor)
+                verifier_prob = float(torch.sigmoid(verifier_logits).item())
+                if verifier_prob < self.verifier_threshold:
+                    is_verifier_rejected = True
+
+        t_ver = (time.perf_counter() - t_ver_start) * 1000
+
+        if is_verifier_rejected:
+            print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | Verifier={t_ver:.1f}ms (Score={verifier_prob:.4f} < {self.verifier_threshold}) -> VERIFIER_REJECTED")
+            return {
+                "disease": "Unverified / Low Foliar Confidence",
+                "confidence": 0.0,
+                "probabilities": {
+                    "Aphids": 0.0,
+                    "Blotch": 0.0,
+                    "Healthy": 0.0,
+                    "Leaf Spot": 0.0
+                },
+                "model_mode": "REAL_MODEL",
+                "model_architecture": "MobileNetV3-Small Turmeric Leaf Verifier",
+                "verification_status": "VERIFICATION_FAILED",
+                "verifier_score": round(float(verifier_prob), 4),
+                "verifier_confidence": round(float(verifier_prob * 100.0), 2),
+                "verifier_threshold": self.verifier_threshold,
+                "ood_status": "VERIFIER_REJECTED",
+                "ood_message": "Clear Turmeric Leaf Required: Image could not be verified as a clear turmeric leaf. Please capture a clear, well-lit photo of the leaf surface.",
+                "mahalanobis_distance": None,
+                "ood_threshold": self.ood_threshold,
+                "ood_method": "MobileNetV3-Small Botanical Foliar Verifier (Stage-1 Gate)",
+                "extracted_features": {
+                    "lesionDensity": "N/A (Specimen could not be verified as a clear turmeric leaf)",
+                    "chlorosisSeverity": "N/A (Specimen could not be verified as a clear turmeric leaf)",
+                    "colorVariance": "N/A (Specimen could not be verified as a clear turmeric leaf)",
+                    "textureDistortion": "N/A (Specimen could not be verified as a clear turmeric leaf)"
+                },
+                "individual_predictions": None
+            }
+
+        # -------------------------------------------------------------
+        # Stage 2: Mahalanobis Out-of-Distribution (OOD) Domain Safeguard
         # -------------------------------------------------------------
         t_ood_start = time.perf_counter()
         mahal_dist = 0.0
@@ -331,7 +442,7 @@ class DiseaseInferenceEngine:
         t_ood = (time.perf_counter() - t_ood_start) * 1000
 
         if is_ood_rejected:
-            print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | OOD={t_ood:.1f}ms (Dist={mahal_dist:.2f} > {self.ood_threshold}) -> OOD_REJECTED")
+            print(f"  [InferenceEngine] Stage Timing: Prep={t_prep:.1f}ms | Verifier={t_ver:.1f}ms | OOD={t_ood:.1f}ms (Dist={mahal_dist:.2f} > {self.ood_threshold}) -> OOD_REJECTED")
             return {
                 "disease": "Non-Turmeric / Out-of-Domain",
                 "confidence": 0.0,
@@ -343,6 +454,10 @@ class DiseaseInferenceEngine:
                 },
                 "model_mode": "REAL_MODEL",
                 "model_architecture": self.model_name,
+                "verification_status": "VERIFIED_TURMERIC_LEAF",
+                "verifier_score": round(float(verifier_prob), 4),
+                "verifier_confidence": round(float(verifier_prob * 100.0), 2),
+                "verifier_threshold": self.verifier_threshold,
                 "ood_status": "OOD_REJECTED",
                 "ood_message": "Image is outside the supported turmeric leaf domain. Please upload a clear turmeric leaf image.",
                 "mahalanobis_distance": round(float(mahal_dist), 2),
@@ -358,7 +473,7 @@ class DiseaseInferenceEngine:
             }
 
         # -------------------------------------------------------------
-        # 2. In-Domain Classification (Sequential MobileNetV2)
+        # Stage 3: In-Domain Disease Classification (Clean Hybrid Ensemble)
         # -------------------------------------------------------------
         t_inf_start = time.perf_counter()
         probs_mob = None
@@ -422,6 +537,10 @@ class DiseaseInferenceEngine:
             "probabilities": probabilities,
             "model_mode": "REAL_MODEL",
             "model_architecture": arch_name,
+            "verification_status": "VERIFIED_TURMERIC_LEAF",
+            "verifier_score": round(float(verifier_prob), 4),
+            "verifier_confidence": round(float(verifier_prob * 100.0), 2),
+            "verifier_threshold": self.verifier_threshold,
             "ood_status": "IN_DOMAIN",
             "mahalanobis_distance": round(float(mahal_dist), 2) if self.ood_enabled else None,
             "ood_threshold": self.ood_threshold if self.ood_enabled else None,
@@ -429,6 +548,7 @@ class DiseaseInferenceEngine:
             "extracted_features": features,
             "individual_predictions": individual_preds
         }
+
 
     def _derive_visual_features(self, disease: str, confidence: float) -> Dict[str, str]:
         if disease == "Blotch":

@@ -224,21 +224,26 @@ export const AnalyticsPage: React.FC = () => {
           </p>
         </div>
 
-        {/* Time Range Filter */}
-        <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200 shadow-xs self-start sm:self-auto">
-          {(['7', '30', 'all'] as const).map((range) => (
-            <button
-              key={range}
-              onClick={() => setTimeRange(range)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                timeRange === range
-                  ? 'bg-[#0d4a2d] text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
-              }`}
-            >
-              {range === '7' ? t.sevenDays[language] : range === '30' ? t.thirtyDays[language] : t.allTime[language]}
-            </button>
-          ))}
+        {/* Scan History Time Range Filter */}
+        <div className="flex flex-col sm:items-end gap-1 self-start sm:self-auto">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+            {language === 'ta' ? 'பரிசோதனை பதிவுகள் காலம்' : 'Scan History Scope'}
+          </span>
+          <div className="flex items-center gap-1 bg-white p-1 rounded-2xl border border-slate-200 shadow-xs">
+            {(['7', '30', 'all'] as const).map((range) => (
+              <button
+                key={range}
+                onClick={() => setTimeRange(range)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+                  timeRange === range
+                    ? 'bg-[#0d4a2d] text-white shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                {range === '7' ? t.sevenDays[language] : range === '30' ? t.thirtyDays[language] : t.allTime[language]}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

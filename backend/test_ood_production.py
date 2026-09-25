@@ -67,14 +67,17 @@ def test_anime_image():
     assert res.status_code == 200, f"Error: {res.text}"
     data = res.json()
     print(json.dumps(data, indent=2))
-    assert data["ood_status"] == "OOD_REJECTED"
-    assert data["mahalanobis_distance"] > 63.10
-    assert data["disease"] == "Non-Turmeric / Out-of-Domain"
+    assert data["ood_status"] in ["OOD_REJECTED", "VERIFIER_REJECTED"]
+    if data["ood_status"] == "OOD_REJECTED":
+        assert data["mahalanobis_distance"] > 63.10
+    else:
+        assert data["verifier_score"] < 0.50
+    assert data["disease"] in ["Non-Turmeric / Out-of-Domain", "Unverified / Low Foliar Confidence"]
     assert data["confidence"] == 0.0
     assert data["probabilities"]["Leaf Spot"] == 0.0
     assert data["probabilities"]["Aphids"] == 0.0
     assert data["individual_predictions"] is None
-    assert "outside the supported turmeric leaf domain" in data["ood_message"]
+    assert "turmeric leaf" in data["ood_message"].lower()
 
 
 def test_unrelated_object_image():
@@ -85,12 +88,15 @@ def test_unrelated_object_image():
     assert res.status_code == 200, f"Error: {res.text}"
     data = res.json()
     print(json.dumps(data, indent=2))
-    assert data["ood_status"] == "OOD_REJECTED"
-    assert data["mahalanobis_distance"] > 63.10
-    assert data["disease"] == "Non-Turmeric / Out-of-Domain"
+    assert data["ood_status"] in ["OOD_REJECTED", "VERIFIER_REJECTED"]
+    if data["ood_status"] == "OOD_REJECTED":
+        assert data["mahalanobis_distance"] > 63.10
+    else:
+        assert data["verifier_score"] < 0.50
+    assert data["disease"] in ["Non-Turmeric / Out-of-Domain", "Unverified / Low Foliar Confidence"]
     assert data["confidence"] == 0.0
     assert data["individual_predictions"] is None
-    assert "outside the supported turmeric leaf domain" in data["ood_message"]
+    assert "turmeric leaf" in data["ood_message"].lower()
 
 
 if __name__ == "__main__":

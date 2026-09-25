@@ -4,6 +4,7 @@ import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { ToastContainer } from './Toast';
 import { DetailedReportModal } from '../common/DetailedReportModal';
+import { AskCurcuma } from '../chatbot';
 
 export const AppLayout: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,6 +31,7 @@ export const AppLayout: React.FC = () => {
       <div className="print:hidden">
         <ToastContainer />
         <DetailedReportModal />
+        <AskCurcuma />
       </div>
     </div>
   );

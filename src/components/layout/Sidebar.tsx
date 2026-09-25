@@ -42,7 +42,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       path: '/disease-detection',
-      label: language === 'ta' ? 'இலையை சரிபார்' : 'Check Leaf',
+      label: language === 'ta' ? 'இலையை ஸ்கேன் செய்' : 'Scan Leaf',
       icon: Camera,
     },
     {
@@ -52,12 +52,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       path: '/field-conditions',
-      label: language === 'ta' ? 'கள நிலைமைகள்' : 'Field Conditions',
+      label: language === 'ta' ? 'கள ஆய்வு' : 'Field Check',
       icon: TestTubes,
     },
     {
       path: '/recommendations',
-      label: language === 'ta' ? 'பரிந்துரைகள்' : 'Recommendations',
+      label: language === 'ta' ? 'ஆலோசனை' : 'Advice',
       icon: Lightbulb,
     },
     {
@@ -105,7 +105,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           </div>
           <div>
             <div className="font-extrabold text-slate-900 text-lg tracking-tight font-display flex items-center gap-1">
-              Curuma
+              Curcuma
             </div>
             <div className="text-[11px] font-medium text-slate-500 tracking-wide">
               {language === 'ta' ? 'மஞ்சள் பயிர் நலம்' : 'Turmeric Crop Health'}

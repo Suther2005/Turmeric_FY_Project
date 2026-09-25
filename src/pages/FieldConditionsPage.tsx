@@ -288,14 +288,14 @@ export const FieldConditionsPage: React.FC = () => {
       const levelLabel =
         result.level === 'High'
           ? language === 'ta'
-            ? 'அதிகம் (HIGH)'
+            ? 'அதிக அபாயம்'
             : 'HIGH'
           : result.level === 'Moderate'
           ? language === 'ta'
-            ? 'மிதமானது (MODERATE)'
+            ? 'மிதமான அபாயம்'
             : 'MODERATE'
           : language === 'ta'
-          ? 'குறைவானது (LOW)'
+          ? 'குறைந்த அபாயம்'
           : 'LOW';
 
       addToast({
@@ -322,13 +322,13 @@ export const FieldConditionsPage: React.FC = () => {
       {/* 1. Breadcrumbs */}
       <div className="flex items-center text-xs font-medium text-slate-400 gap-1.5 pt-1">
         <Link to="/dashboard" className="hover:text-emerald-700 transition-colors">
-          Curuma
+          Curcuma
         </Link>
         <span>›</span>
         <span>{language === 'ta' ? 'விவசாய சேவைகள்' : 'Farmer Services'}</span>
         <span>›</span>
         <span className="text-slate-700 font-semibold">
-          {language === 'ta' ? 'கள நிலைமைகள்' : 'Field Conditions'}
+          {language === 'ta' ? 'கள ஆய்வு' : 'Field Check'}
         </span>
       </div>
 
@@ -340,13 +340,13 @@ export const FieldConditionsPage: React.FC = () => {
               <TestTubes className="w-5 h-5 text-emerald-700" />
             </div>
             <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display tracking-tight">
-              {language === 'ta' ? '🧪 கள நிலைமைகள்' : '🧪 Field Conditions'}
+              {language === 'ta' ? 'கள ஆய்வு' : 'Field Check'}
             </h1>
           </div>
           <p className="text-xs md:text-sm text-slate-500 font-medium pl-0.5">
             {language === 'ta'
-              ? 'சுற்றுச்சூழல் மதிப்பீட்டிற்கு உங்கள் வயல் அளவீடுகளை உள்ளிடவும்.'
-              : 'Enter your field conditions for an environmental assessment.'}
+              ? 'சுற்றுச்சூழல் அபாயத்தை மதிப்பிட உங்கள் வயல் அளவீடுகளை உள்ளிடவும்.'
+              : 'Enter your field measurements to evaluate environmental risk.'}
           </p>
         </div>
 
@@ -366,25 +366,6 @@ export const FieldConditionsPage: React.FC = () => {
             <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
             <span>{language === 'ta' ? 'அழி' : 'Clear'}</span>
           </button>
-        </div>
-      </div>
-
-      {/* 3. Farmer Context Ribbon */}
-      <div className="p-4 rounded-3xl bg-[#f0f9f4] border border-[#d2ecdc] text-xs text-slate-700 flex items-start gap-3 shadow-2xs">
-        <div className="p-1.5 rounded-xl bg-emerald-100 text-emerald-800 shrink-0 mt-0.5">
-          <Info className="w-4 h-4 text-emerald-700" />
-        </div>
-        <div className="space-y-0.5">
-          <span className="font-bold text-slate-900 block">
-            {language === 'ta'
-              ? 'கைமுறை கள அளவீட்டு முறை (Manual Field Conditions Pathway):'
-              : 'Manual Field Conditions Pathway:'}
-          </span>
-          <p className="text-slate-600 leading-relaxed font-medium">
-            {language === 'ta'
-              ? 'உங்கள் வயலில் அளவிடப்பட்ட 8 கள காரணிகளை உள்ளிட்டு விதிமுறை அடிப்படையிலான சுற்றுச்சூழல் அபாயத்தை மதிப்பீடு செய்யவும். தானியங்கி வானிலை மதிப்பீட்டிற்கு "Weather & Risk" பகுதியை பார்க்கவும்.'
-              : 'Enter direct handheld sensor readings or on-site field measurements to evaluate rule-based environmental disease incubation risk. For automated station weather, use the Weather & Risk module.'}
-          </p>
         </div>
       </div>
 
@@ -523,14 +504,14 @@ export const FieldConditionsPage: React.FC = () => {
                   <span className="text-base font-black uppercase tracking-tight">
                     {analyzedResult.level === 'High'
                       ? language === 'ta'
-                        ? 'அதிகம் (HIGH)'
+                        ? 'அதிக அபாயம்'
                         : 'HIGH'
                       : analyzedResult.level === 'Moderate'
                       ? language === 'ta'
-                        ? 'மிதமானது (MODERATE)'
+                        ? 'மிதமான அபாயம்'
                         : 'MODERATE'
                       : language === 'ta'
-                      ? 'குறைவானது (LOW)'
+                      ? 'குறைந்த அபாயம்'
                       : 'LOW'}
                   </span>
                 </div>
@@ -541,7 +522,7 @@ export const FieldConditionsPage: React.FC = () => {
           {/* Observed Conditions Grid */}
           <div className="space-y-2.5">
             <h3 className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              {language === 'ta' ? 'பதிவு செய்யப்பட்ட கள அளவீடுகள் (Conditions Observed)' : 'Conditions Observed'}
+              {language === 'ta' ? 'பதிவு செய்யப்பட்ட கள அளவீடுகள்' : 'Conditions Observed'}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {PARAMETER_CONFIGS.map((config) => {
@@ -625,7 +606,7 @@ export const FieldConditionsPage: React.FC = () => {
               className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center gap-2 transition-colors"
             >
               <Lightbulb className="w-4 h-4 text-emerald-700" />
-              <span>{language === 'ta' ? 'பரிந்துரைகளைக் காண்க' : 'View Recommendations'}</span>
+              <span>{language === 'ta' ? 'ஆலோசனை காண்க' : 'View Advice'}</span>
               <ArrowRight className="w-3.5 h-3.5 text-emerald-700" />
             </Link>
 
@@ -634,7 +615,7 @@ export const FieldConditionsPage: React.FC = () => {
               className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs border border-slate-200 flex items-center justify-center gap-2 transition-colors"
             >
               <Camera className="w-4 h-4 text-slate-500" />
-              <span>{language === 'ta' ? 'இலையை சரிபார் (Check Leaf)' : 'Check Foliar Leaf'}</span>
+              <span>{language === 'ta' ? 'இலையை ஸ்கேன் செய்' : 'Scan Leaf'}</span>
             </Link>
           </div>
         </div>

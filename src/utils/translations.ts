@@ -9,14 +9,14 @@ export const TRANSLATIONS = {
   // Navigation
   nav: {
     home: { en: 'Home', ta: 'முகப்பு' },
-    checkLeaf: { en: 'Check Leaf', ta: 'இலையை சரிபார்' },
+    checkLeaf: { en: 'Scan Leaf', ta: 'இலையை ஸ்கேன் செய்' },
     weatherAndRisk: { en: 'Weather & Risk', ta: 'வானிலை & அபாயம்' },
-    fieldConditions: { en: 'Field Conditions', ta: 'கள நிலைமைகள்' },
+    fieldConditions: { en: 'Field Check', ta: 'கள ஆய்வு' },
     myField: { en: 'My Field', ta: 'என் வயல்' },
-    dashboard: { en: 'Dashboard', ta: 'பயிர் முகப்பு' },
-    diseaseDetection: { en: 'Check Leaf', ta: 'இலையை சரிபார்' },
+    dashboard: { en: 'Dashboard', ta: 'முகப்பு' },
+    diseaseDetection: { en: 'Scan Leaf', ta: 'இலையை ஸ்கேன் செய்' },
     cropRisk: { en: 'Combined Crop Risk', ta: 'பயிர் அபாய நிலை' },
-    recommendations: { en: 'Recommendations', ta: 'பரிந்துரைகள்' },
+    recommendations: { en: 'Advice', ta: 'ஆலோசனை' },
     history: { en: 'History', ta: 'முந்தைய பதிவுகள்' },
     analytics: { en: 'Dataset Analysis', ta: 'தரவுத்தொகுப்பு பகுப்பாய்வு' },
     modelPerformance: { en: 'Model Comparison', ta: 'மாதிரி ஒப்பீடு' },
@@ -557,9 +557,9 @@ export const TRANSLATIONS = {
           ta: 'இலைப்பட கணிப்பு மற்றும் வானிலை சூழலை இணைக்கும் பரிசோதனை மாதிரி கட்டமைப்பு.',
         },
         strengths: [
-          { en: 'Mitigates single-model variance on complex foliar lesions', ta: 'சிக்கலான நோய் அறிகுறிகளில் மாதிரி பிழைகளைக் குறைக்கும் கட்டமைப்பு' },
-          { en: 'Candidate architecture combining multiple backbone feature representations', ta: 'பல்வேறு கட்டமைப்பு அம்சங்களை இணைக்கும் மாதிரி தொகுப்பு' },
-          { en: 'Provides calibrated probability vector to multimodal fusion layer', ta: 'பன்முக ஒருங்கிணைப்பு அடுக்குக்கு நிகழ்தகவுகளை வழங்குகிறது' },
+          { en: 'Equal-weighted late-fusion soft-voting ensemble combining EfficientNet-B0 and MobileNetV2 output probabilities', ta: 'EfficientNet-B0 மற்றும் MobileNetV2 மாதிரி நிகழ்தகவுகளை சம எடையில் இணைக்கும் மாதிரி தொகுப்பு' },
+          { en: 'Probability-level late fusion with alpha = 0.50', ta: 'ஆல்பா = 0.50 கொண்ட நிகழ்தகவு நிலை ஒருங்கிணைப்பு' },
+          { en: 'Provides calibrated probability vector to multimodal decision-support layer', ta: 'பன்முக முடிவு ஆதரவு அடுக்குக்கு நிகழ்தகவுகளை வழங்குகிறது' },
         ],
       },
     },
@@ -578,9 +578,9 @@ export const TRANSLATIONS = {
     allTime: { en: 'All Time', ta: 'முழுவதும்' },
     diseaseDistTitle: { en: 'Disease Class Distribution', ta: 'நோய் பரவல் விகிதம்' },
     riskDistTitle: { en: 'Risk Severity Distribution', ta: 'அபாய தீவிரத்தின் பரவல்' },
-    envTrendsTitle: { en: 'Environmental Trends (Temperature vs. Relative Humidity)', ta: 'சுற்றுச்சூழல் போக்கு (வெப்பநிலை & ஈரப்பதம்)' },
-    envTrendsSub: { en: 'Microclimate Correlation', ta: 'நுண் வானிலை ஒப்பீடு' },
-    riskTimelineTitle: { en: '7-Day Environmental Risk Trend', ta: '7 நாள் சுற்றுச்சூழல் அபாய வரைபடம்' },
+    envTrendsTitle: { en: '7-Day Microclimate Trend (Temperature vs. Relative Humidity)', ta: '7-நாள் நுண் வானிலை போக்கு (வெப்பநிலை & ஈரப்பதம்)' },
+    envTrendsSub: { en: '7-Day Microclimate Trend', ta: '7-நாள் நுண் வானிலை போக்கு' },
+    riskTimelineTitle: { en: '7-Day Environmental Risk Trend', ta: '7-நாள் சுற்றுச்சூழல் அபாய வரைபடம்' },
     confidenceTitle: { en: 'Mean Confidence by Disease Class', ta: 'நோய்களின் சராசரி மாடல் நம்பிக்கை மதிப்பு' },
     scansCount: { en: '128 Scans', ta: '128 சோதனைகள்' },
     riskTiers: { en: 'Multimodal Risk Tiers', ta: 'ஒருங்கிணைந்த அபாய அடுக்குகள்' },
@@ -725,6 +725,31 @@ export const TRANSLATIONS = {
     text: {
       en: 'TurmeriCare AI • Research Prototype • Multimodal Crop Risk Decision Support',
       ta: 'TurmeriCare AI • ஆராய்ச்சி முன்மாதிரி • பல்தரவு பயிர் ஆபத்து முடிவு ஆதரவு',
+    },
+  },
+
+  // Why this result explanations
+  whyResult: {
+    title: { en: 'Why this result?', ta: 'இந்த முடிவுக்கான காரணம் என்ன?' },
+    healthy: (conf: number | string) => ({
+      en: `The model classified this leaf as Healthy with ${conf}% confidence. No disease pattern was identified strongly enough to classify it as Aphids, Blotch, or Leaf Spot.`,
+      ta: `இந்த இலை ${conf}% நம்பிக்கையுடன் ஆரோக்கியமானது (Healthy) என வகைப்படுத்தப்பட்டுள்ளது. அசுவினி (Aphids), இலைக்கருகல் (Blotch) அல்லது இலைப்புள்ளி (Leaf Spot) என வகைப்படுத்தும் அளவிற்கு எந்த நோய் வடிவமும் வலுவாகக் கண்டறியப்படவில்லை.`,
+    }),
+    aphids: (conf: number | string) => ({
+      en: `The model identified Aphids with ${conf}% confidence based on the visual pattern detected in the uploaded leaf.`,
+      ta: `பதிவேற்றப்பட்ட இலையில் கண்டறியப்பட்ட காட்சி வடிவத்தின் அடிப்படையில் ${conf}% நம்பிக்கையுடன் அசுவினி பூச்சி தாக்குதல் (Aphids) அடையாளம் காணப்பட்டுள்ளது.`,
+    }),
+    blotch: (conf: number | string) => ({
+      en: `The model identified Blotch with ${conf}% confidence based on the visual pattern detected in the uploaded leaf.`,
+      ta: `பதிவேற்றப்பட்ட இலையில் கண்டறியப்பட்ட காட்சி வடிவத்தின் அடிப்படையில் ${conf}% நம்பிக்கையுடன் இலைக்கருகல் நோய் (Blotch) அடையாளம் காணப்பட்டுள்ளது.`,
+    }),
+    leafSpot: (conf: number | string) => ({
+      en: `The model identified Leaf Spot with ${conf}% confidence based on the visual pattern detected in the uploaded leaf.`,
+      ta: `பதிவேற்றப்பட்ட இலையில் கண்டறியப்பட்ட காட்சி வடிவத்தின் அடிப்படையில் ${conf}% நம்பிக்கையுடன் இலைப்புள்ளி நோய் (Leaf Spot) அடையாளம் காணப்பட்டுள்ளது.`,
+    }),
+    ood: {
+      en: "This image did not meet the system's turmeric-leaf validation criteria. Please capture a clear, single turmeric leaf in good lighting.",
+      ta: 'இந்தப் படம் அமைப்பின் மஞ்சள் இலை சரிபார்ப்பு நிபந்தனைகளை பூர்த்தி செய்யவில்லை. தயவுசெய்து நல்ல வெளிச்சத்தில் ஒரு மஞ்சள் இலையை மட்டும் தெளிவாகப் படம் எடுக்கவும்.',
     },
   },
 };

@@ -1,0 +1,67 @@
+{
+  "timestamp": "2026-09-23 12:27:00",
+  "latencies": {
+    "in_domain_full_pipeline": {
+      "mean_ms": 166.51858599856496,
+      "median_ms": 166.28304999903776,
+      "p90_ms": 173.53112999699079,
+      "p95_ms": 174.48768998438027,
+      "p99_ms": 179.30722800898366,
+      "min_ms": 156.3698000391014,
+      "max_ms": 181.2196000246331,
+      "std_ms": 5.37574518984107
+    },
+    "verifier_rejection_short_circuit": {
+      "mean_ms": 17.59639800293371,
+      "median_ms": 17.380100005539134,
+      "p90_ms": 18.797749996883795,
+      "p95_ms": 19.487064974964596,
+      "p99_ms": 20.76255500258412,
+      "min_ms": 16.126099973917007,
+      "max_ms": 21.336100006010383,
+      "std_ms": 1.0169085321305151
+    },
+    "speedup_factor": 9.463220027803565
+  },
+  "memory_profile": {
+    "initial_ram_mb": 310.91796875,
+    "post_load_ram_mb": 392.21875,
+    "model_weights_memory_delta_mb": 81.30078125,
+    "peak_inference_ram_mb": 420.10546875,
+    "total_ram_growth_mb": 109.1875
+  },
+  "observed_cohort_metrics": {
+    "in_domain_validation_leaves_20": {
+      "verified_foliar_count": 20,
+      "total": 20,
+      "passed_ood_count": 20,
+      "mean_verifier_score": 0.99997,
+      "mean_mahalanobis_distance": 41.3865
+    },
+    "external_mendeley_leaves_20": {
+      "verified_foliar_count": 20,
+      "total": 20,
+      "passed_ood_count": 0,
+      "mean_verifier_score": 0.9999500000000001,
+      "mean_mahalanobis_distance": 79.5925
+    },
+    "turmeric_rhizomes_20": {
+      "stage1_rejected_count": 20,
+      "total": 20,
+      "mean_verifier_score": 0.000545,
+      "max_verifier_score": 0.0064
+    },
+    "far_ood_controls_20": {
+      "stage1_rejected_count": 18,
+      "total": 18,
+      "mean_verifier_score": 0.0023833333333333332,
+      "max_verifier_score": 0.0122
+    },
+    "dry_leaf_edge_cases_20": {
+      "accepted_count": 17,
+      "rejected_count": 3,
+      "total": 20,
+      "mean_verifier_score": 0.8290850000000001
+    }
+  }
+}

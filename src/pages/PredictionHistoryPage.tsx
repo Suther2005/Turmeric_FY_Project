@@ -132,13 +132,13 @@ export const PredictionHistoryPage: React.FC = () => {
         {/* 1. Breadcrumbs */}
       <div className="flex items-center text-xs font-medium text-slate-400 gap-1.5 pt-1">
         <Link to="/dashboard" className="hover:text-emerald-700 transition-colors">
-          Curuma
+          Curcuma
         </Link>
         <span>›</span>
         <span>{language === 'ta' ? 'விவசாய சேவைகள்' : 'Farmer Services'}</span>
         <span>›</span>
         <span className="text-slate-700 font-semibold">
-          {language === 'ta' ? 'முந்தைய பதிவுகள்' : 'My History'}
+          {language === 'ta' ? 'முந்தைய பதிவுகள்' : 'History'}
         </span>
       </div>
 
@@ -150,7 +150,7 @@ export const PredictionHistoryPage: React.FC = () => {
               <HistoryIcon className="w-5 h-5 text-emerald-700" />
             </div>
             <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 font-display tracking-tight">
-              {language === 'ta' ? 'முந்தைய பதிவுகள்' : 'My History'}
+              {language === 'ta' ? 'முந்தைய பதிவுகள்' : 'History'}
             </h1>
           </div>
           <p className="text-xs md:text-sm text-slate-500 font-medium pl-0.5">
@@ -158,19 +158,6 @@ export const PredictionHistoryPage: React.FC = () => {
               ? 'உங்கள் முந்தைய இலை பரிசோதனைகள் மற்றும் முடிவுகள்.'
               : 'Your past leaf checks and results.'}
           </p>
-        </div>
-
-        {/* Right Badge */}
-        <div className="hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white border border-emerald-200/80 shadow-xs">
-          <Sprout className="w-6 h-6 text-emerald-600 shrink-0" />
-          <div className="text-left">
-            <span className="text-[11px] font-bold text-slate-800 block leading-tight">
-              {language === 'ta' ? 'தவறாமல் கண்காணிக்கவும்' : 'Keep checking regularly'}
-            </span>
-            <span className="text-[11px] font-bold text-emerald-700 block leading-tight">
-              {language === 'ta' ? 'ஆரோக்கியமான மஞ்சள் பயிருக்கு' : 'for a healthier turmeric crop.'}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -196,7 +183,7 @@ export const PredictionHistoryPage: React.FC = () => {
               className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#0d4a2d] hover:bg-[#145a38] text-white font-bold text-xs md:text-sm shadow-md transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               <Sprout className="w-4 h-4 text-emerald-300" />
-              <span>{language === 'ta' ? 'இலையை சரிபார்' : 'Check Leaf'}</span>
+              <span>{language === 'ta' ? 'இலையை ஸ்கேன் செய்' : 'Scan Leaf'}</span>
             </Link>
           </div>
         </div>
@@ -311,7 +298,7 @@ export const PredictionHistoryPage: React.FC = () => {
                             {record.disease === 'Leaf Spot'
                               ? (language === 'ta' ? 'இலைப்புள்ளி (Leaf Spot)' : 'Leaf Spot')
                               : record.disease === 'Blotch'
-                              ? (language === 'ta' ? 'இலைக்கருகல் (Leaf Blotch)' : 'Leaf Blotch')
+                              ? (language === 'ta' ? 'இலைக்கருகல் (Blotch)' : 'Blotch')
                               : record.disease === 'Aphids'
                               ? (language === 'ta' ? 'அசுவினி (Aphids)' : 'Aphids')
                               : (language === 'ta' ? 'ஆரோக்கியமானது (Healthy)' : 'Healthy')}
@@ -411,7 +398,7 @@ export const PredictionHistoryPage: React.FC = () => {
                               {record.disease === 'Leaf Spot'
                                 ? (language === 'ta' ? 'இலைப்புள்ளி (Leaf Spot)' : 'Leaf Spot')
                                 : record.disease === 'Blotch'
-                                ? (language === 'ta' ? 'இலைக்கருகல் (Leaf Blotch)' : 'Leaf Blotch')
+                                ? (language === 'ta' ? 'இலைக்கருகல் (Blotch)' : 'Blotch')
                                 : record.disease === 'Aphids'
                                 ? (language === 'ta' ? 'அசுவினி (Aphids)' : 'Aphids')
                                 : (language === 'ta' ? 'ஆரோக்கியமானது (Healthy)' : 'Healthy')}
@@ -554,7 +541,7 @@ export const PredictionHistoryPage: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-black text-slate-900 tracking-tight">
-                  Curuma AI
+                  Curcuma AI
                 </h1>
                 <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-extrabold uppercase tracking-wide">
                   Crop Intelligence & Diagnostic Report
@@ -696,7 +683,7 @@ export const PredictionHistoryPage: React.FC = () => {
                         {record.disease === 'Leaf Spot'
                           ? (language === 'ta' ? 'இலைப்புள்ளி (Leaf Spot)' : 'Leaf Spot')
                           : record.disease === 'Blotch'
-                          ? (language === 'ta' ? 'இலைக்கருகல் (Leaf Blotch)' : 'Leaf Blotch')
+                          ? (language === 'ta' ? 'இலைக்கருகல் (Blotch)' : 'Blotch')
                           : record.disease === 'Aphids'
                           ? (language === 'ta' ? 'அசுவினி (Aphids)' : 'Aphids')
                           : (language === 'ta' ? 'ஆரோக்கியமானது (Healthy)' : 'Healthy')}
@@ -744,8 +731,8 @@ export const PredictionHistoryPage: React.FC = () => {
         {/* 4. Official Print Footer / Sign-off */}
         <div className="curuma-print-avoid-break mt-6 pt-4 border-t border-slate-300 flex items-end justify-between text-[9px] text-slate-500">
           <div className="max-w-xl space-y-0.5">
-            <div className="font-bold text-slate-700">Curuma Multimodal Crop Diagnostic & Environmental Surveillance Engine</div>
-            <div>Automated crop intelligence log combining Dual Deep CNN classification (MobileNetV2 + EfficientNet-B0) with Open-Meteo 14-day reanalysis environmental incubation modeling.</div>
+            <div className="font-bold text-slate-700">Curcuma Multimodal Crop Diagnostic & Environmental Surveillance Engine</div>
+            <div>Automated crop intelligence log combining Dual Deep CNN classification (MobileNetV2 + EfficientNet-B0) with Open-Meteo 14-day meteorological incubation modeling.</div>
             <div className="italic">Scientific decision support only. Confirm field chemical interventions with local TNAU / KVK agricultural extension specialists.</div>
           </div>
           <div className="text-right space-y-4">

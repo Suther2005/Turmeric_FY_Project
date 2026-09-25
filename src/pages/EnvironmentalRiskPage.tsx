@@ -193,7 +193,7 @@ export const EnvironmentalRiskPage: React.FC = () => {
       {/* 1. Breadcrumbs */}
       <div className="flex items-center text-xs font-medium text-slate-400 gap-1.5 pt-1">
         <Link to="/dashboard" className="hover:text-emerald-700 transition-colors">
-          Curuma
+          Curcuma
         </Link>
         <span>›</span>
         <span>{language === 'ta' ? 'விவசாய சேவைகள்' : 'Farmer Services'}</span>
@@ -227,19 +227,6 @@ export const EnvironmentalRiskPage: React.FC = () => {
               ? 'உங்கள் வயலுக்கான தற்போதைய வானிலை மற்றும் சமீபத்திய களச்சூழல்.'
               : 'Current weather and recent conditions for your field.'}
           </p>
-        </div>
-
-        {/* Right Badge */}
-        <div className="relative z-10 hidden sm:flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white/90 border border-emerald-200/80 shadow-xs text-right">
-          <Sprout className="w-6 h-6 text-emerald-600 shrink-0" />
-          <div className="text-left">
-            <span className="text-[11px] font-bold text-slate-800 block leading-tight">
-              {language === 'ta' ? 'ஆரோக்கியமான மஞ்சள்' : 'Healthy Turmeric'}
-            </span>
-            <span className="text-[11px] font-bold text-emerald-700 block leading-tight">
-              {language === 'ta' ? 'பலமான விவசாயிகள்' : 'Stronger Farmers'}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -409,139 +396,49 @@ export const EnvironmentalRiskPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 4. Row 2: Field Risk Card & Crop Watch Card (2 Equal Columns) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        {/* Card 3: Field Risk */}
-        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between relative overflow-hidden min-h-[175px]">
-          <div className="space-y-3 z-10">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">🍃</span>
-              <h2 className="text-base font-extrabold text-slate-900 font-display">
-                {language === 'ta' ? 'வயல் ஆபத்து நிலை' : 'Field Risk'}
-              </h2>
-            </div>
-
-            {/* Categorical Badge Box */}
-            <div className="pt-0.5">
-              <div className={`inline-block px-6 py-2 rounded-2xl text-xl font-black tracking-wide ${riskBadgeStyle}`}>
-                {riskCategory === 'High'
-                  ? language === 'ta'
-                    ? 'அதிகம் (High)'
-                    : 'High'
-                  : riskCategory === 'Moderate'
-                  ? language === 'ta'
-                    ? 'மிதமானது (Moderate)'
-                    : 'Moderate'
-                  : language === 'ta'
-                  ? 'குறைவானது (Low)'
-                  : 'Low'}
-              </div>
-            </div>
-
-            <p className="text-xs md:text-sm text-slate-600 max-w-sm leading-relaxed pt-0.5">
-              {riskDescription}
-            </p>
-          </div>
-
-          {/* Decorative Plant Art on background */}
-          <div className="absolute right-4 bottom-1 opacity-20 pointer-events-none">
-            <svg width="115" height="100" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M50 75C50 75 52 40 75 30C75 30 65 55 50 75Z" fill="#10b981" />
-              <path d="M50 75C50 75 48 40 25 30C25 30 35 55 50 75Z" fill="#34d399" />
-              <path d="M50 75V15" stroke="#059669" strokeWidth="3.5" strokeLinecap="round" />
-            </svg>
-          </div>
-        </div>
-
-        {/* Card 4: Crop Watch */}
-        <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between relative overflow-hidden min-h-[175px]">
-          <div className="space-y-2.5 z-10">
-            <div className="flex items-center gap-2">
-              <BarChart2 className="w-5 h-5 text-emerald-600" />
-              <h2 className="text-base font-extrabold text-slate-900 font-display">
-                {language === 'ta' ? 'பயிர் கண்காணிப்பு' : 'Crop Watch'}
-              </h2>
-            </div>
-
-            <div className="space-y-1.5 pt-0.5">
-              <h3 className="text-sm md:text-base font-extrabold text-slate-900 leading-snug">
-                {riskCategory === 'High'
-                  ? language === 'ta'
-                    ? 'பயிர்களை தீவிரமாக கண்காணிக்க வேண்டிய நேரம்.'
-                    : 'Current conditions warrant closer crop monitoring.'
-                  : riskCategory === 'Moderate'
-                  ? language === 'ta'
-                    ? 'பயிர்களை தொடர்ந்து கண்காணிக்க உகந்த சூழல்.'
-                    : 'Current conditions are suitable for closer crop monitoring.'
-                  : language === 'ta'
-                  ? 'பயிர்கள் இயல்பான வளர்ச்சி நிலையில் உள்ளன.'
-                  : 'Current conditions are suitable for standard crop scouting.'}
-              </h3>
-              <p className="text-xs text-slate-500 leading-relaxed max-w-sm">
-                {language === 'ta'
-                  ? 'குறிப்பாக மழைப்பொழிவு அல்லது அதிக ஈரப்பதம் உள்ள நாட்களில் இலைகளை தவறாமல் சோதிக்கவும்.'
-                  : 'Keep checking your leaves regularly, especially after rainfall or high humidity periods.'}
-              </p>
-            </div>
-          </div>
-
-          {/* Decorative Leaf on right */}
-          <div className="absolute right-4 bottom-1 opacity-20 pointer-events-none">
-            <svg width="105" height="100" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M70 70C70 70 85 45 75 20C65 35 60 55 70 70Z" fill="#10b981" />
-              <path d="M30 70C30 70 15 45 25 20C35 35 40 55 30 70Z" fill="#34d399" />
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* 5. Row 3: General Advice Card (Full Width) */}
-      <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-        <div className="space-y-3">
+      {/* 4. Row 2: Field Risk Card */}
+      <div className="bg-white rounded-3xl p-6 border border-[#e2ece6] shadow-card flex flex-col justify-between relative overflow-hidden min-h-[160px]">
+        <div className="space-y-3 z-10">
           <div className="flex items-center gap-2">
-            <Lightbulb className="w-5 h-5 text-amber-500" />
+            <span className="text-lg">🍃</span>
             <h2 className="text-base font-extrabold text-slate-900 font-display">
-              {language === 'ta' ? 'பொதுவான ஆலோசனைகள்' : 'General Advice'}
+              {language === 'ta' ? 'வயல் ஆபத்து நிலை' : 'Field Risk'}
             </h2>
           </div>
 
-          <div className="space-y-2 text-xs md:text-sm text-slate-700 font-medium">
-            <div className="flex items-center gap-2.5">
-              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
-                ✓
-              </div>
-              <span>{language === 'ta' ? 'வயலில் தண்ணீர் தேங்காமல் வடிகால் வசதியை சரியாக பராமரிக்கவும்.' : 'Keep your field well drained.'}</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
-                ✓
-              </div>
-              <span>{language === 'ta' ? 'பயிர்களுக்கு இடையே போதுமான காற்றோட்டம் இருப்பதை உறுதிசெய்யவும்.' : 'Maintain good air flow between plants.'}</span>
-            </div>
-            <div className="flex items-center gap-2.5">
-              <div className="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-bold shrink-0">
-                ✓
-              </div>
-              <span>{language === 'ta' ? 'மழைக்குப் பின் இலைகளைத் தவறாமல் பரிசோதிக்கவும்.' : 'Check leaves regularly, especially after rain.'}</span>
+          {/* Categorical Badge Box */}
+          <div className="pt-0.5">
+            <div className={`inline-block px-6 py-2 rounded-2xl text-xl font-black tracking-wide ${riskBadgeStyle}`}>
+              {riskCategory === 'High'
+                ? language === 'ta'
+                  ? 'அதிகம்'
+                  : 'High'
+                : riskCategory === 'Moderate'
+                ? language === 'ta'
+                  ? 'மிதமானது'
+                  : 'Moderate'
+                : language === 'ta'
+                ? 'குறைவானது'
+                : 'Low'}
             </div>
           </div>
+
+          <p className="text-xs md:text-sm text-slate-600 max-w-lg leading-relaxed pt-0.5">
+            {riskDescription}
+          </p>
         </div>
 
-        {/* Right Badge Box */}
-        <div className="w-full md:w-auto p-4 rounded-2xl bg-[#eef8f1] border border-[#d8f0e0] flex items-center justify-center gap-3 shrink-0">
-          <Sprout className="w-6 h-6 text-emerald-600" />
-          <div>
-            <span className="text-xs font-extrabold text-emerald-950 block font-display">
-              {language === 'ta' ? 'ஆரோக்கியமான பயிர்கள்' : 'Healthy Plants'}
-            </span>
-            <span className="text-[11px] font-bold text-emerald-700">
-              {language === 'ta' ? 'சிறந்த மகசூல்' : 'Better Yields'}
-            </span>
-          </div>
+        {/* Decorative Plant Art on background */}
+        <div className="absolute right-4 bottom-1 opacity-20 pointer-events-none">
+          <svg width="115" height="100" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 75C50 75 52 40 75 30C75 30 65 55 50 75Z" fill="#10b981" />
+            <path d="M50 75C50 75 48 40 25 30C25 30 35 55 50 75Z" fill="#34d399" />
+            <path d="M50 75V15" stroke="#059669" strokeWidth="3.5" strokeLinecap="round" />
+          </svg>
         </div>
       </div>
 
-      {/* 6. Collapsible Advanced & Research Section (COLLAPSED BY DEFAULT) */}
+      {/* 5. Collapsible Advanced Details Section (COLLAPSED BY DEFAULT) */}
       <div className="border border-slate-200 rounded-3xl bg-white overflow-hidden shadow-xs">
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
@@ -551,8 +448,8 @@ export const EnvironmentalRiskPage: React.FC = () => {
             <span className="text-base">⚙️</span>
             <span>
               {showAdvanced
-                ? (language === 'ta' ? '▼ மேம்பட்ட / ஆராய்ச்சி விவரங்கள்' : '▼ Advanced / Research Details')
-                : (language === 'ta' ? '▶ மேம்பட்ட / ஆராய்ச்சி விவரங்கள்' : '▶ Advanced / Research Details')}
+                ? (language === 'ta' ? '▼ மேம்பட்ட விவரங்கள்' : '▼ Advanced Details')
+                : (language === 'ta' ? '▶ மேம்பட்ட விவரங்கள்' : '▶ Advanced Details')}
             </span>
           </div>
           {showAdvanced ? (
@@ -611,7 +508,7 @@ export const EnvironmentalRiskPage: React.FC = () => {
                   className="w-full p-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 cursor-pointer"
                 >
                   <option value="Leaf Spot">Leaf Spot (Colletotrichum capsici)</option>
-                  <option value="Leaf Blotch">Leaf Blotch (Taphrina maculans)</option>
+                  <option value="Leaf Blotch">Blotch (Taphrina maculans)</option>
                   <option value="Aphids">Aphids (Aphis gossypii)</option>
                 </select>
               </div>

@@ -721,7 +721,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const primaryUrl = envCustomUrl || RENDER_PROD_URL;
       const candidateUrls = import.meta.env.PROD
         ? [primaryUrl]
-        : Array.from(new Set([primaryUrl, '/api/predict', 'http://127.0.0.1:8000/api/predict']));
+        : Array.from(new Set(['http://127.0.0.1:8000/api/predict', '/api/predict', primaryUrl]));
 
       try {
         let response: Response | null = null;
@@ -730,7 +730,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         for (const url of candidateUrls) {
           try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 90000); // 90s timeout for Render cold-start
+            const isLocalUrl = url.includes('127.0.0.1') || url.includes('localhost') || url.startsWith('/api');
+            const timeoutMs = isLocalUrl ? 1500 : 90000; // 1.5s fast local timeout, 90s for Render cold-start
+            const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
             const res = await fetch(url, {
               method: 'POST',
@@ -787,11 +789,23 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
         const data = await response.json();
 
-        const isOod = data.ood_status === 'OOD_REJECTED';
+        const isVerifierRejected = data.ood_status === 'VERIFIER_REJECTED';
+        const isOodRejected = data.ood_status === 'OOD_REJECTED';
+        const isOod = isVerifierRejected || isOodRejected;
         const newResult: ImageAnalysisResult = {
-          disease: isOod ? 'Non-Turmeric / Out-of-Domain' : data.disease,
+          disease: isVerifierRejected
+            ? 'Clear Turmeric Leaf Required'
+            : isOodRejected
+            ? 'Non-Turmeric / Out-of-Domain'
+            : data.disease,
           confidence: data.confidence,
-          status: isOod ? 'Unsupported Specimen' : (data.disease === 'Healthy' ? 'Healthy Crop' : 'Disease Detected'),
+          status: isVerifierRejected
+            ? 'Clear Leaf Required'
+            : isOodRejected
+            ? 'Unsupported Specimen'
+            : data.disease === 'Healthy'
+            ? 'Healthy Crop'
+            : 'Disease Detected',
           probabilities: {
             Blotch: data.probabilities?.Blotch ?? 0,
             LeafSpot: data.probabilities?.['Leaf Spot'] ?? data.probabilities?.LeafSpot ?? 0,
@@ -807,6 +821,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           },
           modelMode: 'REAL_MODEL',
           modelArchitecture: data.model_architecture || 'Hybrid Ensemble (EfficientNet-B0 + MobileNetV2, alpha=0.50)',
+          verificationStatus: data.verification_status,
+          verifierScore: data.verifier_score,
+          verifierConfidence: data.verifier_confidence,
+          verifierThreshold: data.verifier_threshold,
           oodStatus: data.ood_status,
           oodMessage: data.ood_message,
           mahalanobisDistance: data.mahalanobis_distance,
@@ -814,6 +832,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           oodMethod: data.ood_method,
           individualPredictions: data.individual_predictions,
         };
+
 
         setImageResult(newResult);
         setHasAnalyzedImage(true);
